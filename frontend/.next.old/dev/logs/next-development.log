@@ -1,0 +1,290 @@
+[00:00:01.097] Server  LOG      ✓ Ready in 778ms
+[00:00:01.419] Server  WARN     ⚠ Cross origin request detected from chat.mangwale.ai to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[00:00:04.492] Server  LOG      ○ Compiling /chat ...
+[00:00:08.305] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:08.336] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:09.400] Browser LOG     🔄 Reusing existing session: web-1762606684333
+[00:00:09.400] Browser LOG     🔄 Reusing existing session: web-1762606684333
+[00:00:09.400] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[00:00:09.400] Browser LOG     🔌 Initializing WebSocket connection...
+[00:00:09.400] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai
+[00:00:09.400] Browser LOG     ✅ WebSocket connected
+[00:00:09.400] Browser LOG     ✅ WebSocket connected
+[00:00:09.400] Browser LOG     📱 Joining session with auth: authenticated
+[00:00:09.400] Browser LOG     📱 Joining session: web-1762606684333 (authenticated)
+[00:00:09.400] Browser LOG     📥 Session joined: web-1762606684333 History: 0
+[00:01:30.216] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[00:01:30.216] Browser LOG     ✅ Google Maps API loaded
+[00:01:31.924] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:31.924] Browser LOG     🔄 Reusing existing session: web-1762606684333
+[00:01:31.924] Browser LOG     🔄 Reusing existing session: web-1762606684333
+[00:01:32.132] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[00:01:32.132] Browser LOG     🔌 Initializing WebSocket connection...
+[00:01:32.132] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai
+[00:01:32.132] Browser LOG     ✅ WebSocket connected
+[00:01:32.132] Browser LOG     ✅ WebSocket connected
+[00:01:32.132] Browser LOG     📱 Joining session with auth: authenticated
+[00:01:32.132] Browser LOG     📱 Joining session: web-1762606684333 (authenticated)
+[00:01:32.132] Browser LOG     📥 Session joined: web-1762606684333 History: 0
+[00:01:32.132] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[00:01:32.132] Browser LOG     ✅ Google Maps API loaded
+[00:01:40.661] Browser LOG     🚀 Sending message via WebSocket: hi
+[00:01:40.661] Browser LOG     📤 Sending message: {"message":"hi","sessionId":"web-1762606684333"}
+[00:01:40.661] Browser LOG     ✅ Message sent via WebSocket
+[00:01:40.661] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:01:40.814] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:01:40.814] Browser LOG     📨 Received message: {"content":"Hi! 👋 Welcome to Mangwale. I can help you with:\n\n• 📦 Parcel delivery\n• 🍕 Food ordering\n• 🛍️ Shopping\n• 📞 Customer support\n\nWhat would you like help with today?","id":"1762611804749-0.26426255750067695","role":"assistant","timestamp":1762611804749}
+[00:02:04.266] Browser LOG     🚀 Sending message via WebSocket: parcel
+[00:02:04.266] Browser LOG     📤 Sending message: {"message":"parcel","sessionId":"web-1762606684333"}
+[00:02:04.266] Browser LOG     ✅ Message sent via WebSocket
+[00:02:04.266] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:02:04.266] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:02:04.266] Browser LOG     📨 Received message: {"content":"I apologize, but I am having trouble processing your request. Please try again.","id":"1762611828184-0.35568696678822365","role":"assistant","timestamp":1762611828184}
+[00:05:22.408] Browser LOG     ❌ WebSocket disconnected
+[00:05:22.408] Browser LOG     ❌ WebSocket disconnected
+[00:05:24.400] Browser LOG     ✅ WebSocket connected
+[00:05:24.400] Browser LOG     ✅ WebSocket connected
+[00:05:24.400] Browser LOG     📱 Joining session with auth: authenticated
+[00:05:24.400] Browser LOG     📱 Joining session: web-1762606684333 (authenticated)
+[00:05:33.401] Browser LOG     📥 Session joined: web-1762606684333 History: 0
+[00:05:55.714] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:56.008] Browser LOG     🔄 Reusing existing session: web-1762606684333
+[00:05:56.008] Browser LOG     🔄 Reusing existing session: web-1762606684333
+[00:05:56.008] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[00:05:56.008] Browser LOG     🔌 Initializing WebSocket connection...
+[00:05:56.008] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai
+[00:05:56.008] Browser LOG     ✅ WebSocket connected
+[00:05:56.008] Browser LOG     ✅ WebSocket connected
+[00:05:56.008] Browser LOG     📱 Joining session with auth: authenticated
+[00:05:56.008] Browser LOG     📱 Joining session: web-1762606684333 (authenticated)
+[00:05:56.008] Browser LOG     📥 Session joined: web-1762606684333 History: 0
+[00:05:56.008] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[00:05:56.008] Browser LOG     ✅ Google Maps API loaded
+[00:05:59.728] Browser LOG     🚀 Sending message via WebSocket: parcel
+[00:05:59.728] Browser LOG     📤 Sending message: {"message":"parcel","sessionId":"web-1762606684333"}
+[00:05:59.728] Browser LOG     ✅ Message sent via WebSocket
+[00:05:59.728] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:06:00.500] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:06:00.500] Browser LOG     📨 Received message: {"content":"I found 2 saved addresses for pickup:\n\n1. 🏠 home: Sunder Nagar Colony, 38, New, Shanti Nagar, Lekha ...\n2. 🏠 home: 42, Mumbai - Agra Rd, Ashwin Nagar, Nashik, Mahara...\n\nReply with the number (1, 2, etc.) to use a saved address, or:\n• Share your current location 📍\n• Type a new address\n• Send a Google Maps link","id":"1762612064434-0.9923425203345237","role":"assistant","timestamp":1762612064434}
+[00:06:08.167] Browser LOG     🚀 Sending message via WebSocket: 1
+[00:06:08.167] Browser LOG     📤 Sending message: {"message":"1","sessionId":"web-1762606684333"}
+[00:06:08.167] Browser LOG     ✅ Message sent via WebSocket
+[00:06:08.167] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:06:08.571] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:06:08.571] Browser LOG     📨 Received message: {"content":"✅ 🏠 Using your home address for pickup:\nSunder Nagar Colony, 38, New, Shanti Nagar, Lekha Nagar, Nashik, Maharashtra 422009, India\n📍 Location confirmed","id":"1762612072490-0.7601114492690377","role":"assistant","timestamp":1762612072490}
+[00:14:06.410] Browser LOG     🚀 Sending message via WebSocket: yes
+[00:14:06.410] Browser LOG     📤 Sending message: {"message":"yes","sessionId":"web-1762606684333"}
+[00:14:06.410] Browser LOG     ✅ Message sent via WebSocket
+[00:14:06.410] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:14:06.991] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:14:06.991] Browser LOG     📨 Received message: {"content":"I found 2 saved addresses for delivery:\n\n1. 🏠 home: Sunder Nagar Colony, 38, New, Shanti Nagar, Lekha ...\n2. 🏠 home: 42, Mumbai - Agra Rd, Ashwin Nagar, Nashik, Mahara...\n\nReply with the number (1, 2, etc.) to use a saved address, or:\n• Share your current location 📍\n• Type a new address\n• Send a Google Maps link","id":"1762612550923-0.8844306315124084","role":"assistant","timestamp":1762612550923}
+[00:17:35.694] Browser LOG     🚀 Sending message via WebSocket: 1
+[00:17:35.694] Browser LOG     📤 Sending message: {"message":"1","sessionId":"web-1762606684333"}
+[00:17:35.694] Browser LOG     ✅ Message sent via WebSocket
+[00:17:35.694] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:17:36.093] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:17:36.093] Browser LOG     📨 Received message: {"content":"✅ 🏠 Using your home address for delivery:\nSunder Nagar Colony, 38, New, Shanti Nagar, Lekha Nagar, Nashik, Maharashtra 422009, India\n📍 Location confirmed","id":"1762612760024-0.1276412011678334","role":"assistant","timestamp":1762612760024}
+[00:17:39.610] Browser LOG     🚀 Sending message via WebSocket: yes
+[00:17:39.610] Browser LOG     📤 Sending message: {"message":"yes","sessionId":"web-1762606684333"}
+[00:17:39.610] Browser LOG     ✅ Message sent via WebSocket
+[00:17:39.610] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:17:40.007] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:17:40.007] Browser LOG     📨 Received message: {"content":"⚠️ Failed to load parcel categories. Please try again.","id":"1762612763935-0.5383011452093474","role":"assistant","timestamp":1762612763935}
+[00:17:46.243] Browser LOG     🚀 Sending message via WebSocket: 2
+[00:17:46.243] Browser LOG     📤 Sending message: {"message":"2","sessionId":"web-1762606684333"}
+[00:17:46.243] Browser LOG     ✅ Message sent via WebSocket
+[00:17:46.243] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:17:46.647] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:17:46.647] Browser LOG     📨 Received message: {"content":"⚠️ Failed to load parcel categories. Please try again.","id":"1762612770567-0.5381025227875416","role":"assistant","timestamp":1762612770567}
+[00:21:29.419] Browser LOG     ❌ WebSocket disconnected
+[00:21:29.419] Browser LOG     ❌ WebSocket disconnected
+[00:21:30.413] Browser LOG     ✅ WebSocket connected
+[00:21:30.413] Browser LOG     ✅ WebSocket connected
+[00:21:30.413] Browser LOG     📱 Joining session with auth: authenticated
+[00:21:30.413] Browser LOG     📱 Joining session: web-1762606684333 (authenticated)
+[00:21:30.413] Browser LOG     📥 Session joined: web-1762606684333 History: 0
+[00:25:58.116] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:25:58.423] Browser LOG     🔄 Reusing existing session: web-1762606684333
+[00:25:58.423] Browser LOG     🔄 Reusing existing session: web-1762606684333
+[00:25:58.423] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[00:25:58.423] Browser LOG     🔌 Initializing WebSocket connection...
+[00:25:58.423] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai
+[00:25:58.423] Browser LOG     ✅ WebSocket connected
+[00:25:58.423] Browser LOG     ✅ WebSocket connected
+[00:25:58.423] Browser LOG     📱 Joining session with auth: authenticated
+[00:25:58.423] Browser LOG     📱 Joining session: web-1762606684333 (authenticated)
+[00:25:58.423] Browser LOG     📥 Session joined: web-1762606684333 History: 0
+[00:25:58.423] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[00:25:58.423] Browser LOG     ✅ Google Maps API loaded
+[00:26:05.307] Browser LOG     🚀 Sending message via WebSocket: hello
+[00:26:05.308] Browser LOG     📤 Sending message: {"message":"hello","sessionId":"web-1762606684333"}
+[00:26:05.308] Browser LOG     ✅ Message sent via WebSocket
+[00:26:05.308] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:26:06.030] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:26:06.030] Browser LOG     📨 Received message: {"content":"📦 *Select Parcel Category*\n\nPlease choose the delivery type:\n\n1. *Bike Delivery*\n   💰 ₹11.11/km (Minimum: ₹44)\n\n","id":"1762613269957-0.4297965267145136","role":"assistant","timestamp":1762613269957}
+[00:26:08.114] Browser LOG     🚀 Sending message via WebSocket: 1
+[00:26:08.114] Browser LOG     📤 Sending message: {"message":"1","sessionId":"web-1762606684333"}
+[00:26:08.114] Browser LOG     ✅ Message sent via WebSocket
+[00:26:08.114] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:26:08.511] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:26:08.511] Browser LOG     📨 Received message: {"content":"Great! You've selected *Bike Delivery*.\n\n💰 Charges: ₹11.11/km (Minimum: ₹44)\n\nNow please tell me about your parcel:\n1. Type (documents/electronics/food/etc)\n2. Approximate weight","id":"1762613272441-0.9365322532930336","role":"assistant","timestamp":1762613272441}
+[00:26:11.242] Browser LOG     🚀 Sending message via WebSocket: 1
+[00:26:11.242] Browser LOG     📤 Sending message: {"message":"1","sessionId":"web-1762606684333"}
+[00:26:11.242] Browser LOG     ✅ Message sent via WebSocket
+[00:26:11.242] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:26:11.633] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:26:11.633] Browser LOG     📨 Received message: {"content":"Please provide:\n1. weight (e.g., 2kg, 500g)","id":"1762613275560-0.57364965375247","role":"assistant","timestamp":1762613275560}
+[00:26:15.552] Browser LOG     🚀 Sending message via WebSocket: 1kg food
+[00:26:15.552] Browser LOG     📤 Sending message: {"message":"1kg food","sessionId":"web-1762606684333"}
+[00:26:15.552] Browser LOG     ✅ Message sent via WebSocket
+[00:26:15.552] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:26:16.148] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:26:16.148] Browser LOG     📨 Received message: {"content":"Perfect! 📦\n\n*Parcel Details:*\n• Type: food\n• Weight: 1kg\n• Category: Bike Delivery","id":"1762613279883-0.14182178365530151","role":"assistant","timestamp":1762613279883}
+[00:26:20.749] Browser LOG     🚀 Sending message via WebSocket: yes
+[00:26:20.749] Browser LOG     📤 Sending message: {"message":"yes","sessionId":"web-1762606684333"}
+[00:26:20.749] Browser LOG     ✅ Message sent via WebSocket
+[00:26:20.749] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:26:21.126] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:26:21.126] Browser LOG     📨 Received message: {"content":"Distance not calculated yet.","id":"1762613285057-0.7300880013273015","role":"assistant","timestamp":1762613285057}
+[00:29:43.075] Browser LOG     🚀 Sending message via WebSocket: Hello
+[00:29:43.075] Browser LOG     📤 Sending message: {"message":"Hello","sessionId":"web-1762606684333"}
+[00:29:43.075] Browser LOG     ✅ Message sent via WebSocket
+[00:29:43.075] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:29:43.483] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:29:43.483] Browser LOG     📨 Received message: {"content":"Distance not calculated yet.","id":"1762613487400-0.6945573312253794","role":"assistant","timestamp":1762613487400}
+[00:29:46.955] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:29:47.166] Browser LOG     🆕 Created new session: web-1762613488985
+[00:29:47.166] Browser LOG     🔄 Reusing existing session: web-1762613488985
+[00:29:47.166] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[00:29:47.166] Browser LOG     🔌 Initializing WebSocket connection...
+[00:29:47.166] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai
+[00:29:47.166] Browser LOG     ✅ WebSocket connected
+[00:29:47.166] Browser LOG     ✅ WebSocket connected
+[00:29:47.166] Browser LOG     📱 Joining session with auth: authenticated
+[00:29:47.166] Browser LOG     📱 Joining session: web-1762613488985 (authenticated)
+[00:29:47.166] Browser LOG     📥 Session joined: web-1762613488985 History: 0
+[00:29:47.166] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[00:29:47.166] Browser LOG     ✅ Google Maps API loaded
+[00:29:49.536] Browser LOG     🚀 Sending message via WebSocket: Hello
+[00:29:49.536] Browser LOG     📤 Sending message: {"message":"Hello","sessionId":"web-1762613488985"}
+[00:29:49.536] Browser LOG     ✅ Message sent via WebSocket
+[00:29:49.536] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:29:50.147] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:29:50.147] Browser LOG     📨 Received message: {"content":"I found 2 saved addresses for pickup:\n\n1. 🏠 home: Sunder Nagar Colony, 38, New, Shanti Nagar, Lekha ...\n2. 🏠 home: 42, Mumbai - Agra Rd, Ashwin Nagar, Nashik, Mahara...\n\nReply with the number (1, 2, etc.) to use a saved address, or:\n• Share your current location 📍\n• Type a new address\n• Send a Google Maps link","id":"1762613494080-0.13497581036845685","role":"assistant","timestamp":1762613494080}
+[00:30:16.414] Browser LOG     🚀 Sending message via WebSocket: https://maps.app.goo.gl/ySJDmDcBmRMCTJf96
+[00:30:16.414] Browser LOG     📤 Sending message: {"message":"https://maps.app.goo.gl/ySJDmDcBmRMCTJf96","sessionId":"web-1762613488985"}
+[00:30:16.414] Browser LOG     ✅ Message sent via WebSocket
+[00:30:16.414] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:30:18.995] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:30:18.995] Browser LOG     📨 Received message: {"content":"✅ Pickup location confirmed:\n📍 Location at 19.983338, 73.815096\n","id":"1762613522925-0.6321867939949737","role":"assistant","timestamp":1762613522925}
+[00:30:25.336] Browser LOG     🚀 Sending message via WebSocket: yes
+[00:30:25.336] Browser LOG     📤 Sending message: {"message":"yes","sessionId":"web-1762613488985"}
+[00:30:25.336] Browser LOG     ✅ Message sent via WebSocket
+[00:30:25.336] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:30:25.920] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:30:25.920] Browser LOG     📨 Received message: {"content":"I found 3 saved addresses for delivery:\n\n1. 🏠 home: Location at 19.983338, 73.815096\n2. 🏠 home: Sunder Nagar Colony, 38, New, Shanti Nagar, Lekha ...\n3. 🏠 home: 42, Mumbai - Agra Rd, Ashwin Nagar, Nashik, Mahara...\n\nReply with the number (1, 2, etc.) to use a saved address, or:\n• Share your current location 📍\n• Type a new address\n• Send a Google Maps link","id":"1762613529843-0.9987824544865396","role":"assistant","timestamp":1762613529843}
+[00:32:22.536] Browser LOG     🚀 Sending message via WebSocket: 1
+[00:32:22.536] Browser LOG     📤 Sending message: {"message":"1","sessionId":"web-1762613488985"}
+[00:32:22.536] Browser LOG     ✅ Message sent via WebSocket
+[00:32:22.536] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:32:22.923] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:32:22.923] Browser LOG     📨 Received message: {"content":"✅ 🏠 Using your home address for delivery:\nLocation at 19.983338, 73.815096\n📍 Location confirmed","id":"1762613646865-0.5635982519617928","role":"assistant","timestamp":1762613646865}
+[00:32:27.691] Browser LOG     🚀 Sending message via WebSocket: yes
+[00:32:27.691] Browser LOG     📤 Sending message: {"message":"yes","sessionId":"web-1762613488985"}
+[00:32:27.691] Browser LOG     ✅ Message sent via WebSocket
+[00:32:27.691] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:32:28.299] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:32:28.299] Browser LOG     📨 Received message: {"content":"📦 *Select Parcel Category*\n\nPlease choose the delivery type:\n\n1. *Bike Delivery*\n   💰 ₹11.11/km (Minimum: ₹44)\n\n","id":"1762613652226-0.27785458082235626","role":"assistant","timestamp":1762613652226}
+[00:32:30.117] Browser LOG     🚀 Sending message via WebSocket: 1
+[00:32:30.117] Browser LOG     📤 Sending message: {"message":"1","sessionId":"web-1762613488985"}
+[00:32:30.117] Browser LOG     ✅ Message sent via WebSocket
+[00:32:30.117] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:32:30.516] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:32:30.516] Browser LOG     📨 Received message: {"content":"Great! You've selected *Bike Delivery*.\n\n💰 Charges: ₹11.11/km (Minimum: ₹44)\n\nNow please tell me about your parcel:\n1. Type (documents/electronics/food/etc)\n2. Approximate weight","id":"1762613654439-0.8604393057233357","role":"assistant","timestamp":1762613654439}
+[00:32:31.899] Browser LOG     🚀 Sending message via WebSocket: 1
+[00:32:31.899] Browser LOG     📤 Sending message: {"message":"1","sessionId":"web-1762613488985"}
+[00:32:31.900] Browser LOG     ✅ Message sent via WebSocket
+[00:32:31.900] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:32:32.287] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:32:32.287] Browser LOG     📨 Received message: {"content":"Please provide:\n1. weight (e.g., 2kg, 500g)","id":"1762613656220-0.3831839531133041","role":"assistant","timestamp":1762613656220}
+[00:32:35.385] Browser LOG     🚀 Sending message via WebSocket: 1
+[00:32:35.385] Browser LOG     📤 Sending message: {"message":"1","sessionId":"web-1762613488985"}
+[00:32:35.385] Browser LOG     ✅ Message sent via WebSocket
+[00:32:35.385] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:32:35.784] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:32:35.784] Browser LOG     📨 Received message: {"content":"Please provide:\n1. weight (e.g., 2kg, 500g)","id":"1762613659702-0.8399619354649275","role":"assistant","timestamp":1762613659702}
+[00:32:40.856] Browser LOG     🚀 Sending message via WebSocket: 1kg food
+[00:32:40.856] Browser LOG     📤 Sending message: {"message":"1kg food","sessionId":"web-1762613488985"}
+[00:32:40.856] Browser LOG     ✅ Message sent via WebSocket
+[00:32:40.856] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:32:41.248] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:32:41.248] Browser LOG     📨 Received message: {"content":"Perfect! 📦\n\n*Parcel Details:*\n• Type: food\n• Weight: 1kg\n• Category: Bike Delivery","id":"1762613665173-0.7798989353337296","role":"assistant","timestamp":1762613665173}
+[00:32:44.627] Browser LOG     🚀 Sending message via WebSocket: yes
+[00:32:44.627] Browser LOG     📤 Sending message: {"message":"yes","sessionId":"web-1762613488985"}
+[00:32:44.627] Browser LOG     ✅ Message sent via WebSocket
+[00:32:44.627] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:32:45.000] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:32:45.001] Browser LOG     📨 Received message: {"content":"Distance not calculated yet.","id":"1762613668926-0.014729032012002374","role":"assistant","timestamp":1762613668926}
+[00:40:42.434] Browser LOG     ❌ WebSocket disconnected
+[00:40:42.434] Browser LOG     ❌ WebSocket disconnected
+[00:40:44.421] Browser LOG     ✅ WebSocket connected
+[00:40:44.421] Browser LOG     ✅ WebSocket connected
+[00:40:44.421] Browser LOG     📱 Joining session with auth: authenticated
+[00:40:44.421] Browser LOG     📱 Joining session: web-1762613488985 (authenticated)
+[00:40:44.421] Browser LOG     📥 Session joined: web-1762613488985 History: 0
+[00:41:22.514] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:41:22.881] Browser LOG     🔄 Reusing existing session: web-1762613488985
+[00:41:22.881] Browser LOG     🔄 Reusing existing session: web-1762613488985
+[00:41:22.881] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[00:41:22.881] Browser LOG     🔌 Initializing WebSocket connection...
+[00:41:22.882] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai
+[00:41:22.882] Browser LOG     ✅ WebSocket connected
+[00:41:22.882] Browser LOG     ✅ WebSocket connected
+[00:41:22.882] Browser LOG     📱 Joining session with auth: authenticated
+[00:41:22.882] Browser LOG     📱 Joining session: web-1762613488985 (authenticated)
+[00:41:22.882] Browser LOG     📥 Session joined: web-1762613488985 History: 0
+[00:41:22.882] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[00:41:22.882] Browser LOG     ✅ Google Maps API loaded
+[00:41:24.665] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:41:24.665] Browser LOG     🔄 Reusing existing session: web-1762613488985
+[00:41:24.665] Browser LOG     🔄 Reusing existing session: web-1762613488985
+[00:41:24.888] Browser LOG     🔄 Reusing existing session: web-1762613488985
+[00:41:24.888] Browser LOG     🔄 Reusing existing session: web-1762613488985
+[00:41:24.888] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[00:41:24.888] Browser LOG     🔌 Initializing WebSocket connection...
+[00:41:24.888] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai
+[00:41:24.888] Browser LOG     ✅ WebSocket connected
+[00:41:24.888] Browser LOG     ✅ WebSocket connected
+[00:41:24.888] Browser LOG     📱 Joining session with auth: authenticated
+[00:41:24.888] Browser LOG     📱 Joining session: web-1762613488985 (authenticated)
+[00:41:24.888] Browser LOG     📥 Session joined: web-1762613488985 History: 0
+[00:41:24.888] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[00:41:24.888] Browser LOG     ✅ Google Maps API loaded
+[00:41:26.887] Browser LOG     🚀 Sending message via WebSocket: Hello
+[00:41:26.887] Browser LOG     📤 Sending message: {"message":"Hello","sessionId":"web-1762613488985"}
+[00:41:26.887] Browser LOG     ✅ Message sent via WebSocket
+[00:41:26.887] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:41:27.353] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:41:27.353] Browser LOG     📨 Received message: {"content":"💰 *Delivery Charges*\n\nDistance: 0 km\nRate: ₹11.11/km\nSubtotal: ₹44\nTax (18%): ₹8\n*Total: ₹52*","id":"1762614191273-0.6339804055342615","role":"assistant","timestamp":1762614191273}
+[00:41:33.312] Browser LOG     🚀 Sending message via WebSocket: yes
+[00:41:33.312] Browser LOG     📤 Sending message: {"message":"yes","sessionId":"web-1762613488985"}
+[00:41:33.312] Browser LOG     ✅ Message sent via WebSocket
+[00:41:33.312] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:41:33.720] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:41:33.720] Browser LOG     📨 Received message: {"content":"I understand. How can I assist you further?","id":"1762614197655-0.8568995103925212","role":"assistant","timestamp":1762614197655}
+[00:42:25.955] Browser LOG     🚀 Sending message via WebSocket: place the order
+[00:42:25.955] Browser LOG     📤 Sending message: {"message":"place the order","sessionId":"web-1762613488985"}
+[00:42:25.955] Browser LOG     ✅ Message sent via WebSocket
+[00:42:25.955] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:42:38.963] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:42:38.963] Browser LOG     📨 Received message: {"content":"⚠️ Sorry, we couldn't place your order.\n\nReason: Order placed successfully\n\nPlease try again or contact support.","id":"1762614262892-0.47602808512880745","role":"assistant","timestamp":1762614262892}
+[02:06:47.682] Browser LOG     ❌ WebSocket disconnected
+[02:06:47.682] Browser LOG     ❌ WebSocket disconnected
+[02:06:47.682] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[02:06:47.682] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[02:06:51.407] Browser LOG     ✅ WebSocket connected
+[02:06:51.407] Browser LOG     ✅ WebSocket connected
+[02:06:51.407] Browser LOG     📱 Joining session with auth: authenticated
+[02:06:51.407] Browser LOG     📱 Joining session: web-1762613488985 (authenticated)
+[02:06:54.787] Browser LOG     📥 Session joined: web-1762613488985 History: 0

@@ -1,0 +1,1864 @@
+[00:00:00.976] Server  LOG      ✓ Ready in 712ms
+[00:00:01.760] Server  WARN     ⚠ Cross origin request detected from chat.mangwale.ai to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[00:00:04.863] Server  LOG      ○ Compiling /chat ...
+[00:00:07.819] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:07.880] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:08.717] Browser LOG     🔄 Reusing existing session: web-1763308844363
+[00:00:08.717] Browser LOG     🔄 Reusing existing session: web-1763308844363
+[00:00:08.717] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[00:00:08.717] Browser LOG     🔌 Initializing WebSocket connection...
+[00:00:08.717] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[00:00:08.717] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[00:00:08.717] Browser LOG     ✅ Google Maps API loaded
+[00:00:08.717] Browser LOG     ✅ WebSocket connected
+[00:00:08.717] Browser LOG     ✅ WebSocket connected
+[00:00:08.717] Browser LOG     📱 Joining session with auth: guest
+[00:00:08.717] Browser LOG     📱 Joining session: web-1763308844363 (guest)
+[00:00:08.717] Browser LOG     📥 Session joined: web-1763308844363 History: 0
+[00:01:20.141] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:20.141] Browser LOG     🔄 Reusing existing session: web-1763308844363
+[00:01:20.141] Browser LOG     🔄 Reusing existing session: web-1763308844363
+[00:01:20.368] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[00:01:20.368] Browser LOG     🔌 Initializing WebSocket connection...
+[00:01:20.368] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[00:01:20.368] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[00:01:20.368] Browser LOG     ✅ Google Maps API loaded
+[00:01:20.368] Browser LOG     ✅ WebSocket connected
+[00:01:20.368] Browser LOG     ✅ WebSocket connected
+[00:01:20.368] Browser LOG     📱 Joining session with auth: guest
+[00:01:20.368] Browser LOG     📱 Joining session: web-1763308844363 (guest)
+[00:01:20.368] Browser LOG     📥 Session joined: web-1763308844363 History: 0
+[00:01:24.503] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:24.503] Browser LOG     🆕 Created new session: web-1763309624177
+[00:01:24.503] Browser LOG     🔄 Reusing existing session: web-1763309624177
+[00:01:24.503] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[00:01:24.503] Browser LOG     🔌 Initializing WebSocket connection...
+[00:01:24.503] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[00:01:24.692] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[00:01:24.692] Browser LOG     ✅ Google Maps API loaded
+[00:01:24.692] Browser LOG     ✅ WebSocket connected
+[00:01:24.692] Browser LOG     ✅ WebSocket connected
+[00:01:24.692] Browser LOG     📱 Joining session with auth: guest
+[00:01:24.692] Browser LOG     📱 Joining session: web-1763309624177 (guest)
+[00:01:24.692] Browser LOG     📥 Session joined: web-1763309624177 History: 0
+[00:01:31.426] Browser LOG     🚀 Sending message via WebSocket: hi 
+[00:01:31.426] Browser LOG     📤 Sending message: {"message":"hi","sessionId":"web-1763309624177","type":"text"}
+[00:01:31.426] Browser LOG     ✅ Message sent via WebSocket
+[00:01:31.426] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:01:34.302] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:01:34.302] Browser LOG     📨 Received message: {"content":"Hello there! Welcome to Mangwale, where you can enjoy delicious food, fast parcel delivery, and even shop in Nashik right from your phone. And guess what? You can earn rewards by playing fun games! How can I help you today?","id":"1763309633463-0.6592503886556815","role":"assistant","timestamp":1763309633463}
+[00:01:45.539] Browser LOG     🚀 Sending message via WebSocket: order food 
+[00:01:45.539] Browser LOG     📤 Sending message: {"message":"order food","sessionId":"web-1763309624177","type":"text"}
+[00:01:45.539] Browser LOG     ✅ Message sent via WebSocket
+[00:01:45.539] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:01:48.588] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:01:48.588] Browser LOG     📨 Received message: {"content":"Hey there! 😊 What kind of deliciousness are you craving today in Mangwale? We have everything from our local favorites to mouth-watering street food. Whether you're in the mood for a hearty plate of mopani or some crispy fried dough, we've got you covered. So, what’s on your plate?","id":"1763309647743-0.23716676533410652","role":"assistant","timestamp":1763309647743}
+[00:02:21.595] Browser LOG     🚀 Sending message via WebSocket: kuch aacha , aur jaldi aajaye 
+[00:02:21.595] Browser LOG     📤 Sending message: {"message":"kuch aacha , aur jaldi aajaye","sessionId":"web-1763309624177","type":"text"}
+[00:02:21.595] Browser LOG     ✅ Message sent via WebSocket
+[00:02:21.595] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:02:26.827] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:02:26.827] Browser LOG     📨 Received message: {"content":"Sure! Can you tell me what kind of deliciousness you're craving today? We have a variety of options, from our local favorites to yummy street food. Whether it's something hearty or just a quick bite, we've got you covered. What’s on your plate?","id":"1763309685862-0.42317219223301605","role":"assistant","timestamp":1763309685862}
+[00:02:41.320] Browser LOG     🚀 Sending message via WebSocket: paneer tikka 
+[00:02:41.320] Browser LOG     📤 Sending message: {"message":"paneer tikka","sessionId":"web-1763309624177","type":"text"}
+[00:02:41.320] Browser LOG     ✅ Message sent via WebSocket
+[00:02:41.320] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:02:44.677] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:02:44.677] Browser LOG     📨 Received message: {"content":"Hey there! 🌟 What delicious dish are you craving today? We have a fantastic selection of local restaurants, street food, and more. Whether you're in the mood for a hearty plate of mopane worms, a savory bowl of samosas, or maybe a comforting bowl of pap and ngwi, we've got you covered! So, what’s on the menu?","id":"1763309703842-0.34740703761569747","role":"assistant","timestamp":1763309703842}
+[00:03:08.286] Browser LOG     🚀 Sending message via WebSocket: earn 
+[00:03:08.286] Browser LOG     📤 Sending message: {"message":"earn","sessionId":"web-1763309624177","type":"text"}
+[00:03:08.286] Browser LOG     ✅ Message sent via WebSocket
+[00:03:08.286] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:03:13.075] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:03:13.075] Browser LOG     📨 Received message: {"content":"Hi there! 🌟 What yummy dish are you craving today? We have a great selection of local restaurants, street food, and more. Whether you're in the mood for mopane worms, samosas, or pap and ngwi, we've got you covered! What’s on the menu? 🍽️","id":"1763309732218-0.8444432886669937","role":"assistant","timestamp":1763309732218}
+[00:03:20.186] Browser LOG     🚀 Sending message via WebSocket: lets play game 
+[00:03:20.186] Browser LOG     📤 Sending message: {"message":"lets play game","sessionId":"web-1763309624177","type":"text"}
+[00:03:20.186] Browser LOG     ✅ Message sent via WebSocket
+[00:03:20.186] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:03:26.656] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:03:26.656] Browser LOG     📨 Received message: {"content":"Sure! Let's dive into the exciting world of rewards and games at Mangwale!\n\n### How It Works:\n\n1. **🎮 Play Quick Fun Games (30 seconds to 2 minutes each)**\n   - **Intent Quest:** Guess what people mean in just 30 seconds!\n   - **Language Master:** Identify languages in just a few clicks.\n   - **Tone Detective:** Detect emotions in quick, fun challenges.\n   - **Profile Builder:** Answer quick questions and earn points.\n\n2. **💰 Earn Real Money (₹5-₹15 per game) + Points**\n   - Each game is designed to be both fun and rewarding. You can earn anywhere from ₹5 to ₹15 per game, plus extra points.\n\n3. **🏆 Compete on Leaderboards**\n   - See where you rank among other players. The higher you climb, the more rewards you can unlock!\n\n4. **📚 Help Train AI While Having Fun**\n   - By playing these games, you're not only having fun but also helping us train the AI to understand human behavior and language better.\n\n### The Games:\n- **Intent Quest:** Guess the meaning behind phrases. It's like a guessing game where you get to earn ₹","id":"1763309745810-0.207819977929663","role":"assistant","timestamp":1763309745810}
+[00:03:42.335] Browser LOG     🚀 Sending message via WebSocket: 1 (action: option-1)
+[00:03:42.335] Browser LOG     📤 Sending message: {"action":"option-1","message":"1","metadata":{"display":"1"},"sessionId":"web-1763309624177","type":"button_click"}
+[00:03:42.335] Browser LOG     ✅ Message sent via WebSocket
+[00:03:42.335] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:03:48.862] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:03:48.862] Browser LOG     📨 Received message: {"content":"Hey there! 🌟 Welcome to Mangwale! We're excited to share with you our fun and rewarding system. Here’s what you can do:\n\n1. **🎮 Play Quick Fun Games (30 seconds to 2 minutes each)**:\n   - Try out a variety of quick and engaging games that you can play in just a few minutes. Perfect for a break or when you have a few spare moments!\n\n2. **💰 Earn Real Money (₹5-₹15 per game) + Points**:\n   - For every game you play, you can earn real money ranging from ₹5 to ₹15, plus extra points to boost your score and earn more rewards.\n\n3. **🏆 Compete on Leaderboards**:\n   - Challenge your friends and see who can earn the most points! The higher you climb on the leaderboard, the more rewards you can win.\n\n4. **📚 Help Train AI While Having Fun**:\n   - Each game you play helps train our AI to understand human behavior and improve its capabilities. It’s a win-win!\n\nHere are some of the games you can try:\n\n- **🎯 Intent Quest**: Guess what people mean. 🌟 Earn ₹15 for every game!\n-","id":"1763309767937-0.2861317144007456","role":"assistant","timestamp":1763309767937}
+[00:08:18.710] Browser LOG     ❌ WebSocket disconnected
+[00:08:18.710] Browser LOG     ❌ WebSocket disconnected
+[00:08:20.712] Browser LOG     ✅ WebSocket connected
+[00:08:20.712] Browser LOG     ✅ WebSocket connected
+[00:08:20.712] Browser LOG     📱 Joining session with auth: guest
+[00:08:20.712] Browser LOG     📱 Joining session: web-1763309624177 (guest)
+[00:08:20.712] Browser LOG     📥 Session joined: web-1763309624177 History: 0
+[00:21:40.847] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:21:40.847] Browser LOG     🔄 Reusing existing session: web-1763309624177
+[00:21:40.847] Browser LOG     🔄 Reusing existing session: web-1763309624177
+[00:21:41.104] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[00:21:41.104] Browser LOG     🔌 Initializing WebSocket connection...
+[00:21:41.104] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[00:21:41.104] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[00:21:41.104] Browser LOG     ✅ Google Maps API loaded
+[00:21:41.104] Browser LOG     ✅ WebSocket connected
+[00:21:41.104] Browser LOG     ✅ WebSocket connected
+[00:21:41.104] Browser LOG     📱 Joining session with auth: guest
+[00:21:41.104] Browser LOG     📱 Joining session: web-1763309624177 (guest)
+[00:21:41.104] Browser LOG     📥 Session joined: web-1763309624177 History: 0
+[00:21:46.615] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:21:46.615] Browser LOG     🆕 Created new session: web-1763310846219
+[00:21:46.615] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[00:21:46.615] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[00:21:46.615] Browser LOG     🔌 Initializing WebSocket connection...
+[00:21:46.615] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[00:21:46.615] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[00:21:46.616] Browser LOG     ✅ Google Maps API loaded
+[00:21:47.060] Browser LOG     ✅ WebSocket connected
+[00:21:47.060] Browser LOG     ✅ WebSocket connected
+[00:21:47.060] Browser LOG     📱 Joining session with auth: guest
+[00:21:47.060] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[00:21:47.060] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[00:21:49.718] Browser LOG     🚀 Sending message via WebSocket: earn 
+[00:21:49.718] Browser LOG     📤 Sending message: {"message":"earn","sessionId":"web-1763310846219","type":"text"}
+[00:21:49.718] Browser LOG     ✅ Message sent via WebSocket
+[00:21:49.718] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:21:51.854] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:21:51.854] Browser LOG     📨 Received message: {"content":"I apologize, but I encountered an error. Please try again or contact support.","id":"1763310851008-0.14701600626812317","role":"assistant","timestamp":1763310851008}
+[00:21:58.973] Browser LOG     🚀 Sending message via WebSocket: hello 
+[00:21:58.973] Browser LOG     📤 Sending message: {"message":"hello","sessionId":"web-1763310846219","type":"text"}
+[00:21:58.973] Browser LOG     ✅ Message sent via WebSocket
+[00:21:58.973] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:22:01.571] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:22:01.571] Browser LOG     📨 Received message: {"content":"Hello there! Welcome to Mangwale, your one-stop solution for food and parcel delivery, and shopping in Nashik. Did you know you can earn rewards by playing fun games? How can I help you today?","id":"1763310860728-0.9640082599693534","role":"assistant","timestamp":1763310860728}
+[00:22:03.510] Browser LOG     🚀 Sending message via WebSocket: earn 
+[00:22:03.510] Browser LOG     📤 Sending message: {"message":"earn","sessionId":"web-1763310846219","type":"text"}
+[00:22:03.510] Browser LOG     ✅ Message sent via WebSocket
+[00:22:03.510] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[00:22:05.306] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[00:22:05.306] Browser LOG     📨 Received message: {"content":"I apologize, but I encountered an error. Please try again or contact support.","id":"1763310864423-0.9452280387075442","role":"assistant","timestamp":1763310864423}
+[00:22:15.069] Browser LOG     ❌ WebSocket disconnected
+[00:22:15.069] Browser LOG     ❌ WebSocket disconnected
+[00:22:15.069] Browser LOG     ✅ WebSocket connected
+[00:22:15.069] Browser LOG     ✅ WebSocket connected
+[00:22:15.069] Browser LOG     📱 Joining session with auth: guest
+[00:22:15.069] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[00:22:15.069] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[00:24:18.024] Browser LOG     ❌ WebSocket disconnected
+[00:24:18.024] Browser LOG     ❌ WebSocket disconnected
+[00:24:19.804] Browser LOG     ✅ WebSocket connected
+[00:24:19.804] Browser LOG     ✅ WebSocket connected
+[00:24:19.804] Browser LOG     📱 Joining session with auth: guest
+[00:24:19.804] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[00:24:19.804] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[00:24:19.804] Browser LOG     ❌ WebSocket disconnected
+[00:24:19.804] Browser LOG     ❌ WebSocket disconnected
+[00:24:21.941] Browser LOG     ✅ WebSocket connected
+[00:24:21.942] Browser LOG     ✅ WebSocket connected
+[00:24:21.942] Browser LOG     📱 Joining session with auth: guest
+[00:24:21.942] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[00:24:21.942] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[00:46:06.055] Browser LOG     ❌ WebSocket disconnected
+[00:46:06.055] Browser LOG     ❌ WebSocket disconnected
+[13:19:52.162] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[13:19:52.362] Browser LOG     🔄 Reusing existing session: web-1761999084972
+[13:19:52.362] Browser LOG     🔄 Reusing existing session: web-1761999084972
+[13:19:52.362] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[13:19:52.362] Browser LOG     🔌 Initializing WebSocket connection...
+[13:19:52.362] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[13:19:52.362] Browser LOG     ✅ WebSocket connected
+[13:19:52.362] Browser LOG     ✅ WebSocket connected
+[13:19:52.362] Browser LOG     📱 Joining session with auth: guest
+[13:19:52.362] Browser LOG     📱 Joining session: web-1761999084972 (guest)
+[13:19:52.362] Browser LOG     📥 Session joined: web-1761999084972 History: 0
+[13:19:52.817] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[13:19:52.817] Browser LOG     ✅ Google Maps API loaded
+[13:19:56.161] Browser LOG     🚀 Sending message via WebSocket: Hello 
+[13:19:56.161] Browser LOG     📤 Sending message: {"message":"Hello","sessionId":"web-1761999084972","type":"text"}
+[13:19:56.161] Browser LOG     ✅ Message sent via WebSocket
+[13:19:56.161] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[13:19:59.233] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[13:19:59.233] Browser LOG     📨 Received message: {"content":"Hello there! Welcome to Mangwale, where you can easily order delicious food, have parcels delivered, and even shop in Nashik. Did you know you can earn exciting rewards just by playing fun games? How can I help you today?","id":"1763357538352-0.6359889404317953","role":"assistant","timestamp":1763357538352}
+[13:20:07.626] Browser LOG     🚀 Sending message via WebSocket: Parcel 
+[13:20:07.626] Browser LOG     📤 Sending message: {"message":"Parcel","sessionId":"web-1761999084972","type":"text"}
+[13:20:07.626] Browser LOG     ✅ Message sent via WebSocket
+[13:20:07.626] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[13:20:10.149] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[13:20:10.149] Browser LOG     📨 Received message: {"content":"Hi there! Where are you picking up the parcel from?","id":"1763357549143-0.3575897980112306","role":"assistant","timestamp":1763357549143}
+[13:20:27.778] Browser LOG     📍 Updating location: {"lat":19.9604915,"lng":73.7588133,"sessionId":"web-1761999084972"}
+[13:20:27.779] Browser LOG     🚀 Sending message via WebSocket: 📍 My current location is: 19.960491, 73.758813 
+[13:20:27.779] Browser LOG     📤 Sending message: {"message":"📍 My current location is: 19.960491, 73.758813","sessionId":"web-1761999084972","type":"text"}
+[13:20:27.779] Browser LOG     ✅ Message sent via WebSocket
+[13:20:27.779] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[13:20:33.412] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[13:20:33.412] Browser LOG     📨 Received message: {"content":"Got it! Let me calculate the pricing...","id":"1763357572435-0.15132213595107702","role":"assistant","timestamp":1763357572435}
+[13:20:42.624] Browser LOG     🚀 Sending message via WebSocket: Drop location you don't need 
+[13:20:42.624] Browser LOG     📤 Sending message: {"message":"Drop location you don't need","sessionId":"web-1761999084972","type":"text"}
+[13:20:42.624] Browser LOG     ✅ Message sent via WebSocket
+[13:20:42.624] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[13:20:44.711] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[13:20:44.711] Browser LOG     📨 Received message: {"content":"I apologize, but I encountered an error. Please try again or contact support.","id":"1763357583702-0.12843456154953747","role":"assistant","timestamp":1763357583702}
+[13:51:24.409] Browser LOG     ❌ WebSocket disconnected
+[13:51:24.409] Browser LOG     ❌ WebSocket disconnected
+[13:51:24.409] Browser ERROR   ❌ WebSocket connection error: {}
+[13:51:24.409] Browser ERROR   WebSocket error: {}
+[13:51:24.409] Browser ERROR   ❌ WebSocket connection error: {}
+[13:51:24.409] Browser ERROR   WebSocket error: {}
+[13:51:24.409] Browser ERROR   ❌ WebSocket connection error: {}
+[13:51:24.409] Browser ERROR   WebSocket error: {}
+[13:51:24.409] Browser ERROR   ❌ WebSocket connection error: {}
+[13:51:24.409] Browser ERROR   WebSocket error: {}
+[14:25:35.956] Browser LOG     ✅ WebSocket connected
+[14:25:35.956] Browser LOG     ✅ WebSocket connected
+[14:25:35.956] Browser LOG     📱 Joining session with auth: guest
+[14:25:35.956] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[14:25:35.956] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[14:25:35.956] Browser LOG     ❌ WebSocket disconnected
+[14:25:35.956] Browser LOG     ❌ WebSocket disconnected
+[14:25:35.956] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[14:25:35.956] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[14:25:35.956] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[14:25:35.956] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[14:25:35.956] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[14:25:35.956] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[14:25:55.911] Browser LOG     ✅ WebSocket connected
+[14:25:55.911] Browser LOG     ✅ WebSocket connected
+[14:25:55.911] Browser LOG     📱 Joining session with auth: guest
+[14:25:55.911] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[14:25:55.911] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[15:16:33.820] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[15:16:34.032] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[15:16:34.032] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[15:16:34.032] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[15:16:34.032] Browser LOG     🔌 Initializing WebSocket connection...
+[15:16:34.032] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[15:16:34.032] Browser LOG     ✅ WebSocket connected
+[15:16:34.032] Browser LOG     ✅ WebSocket connected
+[15:16:34.032] Browser LOG     📱 Joining session with auth: guest
+[15:16:34.032] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[15:16:34.032] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[15:16:34.583] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[15:16:34.583] Browser LOG     ✅ Google Maps API loaded
+[15:16:39.852] Browser LOG     🚀 Sending message via WebSocket: Hello 
+[15:16:39.852] Browser LOG     📤 Sending message: {"message":"Hello","sessionId":"web-1763310846219","type":"text"}
+[15:16:39.852] Browser LOG     ✅ Message sent via WebSocket
+[15:16:39.852] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[15:16:42.969] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[15:16:42.969] Browser LOG     📨 Received message: {"content":"Hello there! Welcome to Mangwale, where you can enjoy quick food delivery, reliable parcel delivery, and shop for all your needs right here in Nashik. Did you know you can earn exciting rewards by playing fun games? How can I help you today?","id":"1763364542135-0.10240661166266185","role":"assistant","timestamp":1763364542135}
+[15:17:13.749] Browser LOG     🔌 Cleaning up WebSocket connection
+[15:17:13.749] Browser LOG     👋 Leaving session: web-1763310846219
+[15:17:17.119] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[15:17:21.272] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[15:17:21.272] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[15:17:21.272] Browser LOG     🔌 Initializing WebSocket connection...
+[15:17:21.272] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[15:17:21.272] Browser LOG     🔌 Cleaning up WebSocket connection
+[15:17:21.272] Browser LOG     👋 Leaving session: web-1763310846219
+[15:17:21.272] Browser LOG     🔌 Initializing WebSocket connection...
+[15:17:21.272] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[15:17:21.272] Browser LOG     ✅ Google Maps API loaded
+[15:17:21.272] Browser LOG     ✅ WebSocket connected
+[15:17:21.272] Browser LOG     ✅ WebSocket connected
+[15:17:21.272] Browser LOG     📱 Joining session with auth: guest
+[15:17:21.272] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[15:17:21.272] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[15:17:46.069] Browser LOG     🚀 Sending message via WebSocket: What can you do for me 
+[15:17:46.069] Browser LOG     📤 Sending message: {"message":"What can you do for me","module":"parcel","sessionId":"web-1763310846219","type":"text"}
+[15:17:46.069] Browser LOG     ✅ Message sent via WebSocket
+[15:17:46.069] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[15:17:48.177] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[15:17:48.177] Browser LOG     📨 Received message: {"content":"Hi there! Where is the pickup location for your parcel?","id":"1763364607338-0.0015220771204864647","role":"assistant","timestamp":1763364607338}
+[15:17:56.119] Browser LOG     📍 Updating location: {"lat":18.5729024,"lng":73.793536,"sessionId":"web-1763310846219"}
+[15:17:56.120] Browser LOG     🚀 Sending message via WebSocket: 📍 My current location is: 18.572902, 73.793536 
+[15:17:56.120] Browser LOG     📤 Sending message: {"message":"📍 My current location is: 18.572902, 73.793536","module":"parcel","sessionId":"web-1763310846219","type":"text"}
+[15:17:56.120] Browser LOG     ✅ Message sent via WebSocket
+[15:17:56.120] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[15:17:58.752] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[15:17:58.752] Browser LOG     📨 Received message: {"content":"✅ Location received: 📍 My current location is: 18.572902, 73.793536","id":"1763364617921-0.9101166314529552","role":"assistant","timestamp":1763364617921}
+[15:18:09.626] Browser LOG     🚀 Sending message via WebSocket: Do you want drop address 
+[15:18:09.626] Browser LOG     📤 Sending message: {"message":"Do you want drop address","module":"parcel","sessionId":"web-1763310846219","type":"text"}
+[15:18:09.626] Browser LOG     ✅ Message sent via WebSocket
+[15:18:09.626] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[15:18:11.689] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[15:18:11.689] Browser LOG     📨 Received message: {"content":"Hi there! Where are you picking up the parcel from?","id":"1763364630835-0.08115133107484107","role":"assistant","timestamp":1763364630835}
+[15:18:15.995] Browser LOG     📍 Updating location: {"lat":19.9605473,"lng":73.758779,"sessionId":"web-1763310846219"}
+[15:18:15.995] Browser LOG     🚀 Sending message via WebSocket: 📍 My current location is: 19.960547, 73.758779 
+[15:18:15.995] Browser LOG     📤 Sending message: {"message":"📍 My current location is: 19.960547, 73.758779","module":"parcel","sessionId":"web-1763310846219","type":"text"}
+[15:18:15.995] Browser LOG     ✅ Message sent via WebSocket
+[15:18:15.995] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[15:18:22.124] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[15:18:22.124] Browser LOG     📨 Received message: {"content":"Got it! Let me calculate the pricing...","id":"1763364641251-0.028623220519635062","role":"assistant","timestamp":1763364641251}
+[15:18:26.120] Browser LOG     🚀 Sending message via WebSocket: ok 
+[15:18:26.120] Browser LOG     📤 Sending message: {"message":"ok","module":"parcel","sessionId":"web-1763310846219","type":"text"}
+[15:18:26.120] Browser LOG     ✅ Message sent via WebSocket
+[15:18:26.120] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[15:18:28.969] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[15:18:28.969] Browser LOG     📨 Received message: {"content":"Hello there! Welcome to Mangwale, where you can enjoy delicious food delivery, reliable parcel delivery, and convenient shopping right in Nashik. Did you know you can earn rewards by playing fun games? How can I help you today?","id":"1763364648102-0.47148323668899983","role":"assistant","timestamp":1763364648102}
+[16:48:08.152] Browser LOG     ✅ WebSocket connected
+[16:48:08.152] Browser LOG     ✅ WebSocket connected
+[16:48:08.152] Browser LOG     📱 Joining session with auth: guest
+[16:48:08.152] Browser LOG     📱 Joining session: web-1761999084972 (guest)
+[16:48:08.152] Browser LOG     📥 Session joined: web-1761999084972 History: 0
+[16:48:08.152] Browser LOG     ❌ WebSocket disconnected
+[16:48:08.152] Browser LOG     ❌ WebSocket disconnected
+[16:48:08.152] Browser ERROR   ❌ WebSocket connection error: {}
+[16:48:08.152] Browser ERROR   WebSocket error: {}
+[16:48:08.152] Browser ERROR   ❌ WebSocket connection error: {}
+[16:48:08.152] Browser ERROR   WebSocket error: {}
+[16:48:08.152] Browser ERROR   ❌ WebSocket connection error: {}
+[16:48:08.152] Browser ERROR   WebSocket error: {}
+[16:48:08.152] Browser ERROR   ❌ WebSocket connection error: {}
+[16:48:08.152] Browser ERROR   WebSocket error: {}
+[16:48:08.152] Browser ERROR   ❌ WebSocket connection error: {}
+[16:48:08.152] Browser ERROR   WebSocket error: {}
+[18:22:26.519] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:22:27.430] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[18:22:27.430] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[18:22:27.430] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[18:22:27.430] Browser LOG     🔌 Initializing WebSocket connection...
+[18:22:27.430] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[18:22:27.430] Browser LOG     ✅ WebSocket connected
+[18:22:27.430] Browser LOG     ✅ WebSocket connected
+[18:22:27.430] Browser LOG     📱 Joining session with auth: guest
+[18:22:27.430] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[18:22:27.430] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[18:22:27.430] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[18:22:27.430] Browser LOG     ✅ Google Maps API loaded
+[18:34:38.541] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:34:39.508] Browser LOG     🔄 Reusing existing session: web-1761999084972
+[18:34:39.508] Browser LOG     🔄 Reusing existing session: web-1761999084972
+[18:34:39.508] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[18:34:39.508] Browser LOG     🔌 Initializing WebSocket connection...
+[18:34:39.508] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[18:34:39.508] Browser LOG     ✅ WebSocket connected
+[18:34:39.508] Browser LOG     ✅ WebSocket connected
+[18:34:39.508] Browser LOG     📱 Joining session with auth: guest
+[18:34:39.508] Browser LOG     📱 Joining session: web-1761999084972 (guest)
+[18:34:39.508] Browser LOG     📥 Session joined: web-1761999084972 History: 0
+[18:34:39.508] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[18:34:39.508] Browser LOG     ✅ Google Maps API loaded
+[18:39:46.265] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[18:39:46.730] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[18:39:46.730] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[18:39:46.730] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[18:39:46.730] Browser LOG     🔌 Initializing WebSocket connection...
+[18:39:46.730] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[18:39:46.730] Browser LOG     ✅ WebSocket connected
+[18:39:46.730] Browser LOG     ✅ WebSocket connected
+[18:39:46.730] Browser LOG     📱 Joining session with auth: guest
+[18:39:46.730] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[18:39:46.730] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[18:39:46.730] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[18:39:46.730] Browser LOG     ✅ Google Maps API loaded
+[18:40:04.522] Browser LOG     🚀 Sending message via WebSocket: Hello 
+[18:40:04.522] Browser LOG     📤 Sending message: {"message":"Hello","sessionId":"web-1763310846219","type":"text"}
+[18:40:04.522] Browser LOG     ✅ Message sent via WebSocket
+[18:40:04.522] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[18:40:05.426] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[18:40:08.063] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[18:40:08.063] Browser LOG     📨 Received message: {"content":"Hello there! Welcome to Mangwale, where you can enjoy delicious food delivery, reliable parcel delivery, and convenient shopping in Nashik. And guess what? You can earn rewards by playing fun games! How can I help you today?","id":"1763376747229-0.7049561978501435","role":"assistant","timestamp":1763376747229}
+[18:40:08.420] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[18:40:08.420] Browser LOG     📨 Received message: {"content":"Hello there! Welcome to Mangwale, where you can enjoy delicious food delivery, reliable parcel delivery, and convenient shopping in Nashik. And guess what? You can earn rewards by playing fun games! How can I help you today?","id":"1763376747229-0.7049561978501435","role":"assistant","timestamp":1763376747229}
+[18:40:16.902] Browser LOG     🚀 Sending message via WebSocket: What does mangwale do 
+[18:40:16.902] Browser LOG     📤 Sending message: {"message":"What does mangwale do","sessionId":"web-1763310846219","type":"text"}
+[18:40:16.902] Browser LOG     ✅ Message sent via WebSocket
+[18:40:16.902] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[18:40:17.533] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[18:40:19.853] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[18:40:19.853] Browser LOG     📨 Received message: {"content":"Hello! Welcome to Mangwale. How can I assist you today? We have a wide variety of products including groceries, electronics, fashion, home essentials, and more from local stores. What are you looking for?","id":"1763376759031-0.882558532868158","role":"assistant","timestamp":1763376759031}
+[18:40:20.439] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[18:40:20.439] Browser LOG     📨 Received message: {"content":"Hello! Welcome to Mangwale. How can I assist you today? We have a wide variety of products including groceries, electronics, fashion, home essentials, and more from local stores. What are you looking for?","id":"1763376759031-0.882558532868158","role":"assistant","timestamp":1763376759031}
+[18:40:36.342] Browser LOG     🚀 Sending message via WebSocket: i am looking for mali paneer 
+[18:40:36.342] Browser LOG     📤 Sending message: {"message":"i am looking for mali paneer","sessionId":"web-1763310846219","type":"text"}
+[18:40:36.342] Browser LOG     ✅ Message sent via WebSocket
+[18:40:36.342] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[18:40:36.412] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[18:40:41.917] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[18:40:41.917] Browser LOG     📨 Received message: {"content":"Hello! Welcome to Mangwale. I see you're looking for Mali paneer. We have a great selection of groceries and local products. Can you tell me a bit more about what you're looking for? Are you interested in buying it online, or do you need any assistance with delivery or pickup?","id":"1763376781069-0.8844389185582433","role":"assistant","timestamp":1763376781069}
+[18:40:42.475] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[18:40:42.475] Browser LOG     📨 Received message: {"content":"Hello! Welcome to Mangwale. I see you're looking for Mali paneer. We have a great selection of groceries and local products. Can you tell me a bit more about what you're looking for? Are you interested in buying it online, or do you need any assistance with delivery or pickup?","id":"1763376781069-0.8844389185582433","role":"assistant","timestamp":1763376781069}
+[18:40:57.602] Browser LOG     🚀 Sending message via WebSocket: mali paneer 1 kg from ganesh sweets 
+[18:40:57.602] Browser LOG     📤 Sending message: {"message":"mali paneer 1 kg from ganesh sweets","sessionId":"web-1763310846219","type":"text"}
+[18:40:57.602] Browser LOG     ✅ Message sent via WebSocket
+[18:40:57.603] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[18:40:58.421] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[18:41:01.255] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[18:41:01.255] Browser LOG     📨 Received message: {"content":"Hey there! 🌟 What yummy dish are you craving today? We've got a fantastic selection of local favorites, street food delights, and more! Whether it's a hearty plate of mopane worms or a refreshing bowl of mbaazi, we've got you covered. What's on your mind? 🍽️","id":"1763376800404-0.2140655041197037","role":"assistant","timestamp":1763376800404}
+[18:41:01.427] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[18:41:01.427] Browser LOG     📨 Received message: {"content":"Hey there! 🌟 What yummy dish are you craving today? We've got a fantastic selection of local favorites, street food delights, and more! Whether it's a hearty plate of mopane worms or a refreshing bowl of mbaazi, we've got you covered. What's on your mind? 🍽️","id":"1763376800404-0.2140655041197037","role":"assistant","timestamp":1763376800404}
+[19:07:02.043] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[19:07:46.420] Browser LOG     ❌ WebSocket disconnected
+[19:07:46.420] Browser LOG     ❌ WebSocket disconnected
+[19:07:46.426] Browser LOG     ❌ WebSocket disconnected
+[19:07:46.426] Browser LOG     ❌ WebSocket disconnected
+[19:07:48.424] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:07:48.424] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:07:48.424] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:07:48.424] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:07:51.429] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:07:51.429] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:07:51.429] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:07:51.429] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:07:55.631] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:07:55.631] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:07:56.694] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:07:56.694] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:08:01.417] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:08:01.417] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:08:01.419] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:08:01.419] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:08:07.428] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:08:07.428] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:08:07.428] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:08:07.428] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:09:22.742] Browser LOG     ❌ WebSocket disconnected
+[19:09:22.742] Browser LOG     ❌ WebSocket disconnected
+[19:09:22.742] Browser ERROR   ❌ WebSocket connection error: {}
+[19:09:22.742] Browser ERROR   WebSocket error: {}
+[19:09:22.742] Browser ERROR   ❌ WebSocket connection error: {}
+[19:09:22.742] Browser ERROR   WebSocket error: {}
+[19:09:22.742] Browser ERROR   ❌ WebSocket connection error: {}
+[19:09:22.742] Browser ERROR   WebSocket error: {}
+[19:09:22.742] Browser ERROR   ❌ WebSocket connection error: {}
+[19:09:22.742] Browser ERROR   WebSocket error: {}
+[19:09:29.014] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:09:29.014] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:34:17.042] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[19:34:17.165] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[19:34:17.165] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[19:34:17.165] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[19:34:17.165] Browser LOG     🔌 Initializing WebSocket connection...
+[19:34:17.165] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[19:34:17.446] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[19:34:17.446] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[19:34:17.446] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[19:34:17.623] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[19:34:17.623] Browser LOG     🔌 Initializing WebSocket connection...
+[19:34:17.623] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[19:34:17.623] Browser LOG     ✅ WebSocket connected
+[19:34:17.623] Browser LOG     ✅ WebSocket connected
+[19:34:17.623] Browser LOG     📱 Joining session with auth: guest
+[19:34:17.623] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[19:34:17.623] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[19:34:17.623] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[19:34:17.623] Browser LOG     ✅ Google Maps API loaded
+[19:34:21.052] Browser LOG     🚀 Sending message via WebSocket: Hello 
+[19:34:21.052] Browser LOG     📤 Sending message: {"message":"Hello","sessionId":"web-1763310846219","type":"text"}
+[19:34:21.052] Browser LOG     ✅ Message sent via WebSocket
+[19:34:21.052] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[19:34:23.040] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[19:34:23.040] Browser LOG     📨 Received message: {"content":"I apologize, but I encountered an error. Please try again or contact support.","id":"1763380002222-0.7018116538082513","role":"assistant","timestamp":1763380002222}
+[19:34:25.335] Browser LOG     🚀 Sending message via WebSocket: lets play a game 
+[19:34:25.335] Browser LOG     📤 Sending message: {"message":"lets play a game","sessionId":"web-1763310846219","type":"text"}
+[19:34:25.335] Browser LOG     ✅ Message sent via WebSocket
+[19:34:25.335] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[19:34:27.101] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[19:34:27.101] Browser LOG     📨 Received message: {"content":"I apologize, but I encountered an error. Please try again or contact support.","id":"1763380006274-0.0817586895656226","role":"assistant","timestamp":1763380006274}
+[19:38:54.457] Browser LOG     ❌ WebSocket disconnected
+[19:38:54.457] Browser LOG     ❌ WebSocket disconnected
+[19:38:56.456] Browser LOG     ✅ WebSocket connected
+[19:38:56.456] Browser LOG     ✅ WebSocket connected
+[19:38:56.456] Browser LOG     📱 Joining session with auth: guest
+[19:38:56.456] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[19:38:56.456] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[19:40:23.452] Browser LOG     ❌ WebSocket disconnected
+[19:40:23.452] Browser LOG     ❌ WebSocket disconnected
+[19:40:25.451] Browser LOG     ✅ WebSocket connected
+[19:40:25.451] Browser LOG     ✅ WebSocket connected
+[19:40:25.451] Browser LOG     📱 Joining session with auth: guest
+[19:40:25.451] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[19:40:25.451] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[19:41:25.453] Browser LOG     ❌ WebSocket disconnected
+[19:41:25.453] Browser LOG     ❌ WebSocket disconnected
+[19:41:27.458] Browser LOG     ✅ WebSocket connected
+[19:41:27.458] Browser LOG     ✅ WebSocket connected
+[19:41:27.458] Browser LOG     📱 Joining session with auth: guest
+[19:41:27.459] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[19:41:27.459] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[19:52:46.463] Browser LOG     ❌ WebSocket disconnected
+[19:52:46.463] Browser LOG     ❌ WebSocket disconnected
+[19:52:48.459] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:52:48.459] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:52:50.459] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:52:50.459] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:52:54.464] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:52:54.464] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:52:59.457] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:52:59.457] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:53:05.462] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[19:53:05.462] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[21:47:09.394] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[21:47:09.394] Browser LOG     🔄 Reusing existing session: web-1761999084972
+[21:47:09.394] Browser LOG     🔄 Reusing existing session: web-1761999084972
+[21:47:09.394] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[21:47:09.394] Browser LOG     🔌 Initializing WebSocket connection...
+[21:47:09.394] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[21:47:09.394] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[21:47:09.394] Browser LOG     ✅ Google Maps API loaded
+[21:47:09.647] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[21:47:09.647] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[21:47:11.212] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[21:47:11.212] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[22:07:17.950] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[22:07:18.387] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[22:07:18.387] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[22:07:18.387] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[22:07:18.387] Browser LOG     🔌 Initializing WebSocket connection...
+[22:07:18.387] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[22:07:18.387] Browser LOG     ✅ WebSocket connected
+[22:07:18.387] Browser LOG     ✅ WebSocket connected
+[22:07:18.387] Browser LOG     📱 Joining session with auth: guest
+[22:07:18.387] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[22:07:18.387] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[22:07:18.387] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[22:07:18.387] Browser LOG     ✅ Google Maps API loaded
+[22:09:46.524] Browser LOG     ❌ WebSocket disconnected
+[22:09:46.524] Browser LOG     ❌ WebSocket disconnected
+[22:09:47.526] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[22:09:47.526] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[22:09:50.579] Browser LOG     ✅ WebSocket connected
+[22:09:50.579] Browser LOG     ✅ WebSocket connected
+[22:09:50.579] Browser LOG     📱 Joining session with auth: guest
+[22:09:50.579] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[22:09:50.579] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[23:44:13.877] Browser LOG     ❌ WebSocket disconnected
+[23:44:13.877] Browser LOG     ❌ WebSocket disconnected
+[23:44:13.877] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[23:44:13.877] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[23:44:13.880] Browser ERROR   ❌ WebSocket connection error: {}
+[23:44:13.880] Browser ERROR   WebSocket error: {}
+[23:44:17.600] Browser LOG     ✅ WebSocket connected
+[23:44:17.600] Browser LOG     ✅ WebSocket connected
+[23:44:17.600] Browser LOG     📱 Joining session with auth: guest
+[23:44:17.600] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[23:44:17.600] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[25:10:18.960] Browser LOG     ❌ WebSocket disconnected
+[25:10:18.960] Browser LOG     ❌ WebSocket disconnected
+[25:10:18.960] Browser ERROR   ❌ WebSocket connection error: {}
+[25:10:18.960] Browser ERROR   WebSocket error: {}
+[25:10:18.960] Browser ERROR   ❌ WebSocket connection error: {}
+[25:10:18.960] Browser ERROR   WebSocket error: {}
+[25:10:19.589] Browser LOG     ✅ WebSocket connected
+[25:10:19.589] Browser LOG     ✅ WebSocket connected
+[25:10:19.589] Browser LOG     📱 Joining session with auth: guest
+[25:10:19.589] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[25:10:19.589] Browser LOG     📥 Session joined: web-1763310846219 History: 0
+[25:16:20.530] Browser LOG     ❌ WebSocket disconnected
+[25:16:20.530] Browser LOG     ❌ WebSocket disconnected
+[25:16:20.531] Browser ERROR   ❌ WebSocket connection error: {}
+[25:16:20.531] Browser ERROR   WebSocket error: {}
+[25:16:20.531] Browser ERROR   ❌ WebSocket connection error: {}
+[25:16:20.531] Browser ERROR   WebSocket error: {}
+[25:16:20.531] Browser ERROR   ❌ WebSocket connection error: {}
+[25:16:20.531] Browser ERROR   WebSocket error: {}
+[25:16:20.534] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[25:16:20.534] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[25:16:20.534] Browser ERROR   ❌ WebSocket connection error: {}
+[25:16:20.534] Browser ERROR   WebSocket error: {}
+[41:09:20.868] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[41:09:21.059] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[41:09:21.060] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[41:09:21.060] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[41:09:21.060] Browser LOG     🔌 Initializing WebSocket connection...
+[41:09:21.060] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[41:09:21.060] Browser LOG     ✅ WebSocket connected
+[41:09:21.060] Browser LOG     ✅ WebSocket connected
+[41:09:21.060] Browser LOG     📱 Joining session with auth: guest
+[41:09:21.060] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[41:09:21.490] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[41:09:21.490] Browser LOG     ✅ Google Maps API loaded
+[41:09:24.272] Browser LOG     🚀 Sending message via WebSocket: Hello 
+[41:09:24.273] Browser LOG     📤 Sending message: {"message":"Hello","sessionId":"web-1763310846219","type":"text"}
+[41:09:24.273] Browser LOG     ✅ Message sent via WebSocket
+[41:34:59.502] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[41:34:59.746] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[41:34:59.746] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[41:34:59.746] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[41:34:59.746] Browser LOG     🔌 Initializing WebSocket connection...
+[41:34:59.746] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[41:34:59.746] Browser LOG     ✅ WebSocket connected
+[41:34:59.746] Browser LOG     ✅ WebSocket connected
+[41:34:59.746] Browser LOG     📱 Joining session with auth: guest
+[41:34:59.746] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[41:34:59.746] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[41:34:59.746] Browser LOG     ✅ Google Maps API loaded
+[41:35:03.763] Browser LOG     🚀 Sending message via WebSocket: hi 
+[41:35:03.763] Browser LOG     📤 Sending message: {"message":"hi","sessionId":"web-1763310846219","type":"text"}
+[41:35:03.763] Browser LOG     ✅ Message sent via WebSocket
+[41:46:08.269] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[41:46:08.269] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[41:46:08.269] Browser LOG     🔄 Reusing existing session: web-1763310846219
+[41:46:08.269] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[41:46:08.269] Browser LOG     🔌 Initializing WebSocket connection...
+[41:46:08.269] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[41:46:08.468] Browser LOG     ✅ WebSocket connected
+[41:46:08.468] Browser LOG     ✅ WebSocket connected
+[41:46:08.468] Browser LOG     📱 Joining session with auth: guest
+[41:46:08.468] Browser LOG     📱 Joining session: web-1763310846219 (guest)
+[41:46:08.468] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[41:46:08.468] Browser LOG     ✅ Google Maps API loaded
+[41:46:11.570] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[41:46:11.570] Browser LOG     🆕 Created new session: web-1763459910172
+[41:46:11.570] Browser LOG     🔄 Reusing existing session: web-1763459910172
+[41:46:11.735] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[41:46:11.735] Browser LOG     🔌 Initializing WebSocket connection...
+[41:46:11.735] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[41:46:11.735] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[41:46:11.735] Browser LOG     ✅ Google Maps API loaded
+[41:46:11.735] Browser LOG     ✅ WebSocket connected
+[41:46:11.735] Browser LOG     ✅ WebSocket connected
+[41:46:11.735] Browser LOG     📱 Joining session with auth: guest
+[41:46:11.735] Browser LOG     📱 Joining session: web-1763459910172 (guest)
+[41:46:13.099] Browser LOG     🚀 Sending message via WebSocket: Hi 
+[41:46:13.099] Browser LOG     📤 Sending message: {"message":"Hi","sessionId":"web-1763459910172","type":"text"}
+[41:46:13.099] Browser LOG     ✅ Message sent via WebSocket
+[42:12:36.190] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[42:12:36.392] Browser LOG     🔄 Reusing existing session: web-1763459910172
+[42:12:36.392] Browser LOG     🔄 Reusing existing session: web-1763459910172
+[42:12:36.392] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[42:12:36.392] Browser LOG     🔌 Initializing WebSocket connection...
+[42:12:36.392] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[42:12:36.392] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[42:12:36.392] Browser LOG     ✅ Google Maps API loaded
+[42:12:36.392] Browser LOG     ✅ WebSocket connected
+[42:12:36.392] Browser LOG     ✅ WebSocket connected
+[42:12:36.392] Browser LOG     📱 Joining session with auth: guest
+[42:12:36.392] Browser LOG     📱 Joining session: web-1763459910172 (guest)
+[42:12:38.944] Browser LOG     🚀 Sending message via WebSocket: hi 
+[42:12:38.944] Browser LOG     📤 Sending message: {"message":"hi","sessionId":"web-1763459910172","type":"text"}
+[42:12:38.944] Browser LOG     ✅ Message sent via WebSocket
+[42:12:42.120] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[42:12:42.326] Browser LOG     🆕 Created new session: web-1763461500752
+[42:12:42.326] Browser LOG     🔄 Reusing existing session: web-1763461500752
+[42:12:42.326] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[42:12:42.326] Browser LOG     🔌 Initializing WebSocket connection...
+[42:12:42.326] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[42:12:42.326] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[42:12:42.326] Browser LOG     ✅ Google Maps API loaded
+[42:12:42.326] Browser LOG     ✅ WebSocket connected
+[42:12:42.326] Browser LOG     ✅ WebSocket connected
+[42:12:42.326] Browser LOG     📱 Joining session with auth: guest
+[42:12:42.326] Browser LOG     📱 Joining session: web-1763461500752 (guest)
+[42:12:43.957] Browser LOG     🚀 Sending message via WebSocket: hi 
+[42:12:43.957] Browser LOG     📤 Sending message: {"message":"hi","sessionId":"web-1763461500752","type":"text"}
+[42:12:43.957] Browser LOG     ✅ Message sent via WebSocket
+[42:16:43.583] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[42:16:43.799] Browser LOG     🔄 Reusing existing session: web-1763461500752
+[42:16:43.799] Browser LOG     🔄 Reusing existing session: web-1763461500752
+[42:16:43.799] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[42:16:43.799] Browser LOG     🔌 Initializing WebSocket connection...
+[42:16:43.799] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[42:16:43.799] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[42:16:43.799] Browser LOG     ✅ Google Maps API loaded
+[42:16:43.799] Browser LOG     ✅ WebSocket connected
+[42:16:43.799] Browser LOG     ✅ WebSocket connected
+[42:16:43.799] Browser LOG     📱 Joining session with auth: guest
+[42:16:43.799] Browser LOG     📱 Joining session: web-1763461500752 (guest)
+[42:16:47.822] Browser LOG     🚀 Sending message via WebSocket: hi 
+[42:16:47.822] Browser LOG     📤 Sending message: {"message":"hi","sessionId":"web-1763461500752","type":"text"}
+[42:16:47.822] Browser LOG     ✅ Message sent via WebSocket
+[42:25:49.326] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[42:25:49.621] Browser LOG     🔄 Reusing existing session: web-1763461500752
+[42:25:49.621] Browser LOG     🔄 Reusing existing session: web-1763461500752
+[42:25:49.621] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[42:25:49.621] Browser LOG     🔌 Initializing WebSocket connection...
+[42:25:49.621] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[42:25:49.621] Browser LOG     ✅ WebSocket connected
+[42:25:49.621] Browser LOG     ✅ WebSocket connected
+[42:25:49.621] Browser LOG     📱 Joining session with auth: guest
+[42:25:49.621] Browser LOG     📱 Joining session: web-1763461500752 (guest)
+[42:25:49.621] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[42:25:49.621] Browser LOG     ✅ Google Maps API loaded
+[42:25:53.768] Browser LOG     🚀 Sending message via WebSocket: Hello 
+[42:25:53.768] Browser LOG     📤 Sending message: {"message":"Hello","sessionId":"web-1763461500752","type":"text"}
+[42:25:53.768] Browser LOG     ✅ Message sent via WebSocket
+[42:25:57.154] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[42:25:57.154] Browser LOG     🔄 Reusing existing session: web-1763461500752
+[42:25:57.154] Browser LOG     🔄 Reusing existing session: web-1763461500752
+[42:25:57.336] Browser LOG     🔄 Reusing existing session: web-1763461500752
+[42:25:57.336] Browser LOG     🔄 Reusing existing session: web-1763461500752
+[42:25:57.336] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[42:25:57.336] Browser LOG     🔌 Initializing WebSocket connection...
+[42:25:57.336] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[42:25:57.336] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[42:25:57.336] Browser LOG     ✅ Google Maps API loaded
+[42:25:57.336] Browser LOG     ✅ WebSocket connected
+[42:25:57.336] Browser LOG     ✅ WebSocket connected
+[42:25:57.336] Browser LOG     📱 Joining session with auth: guest
+[42:25:57.336] Browser LOG     📱 Joining session: web-1763461500752 (guest)
+[42:26:00.290] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[42:26:00.486] Browser LOG     🆕 Created new session: web-1763462298918
+[42:26:00.486] Browser LOG     🔄 Reusing existing session: web-1763462298918
+[42:26:00.486] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[42:26:00.486] Browser LOG     🔌 Initializing WebSocket connection...
+[42:26:00.486] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[42:26:00.486] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[42:26:00.486] Browser LOG     ✅ Google Maps API loaded
+[42:26:00.486] Browser LOG     ✅ WebSocket connected
+[42:26:00.486] Browser LOG     ✅ WebSocket connected
+[42:26:00.486] Browser LOG     📱 Joining session with auth: guest
+[42:26:00.486] Browser LOG     📱 Joining session: web-1763462298918 (guest)
+[42:26:02.919] Browser LOG     🚀 Sending message via WebSocket: Hello 
+[42:26:02.919] Browser LOG     📤 Sending message: {"message":"Hello","sessionId":"web-1763462298918","type":"text"}
+[42:26:02.919] Browser LOG     ✅ Message sent via WebSocket
+[42:30:55.724] Browser LOG     🚀 Sending message via WebSocket: Hello 
+[42:30:55.724] Browser LOG     📤 Sending message: {"message":"Hello","sessionId":"web-1763462298918","type":"text"}
+[42:30:55.724] Browser LOG     ✅ Message sent via WebSocket
+[42:30:56.639] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[42:30:56.860] Browser LOG     🔄 Reusing existing session: web-1763462298918
+[42:30:56.860] Browser LOG     🔄 Reusing existing session: web-1763462298918
+[42:30:56.860] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[42:30:56.860] Browser LOG     🔌 Initializing WebSocket connection...
+[42:30:56.860] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[42:30:56.860] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[42:30:56.860] Browser LOG     ✅ Google Maps API loaded
+[42:30:56.860] Browser LOG     ✅ WebSocket connected
+[42:30:56.860] Browser LOG     ✅ WebSocket connected
+[42:30:56.860] Browser LOG     📱 Joining session with auth: guest
+[42:30:56.860] Browser LOG     📱 Joining session: web-1763462298918 (guest)
+[42:30:59.668] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[42:30:59.668] Browser LOG     🆕 Created new session: web-1763462598281
+[42:30:59.668] Browser LOG     🔄 Reusing existing session: web-1763462598281
+[42:30:59.844] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[42:30:59.844] Browser LOG     🔌 Initializing WebSocket connection...
+[42:30:59.844] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[42:30:59.844] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[42:30:59.844] Browser LOG     ✅ Google Maps API loaded
+[42:30:59.844] Browser LOG     ✅ WebSocket connected
+[42:30:59.844] Browser LOG     ✅ WebSocket connected
+[42:30:59.844] Browser LOG     📱 Joining session with auth: guest
+[42:30:59.844] Browser LOG     📱 Joining session: web-1763462598281 (guest)
+[42:31:01.107] Browser LOG     🚀 Sending message via WebSocket: hi 
+[42:31:01.107] Browser LOG     📤 Sending message: {"message":"hi","sessionId":"web-1763462598281","type":"text"}
+[42:31:01.107] Browser LOG     ✅ Message sent via WebSocket
+[42:31:05.762] Browser LOG     🚀 Sending message via WebSocket: Any body there ? 
+[42:31:05.762] Browser LOG     📤 Sending message: {"message":"Any body there ?","sessionId":"web-1763462598281","type":"text"}
+[42:31:05.762] Browser LOG     ✅ Message sent via WebSocket
+[42:31:18.194] Browser LOG     🚀 Sending message via WebSocket: mujhe kuch saman bhejna hai 
+[42:31:18.194] Browser LOG     📤 Sending message: {"message":"mujhe kuch saman bhejna hai","sessionId":"web-1763462598281","type":"text"}
+[42:31:18.194] Browser LOG     ✅ Message sent via WebSocket
+[42:31:19.361] Browser LOG     🚀 Sending message via WebSocket: urgent 
+[42:31:19.361] Browser LOG     📤 Sending message: {"message":"urgent","sessionId":"web-1763462598281","type":"text"}
+[42:31:19.361] Browser LOG     ✅ Message sent via WebSocket
+[42:31:30.296] Browser LOG     🚀 Sending message via WebSocket: from my home to my friends house in gangapur road 
+[42:31:30.296] Browser LOG     📤 Sending message: {"message":"from my home to my friends house in gangapur road","sessionId":"web-1763462598281","type":"text"}
+[42:31:30.296] Browser LOG     ✅ Message sent via WebSocket
+[42:31:34.397] Browser LOG     🚀 Sending message via WebSocket: do you have bike service 
+[42:31:34.397] Browser LOG     📤 Sending message: {"message":"do you have bike service","sessionId":"web-1763462598281","type":"text"}
+[42:31:34.397] Browser LOG     ✅ Message sent via WebSocket
+[42:31:42.844] Browser LOG     🚀 Sending message via WebSocket: how soon can your rider come 
+[42:31:42.844] Browser LOG     📤 Sending message: {"message":"how soon can your rider come","sessionId":"web-1763462598281","type":"text"}
+[42:31:42.844] Browser LOG     ✅ Message sent via WebSocket
+[42:31:48.682] Browser LOG     🚀 Sending message via WebSocket: r u there? 
+[42:31:48.682] Browser LOG     📤 Sending message: {"message":"r u there?","sessionId":"web-1763462598281","type":"text"}
+[42:31:48.682] Browser LOG     ✅ Message sent via WebSocket
+[42:31:49.682] Browser LOG     🚀 Sending message via WebSocket: hellpo 
+[42:31:49.682] Browser LOG     📤 Sending message: {"message":"hellpo","sessionId":"web-1763462598281","type":"text"}
+[42:31:49.682] Browser LOG     ✅ Message sent via WebSocket
+[42:31:53.766] Browser LOG     🚀 Sending message via WebSocket: get me your supervisor ? 
+[42:31:53.766] Browser LOG     📤 Sending message: {"message":"get me your supervisor ?","sessionId":"web-1763462598281","type":"text"}
+[42:31:53.766] Browser LOG     ✅ Message sent via WebSocket
+[42:43:40.720] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[42:43:40.720] Browser LOG     🔄 Reusing existing session: web-1763462598281
+[42:43:40.720] Browser LOG     🔄 Reusing existing session: web-1763462598281
+[42:43:40.720] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[42:43:40.720] Browser LOG     🔌 Initializing WebSocket connection...
+[42:43:40.720] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[42:43:40.859] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[42:43:40.859] Browser LOG     ✅ Google Maps API loaded
+[42:43:40.859] Browser LOG     ✅ WebSocket connected
+[42:43:40.859] Browser LOG     ✅ WebSocket connected
+[42:43:40.859] Browser LOG     📱 Joining session with auth: guest
+[42:43:40.859] Browser LOG     📱 Joining session: web-1763462598281 (guest)
+[42:43:43.375] Browser LOG     🚀 Sending message via WebSocket: Hello 
+[42:43:43.375] Browser LOG     📤 Sending message: {"message":"Hello","sessionId":"web-1763462598281","type":"text"}
+[42:43:43.375] Browser LOG     ✅ Message sent via WebSocket
+[42:49:41.084] Browser LOG     ❌ WebSocket disconnected
+[42:49:41.084] Browser LOG     ❌ WebSocket disconnected
+[42:49:43.095] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[42:49:43.095] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[42:49:45.099] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[42:49:45.099] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[42:49:50.086] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[42:49:50.086] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[42:49:56.092] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[42:49:56.092] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[42:50:02.098] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[42:50:02.098] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[43:16:37.861] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[43:16:38.126] Browser LOG     🔄 Reusing existing session: web-1763462598281
+[43:16:38.126] Browser LOG     🔄 Reusing existing session: web-1763462598281
+[43:16:38.126] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[43:16:38.126] Browser LOG     🔌 Initializing WebSocket connection...
+[43:16:38.126] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[43:16:38.127] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[43:16:38.127] Browser LOG     ✅ Google Maps API loaded
+[43:16:38.127] Browser LOG     ✅ WebSocket connected
+[43:16:38.127] Browser LOG     ✅ WebSocket connected
+[43:16:38.127] Browser LOG     📱 Joining session with auth: guest
+[43:16:38.127] Browser LOG     📱 Joining session: web-1763462598281 (guest)
+[43:16:38.127] Browser LOG     📥 Session joined: web-1763462598281 History: 0
+[43:16:38.127] Browser LOG     📥 Session joined: web-1763462598281 History: 0
+[43:16:40.511] Browser LOG     🚀 Sending message via WebSocket: hi 
+[43:16:40.511] Browser LOG     📤 Sending message: {"message":"hi","sessionId":"web-1763462598281","type":"text"}
+[43:16:40.511] Browser LOG     ✅ Message sent via WebSocket
+[43:16:40.511] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[43:16:40.511] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[43:16:41.290] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[43:16:41.290] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[43:16:41.290] Browser LOG     📨 Received message: {"content":"I apologize, but I encountered an error. Please try again or contact support.","id":"1763465340443-0.9191964535693244","role":"assistant","timestamp":1763465340443}
+[43:16:41.290] Browser LOG     📨 Received message: {"content":"I apologize, but I encountered an error. Please try again or contact support.","id":"1763465340444-0.8408839037418374","role":"assistant","timestamp":1763465340444}
+[43:16:44.124] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[43:16:44.124] Browser LOG     🆕 Created new session: web-1763465342697
+[43:16:44.124] Browser LOG     🔄 Reusing existing session: web-1763465342697
+[43:16:44.330] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[43:16:44.330] Browser LOG     🔌 Initializing WebSocket connection...
+[43:16:44.330] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[43:16:44.330] Browser LOG     ✅ WebSocket connected
+[43:16:44.330] Browser LOG     ✅ WebSocket connected
+[43:16:44.330] Browser LOG     📱 Joining session with auth: guest
+[43:16:44.330] Browser LOG     📱 Joining session: web-1763465342697 (guest)
+[43:16:44.330] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[43:16:44.330] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[43:16:44.330] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[43:16:44.330] Browser LOG     ✅ Google Maps API loaded
+[43:16:47.607] Browser LOG     🚀 Sending message via WebSocket: Hello 
+[43:16:47.608] Browser LOG     📤 Sending message: {"message":"Hello","sessionId":"web-1763465342697","type":"text"}
+[43:16:47.608] Browser LOG     ✅ Message sent via WebSocket
+[43:16:47.608] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[43:16:47.608] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[43:16:48.358] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[43:16:48.358] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[43:16:48.358] Browser LOG     📨 Received message: {"content":"I apologize, but I encountered an error. Please try again or contact support.","id":"1763465347514-0.16412245529444225","role":"assistant","timestamp":1763465347514}
+[43:16:48.358] Browser LOG     📨 Received message: {"content":"I apologize, but I encountered an error. Please try again or contact support.","id":"1763465347514-0.6597888537255086","role":"assistant","timestamp":1763465347514}
+[43:20:35.109] Browser LOG     ❌ WebSocket disconnected
+[43:20:35.109] Browser LOG     ❌ WebSocket disconnected
+[43:20:38.095] Browser LOG     ✅ WebSocket connected
+[43:20:38.095] Browser LOG     ✅ WebSocket connected
+[43:20:38.095] Browser LOG     📱 Joining session with auth: guest
+[43:20:38.095] Browser LOG     📱 Joining session: web-1763465342697 (guest)
+[43:20:38.095] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[43:20:38.095] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[43:25:39.106] Browser LOG     ❌ WebSocket disconnected
+[43:25:39.106] Browser LOG     ❌ WebSocket disconnected
+[43:25:41.108] Browser LOG     ✅ WebSocket connected
+[43:25:41.108] Browser LOG     ✅ WebSocket connected
+[43:25:41.108] Browser LOG     📱 Joining session with auth: guest
+[43:25:41.108] Browser LOG     📱 Joining session: web-1763465342697 (guest)
+[43:25:41.108] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[43:25:41.108] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[43:26:46.107] Browser LOG     ❌ WebSocket disconnected
+[43:26:46.107] Browser LOG     ❌ WebSocket disconnected
+[43:26:48.098] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[43:26:48.098] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[43:26:50.111] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[43:26:50.111] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[43:26:55.100] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[43:26:55.100] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[43:27:01.098] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[43:27:01.098] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[43:27:07.111] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[43:27:07.111] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[44:02:39.382] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[44:02:46.561] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[44:05:17.597] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-safeguard-20b
+[44:05:17.597] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-120b
+[44:05:17.597] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-20b
+[44:05:17.597] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. meta-llama/llama-guard-4-12b
+[44:05:17.597] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. qwen/qwen3-32b
+[44:05:21.298] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-safeguard-20b
+[44:05:21.298] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-120b
+[44:05:21.298] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-20b
+[44:05:21.298] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. meta-llama/llama-guard-4-12b
+[44:05:21.298] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. qwen/qwen3-32b
+[44:05:21.569] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-safeguard-20b
+[44:05:21.569] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-120b
+[44:05:21.569] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-20b
+[44:05:21.569] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. meta-llama/llama-guard-4-12b
+[44:05:21.569] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. qwen/qwen3-32b
+[44:05:33.514] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-safeguard-20b
+[44:05:33.514] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-120b
+[44:05:33.514] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-20b
+[44:05:33.514] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. meta-llama/llama-guard-4-12b
+[44:05:33.514] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. qwen/qwen3-32b
+[44:05:53.211] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[44:05:53.211] Browser LOG     [WebSocket] Cleanup
+[44:05:53.211] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[44:05:53.211] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[44:05:53.211] Browser LOG     [WebSocket] Disconnected
+[44:05:53.211] Browser LOG     [Training Page] WebSocket disconnected
+[44:05:53.211] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[44:05:53.778] Browser LOG     [WebSocket] Cleanup
+[44:05:53.778] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[44:05:53.778] Browser LOG     [WebSocket] Disconnected
+[44:05:53.778] Browser LOG     [Training Page] WebSocket disconnected
+[44:05:53.778] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[44:05:54.794] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[44:09:13.904] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-safeguard-20b
+[44:09:13.904] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-120b
+[44:09:13.904] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-20b
+[44:09:13.904] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. meta-llama/llama-guard-4-12b
+[44:09:13.904] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. qwen/qwen3-32b
+[44:09:13.904] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-safeguard-20b
+[44:09:13.904] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-120b
+[44:09:13.904] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. openai/gpt-oss-20b
+[44:09:13.904] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. meta-llama/llama-guard-4-12b
+[44:09:13.904] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. qwen/qwen3-32b
+[44:09:55.128] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[44:09:55.128] Browser LOG     [WebSocket] Disconnected
+[44:09:55.128] Browser LOG     [Training Page] WebSocket disconnected
+[44:09:55.128] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[44:09:57.129] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[44:13:57.129] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[44:13:57.130] Browser LOG     [WebSocket] Disconnected
+[44:13:57.130] Browser LOG     [Training Page] WebSocket disconnected
+[44:13:57.130] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[44:13:59.129] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[44:17:59.141] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[44:17:59.141] Browser LOG     [WebSocket] Disconnected
+[44:17:59.141] Browser LOG     [Training Page] WebSocket disconnected
+[44:17:59.141] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[44:18:01.132] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[44:22:01.131] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[44:22:01.131] Browser LOG     [WebSocket] Disconnected
+[44:22:01.131] Browser LOG     [Training Page] WebSocket disconnected
+[44:22:01.131] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[44:22:03.132] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[44:26:03.137] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[44:26:03.137] Browser LOG     [WebSocket] Disconnected
+[44:26:03.137] Browser LOG     [Training Page] WebSocket disconnected
+[44:26:03.137] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[44:26:04.133] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[44:30:04.134] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[44:30:04.134] Browser LOG     [WebSocket] Disconnected
+[44:30:04.134] Browser LOG     [Training Page] WebSocket disconnected
+[44:30:04.134] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[44:30:06.367] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[44:34:06.129] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[44:34:06.129] Browser LOG     [WebSocket] Disconnected
+[44:34:06.129] Browser LOG     [Training Page] WebSocket disconnected
+[44:34:06.129] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[44:34:08.131] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[44:38:08.130] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[44:38:08.130] Browser LOG     [WebSocket] Disconnected
+[44:38:08.130] Browser LOG     [Training Page] WebSocket disconnected
+[44:38:08.130] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[44:38:10.136] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[44:42:10.148] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[44:42:10.148] Browser LOG     [WebSocket] Disconnected
+[44:42:10.148] Browser LOG     [Training Page] WebSocket disconnected
+[44:42:10.148] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[44:42:12.377] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[44:46:12.137] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[44:46:12.137] Browser LOG     [WebSocket] Disconnected
+[44:46:12.137] Browser LOG     [Training Page] WebSocket disconnected
+[44:46:12.137] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[44:46:13.135] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[44:49:15.420] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[44:49:42.862] Server  ERROR   Employee stats error: TypeError: fetch failed
+[44:49:42.925] Server  ERROR   Attendance logs error: TypeError: fetch failed
+[44:49:43.002] Server  ERROR   Attendance summary error: TypeError: fetch failed
+[44:49:43.051] Server  ERROR   Attendance logs error: TypeError: fetch failed
+[44:49:43.110] Server  ERROR   Attendance summary error: TypeError: fetch failed
+[44:49:43.173] Server  ERROR   Employee stats error: TypeError: fetch failed
+[44:49:45.244] Server  ERROR   Camera stats error: TypeError: fetch failed
+[44:49:45.305] Server  ERROR   Stream stats error: TypeError: fetch failed
+[44:49:45.369] Server  ERROR   Camera list error: TypeError: fetch failed
+[44:49:45.429] Server  ERROR   Camera stats error: TypeError: fetch failed
+[44:49:45.485] Server  ERROR   Stream stats error: TypeError: fetch failed
+[44:49:45.544] Server  ERROR   Camera list error: TypeError: fetch failed
+[44:49:48.256] Server  ERROR   Employee stats error: TypeError: fetch failed
+[44:49:48.326] Server  ERROR   Employee stats error: TypeError: fetch failed
+[44:49:48.410] Server  ERROR   Employee list error: TypeError: fetch failed
+[44:49:48.478] Server  ERROR   Employee list error: TypeError: fetch failed
+[44:49:48.586] Browser ERROR   Fetch error: {}
+[44:49:48.586] Browser ERROR   Fetch error: {}
+[45:01:15.586] Server  LOG      ✓ Compiled in 286ms
+[45:02:23.932] Server  LOG      ✓ Compiled in 69ms
+[45:02:35.878] Server  LOG      ✓ Compiled in 84ms
+[45:02:48.904] Server  LOG      ✓ Compiled in 199ms
+[45:03:24.240] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[45:05:11.957] Browser LOG     ✅ Loaded 6 flows from backend
+[45:05:11.957] Browser LOG     ✅ Loaded 6 flows from backend
+[45:07:13.574] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[45:07:39.005] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:07:39.005] Browser LOG     [WebSocket] Cleanup
+[45:07:39.005] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:07:39.005] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:07:39.005] Browser LOG     [WebSocket] Disconnected
+[45:07:39.005] Browser LOG     [Training Page] WebSocket disconnected
+[45:07:39.005] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:07:40.033] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:07:40.033] Browser LOG     [WebSocket] Cleanup
+[45:07:40.033] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:07:40.033] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:07:40.034] Browser LOG     [WebSocket] Disconnected
+[45:07:40.034] Browser LOG     [Training Page] WebSocket disconnected
+[45:07:40.034] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:07:41.044] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:07:41.044] Browser LOG     [WebSocket] Cleanup
+[45:07:41.044] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:07:41.044] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:07:41.044] Browser LOG     [WebSocket] Disconnected
+[45:07:41.044] Browser LOG     [Training Page] WebSocket disconnected
+[45:07:41.044] Browser LOG     [WebSocket] Reconnecting in 2000ms...
+[45:07:43.062] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:07:43.062] Browser LOG     [WebSocket] Cleanup
+[45:07:43.062] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:07:43.062] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:07:43.062] Browser LOG     [WebSocket] Disconnected
+[45:07:43.062] Browser LOG     [Training Page] WebSocket disconnected
+[45:07:43.062] Browser LOG     [WebSocket] Reconnecting in 4000ms...
+[45:07:47.083] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:07:47.083] Browser LOG     [WebSocket] Cleanup
+[45:07:47.083] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:07:47.083] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:07:47.083] Browser LOG     [WebSocket] Disconnected
+[45:07:47.083] Browser LOG     [Training Page] WebSocket disconnected
+[45:07:47.083] Browser LOG     [WebSocket] Reconnecting in 8000ms...
+[45:07:55.095] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:07:55.095] Browser LOG     [WebSocket] Cleanup
+[45:07:55.095] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:07:55.095] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:07:55.095] Browser LOG     [WebSocket] Disconnected
+[45:07:55.095] Browser LOG     [Training Page] WebSocket disconnected
+[45:07:55.095] Browser LOG     [WebSocket] Reconnecting in 16000ms...
+[45:07:56.435] Browser LOG     [WebSocket] Cleanup
+[45:07:56.435] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:07:56.435] Browser LOG     [WebSocket] Disconnected
+[45:07:56.435] Browser LOG     [Training Page] WebSocket disconnected
+[45:07:56.435] Browser LOG     [WebSocket] Reconnecting in 30000ms...
+[45:07:59.290] Browser LOG     ✅ Loaded 6 flows from backend
+[45:07:59.290] Browser LOG     ✅ Loaded 6 flows from backend
+[45:08:26.433] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:24.855] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:24.855] Browser LOG     [WebSocket] Cleanup
+[45:09:24.855] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:24.855] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:09:24.855] Browser LOG     [WebSocket] Disconnected
+[45:09:24.855] Browser LOG     [Training Page] WebSocket disconnected
+[45:09:24.855] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:09:25.872] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:25.872] Browser LOG     [WebSocket] Cleanup
+[45:09:25.872] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:25.872] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:09:25.872] Browser LOG     [WebSocket] Disconnected
+[45:09:25.872] Browser LOG     [Training Page] WebSocket disconnected
+[45:09:25.872] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:09:26.895] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:26.895] Browser LOG     [WebSocket] Cleanup
+[45:09:26.895] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:26.895] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:09:26.895] Browser LOG     [WebSocket] Disconnected
+[45:09:26.895] Browser LOG     [Training Page] WebSocket disconnected
+[45:09:26.895] Browser LOG     [WebSocket] Reconnecting in 2000ms...
+[45:09:28.912] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:28.912] Browser LOG     [WebSocket] Cleanup
+[45:09:28.912] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:28.912] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:09:28.912] Browser LOG     [WebSocket] Disconnected
+[45:09:28.912] Browser LOG     [Training Page] WebSocket disconnected
+[45:09:28.912] Browser LOG     [WebSocket] Reconnecting in 4000ms...
+[45:09:29.242] Browser LOG     [WebSocket] Cleanup
+[45:09:29.242] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:09:29.242] Browser LOG     [WebSocket] Disconnected
+[45:09:29.242] Browser LOG     [Training Page] WebSocket disconnected
+[45:09:29.242] Browser LOG     [WebSocket] Reconnecting in 8000ms...
+[45:09:30.012] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:30.012] Browser LOG     [WebSocket] Cleanup
+[45:09:30.012] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:30.012] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:09:30.012] Browser LOG     [WebSocket] Disconnected
+[45:09:30.012] Browser LOG     [Training Page] WebSocket disconnected
+[45:09:30.012] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:09:30.516] Browser LOG     [WebSocket] Cleanup
+[45:09:30.517] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:09:30.517] Browser LOG     [WebSocket] Disconnected
+[45:09:30.517] Browser LOG     [Training Page] WebSocket disconnected
+[45:09:30.517] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:09:31.526] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:37.262] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:42.432] Server  LOG      ✓ Compiled in 169ms
+[45:09:48.050] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:48.050] Browser LOG     [WebSocket] Cleanup
+[45:09:48.050] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:48.050] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:09:48.050] Browser LOG     [WebSocket] Disconnected
+[45:09:48.050] Browser LOG     [Training Page] WebSocket disconnected
+[45:09:48.050] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:09:49.064] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:49.064] Browser LOG     [WebSocket] Cleanup
+[45:09:49.064] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:49.064] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:09:49.064] Browser LOG     [WebSocket] Disconnected
+[45:09:49.064] Browser LOG     [Training Page] WebSocket disconnected
+[45:09:49.064] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:09:50.087] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:50.087] Browser LOG     [WebSocket] Cleanup
+[45:09:50.087] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:50.087] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:09:50.087] Browser LOG     [WebSocket] Disconnected
+[45:09:50.087] Browser LOG     [Training Page] WebSocket disconnected
+[45:09:50.087] Browser LOG     [WebSocket] Reconnecting in 2000ms...
+[45:09:52.096] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:52.096] Browser LOG     [WebSocket] Cleanup
+[45:09:52.096] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:52.096] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:09:52.096] Browser LOG     [WebSocket] Disconnected
+[45:09:52.096] Browser LOG     [Training Page] WebSocket disconnected
+[45:09:52.096] Browser LOG     [WebSocket] Reconnecting in 4000ms...
+[45:09:56.678] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:56.678] Browser LOG     [WebSocket] Cleanup
+[45:09:56.678] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:09:56.678] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:09:56.678] Browser LOG     [WebSocket] Disconnected
+[45:09:56.678] Browser LOG     [Training Page] WebSocket disconnected
+[45:09:56.678] Browser LOG     [WebSocket] Reconnecting in 8000ms...
+[45:09:58.192] Browser LOG     [WebSocket] Cleanup
+[45:09:58.192] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:09:58.192] Browser LOG     [WebSocket] Disconnected
+[45:09:58.192] Browser LOG     [Training Page] WebSocket disconnected
+[45:09:58.192] Browser LOG     [WebSocket] Reconnecting in 16000ms...
+[45:10:14.195] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:11:39.159] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:11:39.159] Browser LOG     [WebSocket] Disconnected
+[45:11:39.159] Browser LOG     [Training Page] WebSocket disconnected
+[45:11:39.159] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:11:41.145] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:11:41.145] Browser LOG     [WebSocket] Disconnected
+[45:11:41.145] Browser LOG     [Training Page] WebSocket disconnected
+[45:11:41.145] Browser LOG     [WebSocket] Reconnecting in 2000ms...
+[45:11:41.145] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:11:41.145] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:11:41.145] Browser LOG     [WebSocket] Disconnected
+[45:11:41.145] Browser LOG     [Training Page] WebSocket disconnected
+[45:11:41.145] Browser LOG     [WebSocket] Reconnecting in 4000ms...
+[45:11:43.161] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:11:43.161] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:11:43.161] Browser LOG     [WebSocket] Disconnected
+[45:11:43.161] Browser LOG     [Training Page] WebSocket disconnected
+[45:11:43.161] Browser LOG     [WebSocket] Reconnecting in 8000ms...
+[45:11:46.152] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:11:47.147] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:11:47.147] Browser LOG     [WebSocket] Disconnected
+[45:11:47.147] Browser LOG     [Training Page] WebSocket disconnected
+[45:11:47.147] Browser LOG     [WebSocket] Reconnecting in 16000ms...
+[45:11:52.160] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:12:04.194] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:12:24.927] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[45:12:27.149] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:12:27.149] Browser LOG     [WebSocket] Disconnected
+[45:12:27.149] Browser LOG     [Training Page] WebSocket disconnected
+[45:12:27.149] Browser LOG     [WebSocket] Reconnecting in 30000ms...
+[45:12:36.289] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[45:12:58.149] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:13:25.162] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:13:25.162] Browser LOG     [WebSocket] Disconnected
+[45:13:25.162] Browser LOG     [Training Page] WebSocket disconnected
+[45:13:25.162] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:13:28.164] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:13:28.164] Browser LOG     [WebSocket] Disconnected
+[45:13:28.164] Browser LOG     [Training Page] WebSocket disconnected
+[45:13:28.164] Browser LOG     [WebSocket] Reconnecting in 2000ms...
+[45:13:28.164] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:13:28.164] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:13:28.164] Browser LOG     [WebSocket] Disconnected
+[45:13:28.164] Browser LOG     [Training Page] WebSocket disconnected
+[45:13:28.164] Browser LOG     [WebSocket] Reconnecting in 4000ms...
+[45:13:29.162] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:13:32.160] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:13:33.158] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:13:33.158] Browser LOG     [WebSocket] Disconnected
+[45:13:33.158] Browser LOG     [Training Page] WebSocket disconnected
+[45:13:33.158] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:13:35.151] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:13:40.153] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:13:40.153] Browser LOG     [WebSocket] Disconnected
+[45:13:40.153] Browser LOG     [Training Page] WebSocket disconnected
+[45:13:40.153] Browser LOG     [WebSocket] Reconnecting in 8000ms...
+[45:13:49.166] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:13:51.151] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:13:51.151] Browser LOG     [WebSocket] Disconnected
+[45:13:51.151] Browser LOG     [Training Page] WebSocket disconnected
+[45:13:51.151] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:13:53.161] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:13:53.161] Browser LOG     [WebSocket] Disconnected
+[45:13:53.161] Browser LOG     [Training Page] WebSocket disconnected
+[45:13:53.161] Browser LOG     [WebSocket] Reconnecting in 4000ms...
+[45:13:53.161] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:13:53.161] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:13:53.161] Browser LOG     [WebSocket] Disconnected
+[45:13:53.161] Browser LOG     [Training Page] WebSocket disconnected
+[45:13:53.161] Browser LOG     [WebSocket] Reconnecting in 2000ms...
+[45:13:56.148] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:13:57.148] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:13:57.148] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:13:57.148] Browser LOG     [WebSocket] Disconnected
+[45:13:57.148] Browser LOG     [Training Page] WebSocket disconnected
+[45:13:57.148] Browser LOG     [WebSocket] Reconnecting in 8000ms...
+[45:14:06.160] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:14:18.147] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:14:18.147] Browser LOG     [WebSocket] Disconnected
+[45:14:18.147] Browser LOG     [Training Page] WebSocket disconnected
+[45:14:18.147] Browser LOG     [WebSocket] Reconnecting in 16000ms...
+[45:14:35.161] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:15:07.250] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[45:15:10.268] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[45:15:10.268] Browser LOG     🔄 Reusing existing session: web-1763465342697
+[45:15:10.268] Browser LOG     🔄 Reusing existing session: web-1763465342697
+[45:15:10.449] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[45:15:10.449] Browser LOG     🔌 Initializing WebSocket connection...
+[45:15:10.449] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[45:15:10.449] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[45:15:10.449] Browser LOG     ✅ Google Maps API loaded
+[45:15:10.449] Browser LOG     ✅ WebSocket connected
+[45:15:10.449] Browser LOG     ✅ WebSocket connected
+[45:15:10.449] Browser LOG     📱 Joining session with auth: guest
+[45:15:10.449] Browser LOG     📱 Joining session: web-1763465342697 (guest)
+[45:15:10.449] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[45:15:10.449] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[45:15:14.033] Browser LOG     🚀 Sending message via WebSocket: hi 
+[45:15:14.033] Browser LOG     📤 Sending message: {"message":"hi","sessionId":"web-1763465342697","type":"text"}
+[45:15:14.033] Browser LOG     ✅ Message sent via WebSocket
+[45:15:14.033] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[45:15:14.033] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[45:15:19.161] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[45:15:19.161] Browser LOG     📨 Received message: {"content":"Hello there! Welcome to Mangwale, where you can enjoy food and parcel delivery, and shop right in Nashik. Did you know you can earn rewards by playing fun games? How can I help you today?","id":"1763472457988-0.38233919559660334","role":"assistant","timestamp":1763472457988}
+[45:15:19.161] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[45:15:19.161] Browser LOG     📨 Received message: {"content":"Hello there! Welcome to Mangwale, where you can easily get your food, parcels, and even do some fun shopping in Nashik. And guess what? You can earn rewards just by playing our fun games! How can I help you today?","id":"1763472458117-0.5037095091538979","role":"assistant","timestamp":1763472458117}
+[45:15:30.711] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:15:30.711] Browser LOG     [WebSocket] Cleanup
+[45:15:30.711] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:15:30.711] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:15:30.711] Browser LOG     [WebSocket] Disconnected
+[45:15:30.711] Browser LOG     [Training Page] WebSocket disconnected
+[45:15:30.711] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:15:31.730] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:15:31.730] Browser LOG     [WebSocket] Cleanup
+[45:15:31.730] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:15:31.730] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:15:31.730] Browser LOG     [WebSocket] Disconnected
+[45:15:31.730] Browser LOG     [Training Page] WebSocket disconnected
+[45:15:31.730] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:15:32.748] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:15:32.748] Browser LOG     [WebSocket] Cleanup
+[45:15:32.748] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:15:32.748] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:15:32.748] Browser LOG     [WebSocket] Disconnected
+[45:15:32.748] Browser LOG     [Training Page] WebSocket disconnected
+[45:15:32.748] Browser LOG     [WebSocket] Reconnecting in 2000ms...
+[45:15:32.966] Browser LOG     [WebSocket] Cleanup
+[45:15:32.967] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:15:32.967] Browser LOG     [WebSocket] Disconnected
+[45:15:32.967] Browser LOG     [Training Page] WebSocket disconnected
+[45:15:32.967] Browser LOG     [WebSocket] Reconnecting in 4000ms...
+[45:15:37.039] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[45:15:40.060] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[45:15:41.164] Browser LOG     ❌ WebSocket disconnected
+[45:15:41.164] Browser LOG     ❌ WebSocket disconnected
+[45:15:43.150] Browser LOG     ✅ WebSocket connected
+[45:15:43.150] Browser LOG     ✅ WebSocket connected
+[45:15:43.150] Browser LOG     📱 Joining session with auth: guest
+[45:15:43.150] Browser LOG     📱 Joining session: web-1763465342697 (guest)
+[45:15:43.150] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[45:15:43.150] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[45:15:47.208] Server  ERROR   Employee stats error: TypeError: fetch failed
+[45:15:47.321] Server  ERROR   Attendance logs error: TypeError: fetch failed
+[45:15:47.386] Server  ERROR   Attendance summary error: TypeError: fetch failed
+[45:15:47.478] Server  ERROR   Attendance logs error: TypeError: fetch failed
+[45:15:47.534] Server  ERROR   Attendance summary error: TypeError: fetch failed
+[45:15:47.585] Server  ERROR   Employee stats error: TypeError: fetch failed
+[45:16:04.762] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:16:04.762] Browser LOG     [WebSocket] Cleanup
+[45:16:04.762] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:16:04.762] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:16:04.762] Browser LOG     [WebSocket] Disconnected
+[45:16:04.762] Browser LOG     [Training Page] WebSocket disconnected
+[45:16:04.762] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:16:05.779] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:16:05.779] Browser LOG     [WebSocket] Cleanup
+[45:16:05.779] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:16:05.779] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:16:05.779] Browser LOG     [WebSocket] Disconnected
+[45:16:05.779] Browser LOG     [Training Page] WebSocket disconnected
+[45:16:05.779] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:16:06.799] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:16:06.799] Browser LOG     [WebSocket] Cleanup
+[45:16:06.799] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:16:06.799] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:16:06.799] Browser LOG     [WebSocket] Disconnected
+[45:16:06.799] Browser LOG     [Training Page] WebSocket disconnected
+[45:16:06.799] Browser LOG     [WebSocket] Reconnecting in 2000ms...
+[45:16:07.966] Browser LOG     [WebSocket] Cleanup
+[45:16:07.966] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:16:07.966] Browser LOG     [WebSocket] Disconnected
+[45:16:07.966] Browser LOG     [Training Page] WebSocket disconnected
+[45:16:07.966] Browser LOG     [WebSocket] Reconnecting in 4000ms...
+[45:16:09.459] Browser LOG     ✅ Loaded 6 flows from backend
+[45:16:09.459] Browser LOG     ✅ Loaded 6 flows from backend
+[45:16:11.986] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:16:58.149] Browser LOG     ❌ WebSocket disconnected
+[45:16:58.149] Browser LOG     ❌ WebSocket disconnected
+[45:17:00.150] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:17:00.150] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:17:02.162] Browser LOG     ✅ WebSocket connected
+[45:17:02.162] Browser LOG     ✅ WebSocket connected
+[45:17:02.162] Browser LOG     📱 Joining session with auth: guest
+[45:17:02.162] Browser LOG     📱 Joining session: web-1763465342697 (guest)
+[45:17:02.162] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[45:17:02.162] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[45:20:05.147] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:20:05.147] Browser LOG     [WebSocket] Disconnected
+[45:20:05.147] Browser LOG     [Training Page] WebSocket disconnected
+[45:20:05.147] Browser LOG     [WebSocket] Reconnecting in 1000ms...
+[45:20:07.159] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:20:07.159] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:20:07.159] Browser LOG     [WebSocket] Disconnected
+[45:20:07.159] Browser LOG     [Training Page] WebSocket disconnected
+[45:20:07.159] Browser LOG     [WebSocket] Reconnecting in 2000ms...
+[45:20:10.158] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:20:13.165] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:20:13.165] Browser LOG     [WebSocket] Disconnected
+[45:20:13.165] Browser LOG     [Training Page] WebSocket disconnected
+[45:20:13.165] Browser LOG     [WebSocket] Reconnecting in 4000ms...
+[45:20:18.159] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:20:46.157] Browser ERROR   Failed to fetch training data: {}
+[45:20:46.157] Browser ERROR   Failed to fetch training data: {}
+[45:21:34.144] Browser LOG     ❌ WebSocket disconnected
+[45:21:34.144] Browser LOG     ❌ WebSocket disconnected
+[45:21:36.176] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:21:36.176] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:21:39.145] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:21:39.145] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:21:43.146] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:21:43.146] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:21:49.147] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:21:49.147] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:21:55.157] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:21:55.157] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:23:08.940] Server  LOG      ✓ Compiled in 73ms
+[45:23:50.726] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[45:23:50.726] Browser LOG     🔄 Reusing existing session: web-1763465342697
+[45:23:50.726] Browser LOG     🔄 Reusing existing session: web-1763465342697
+[45:23:50.948] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[45:23:50.948] Browser LOG     🔌 Initializing WebSocket connection...
+[45:23:50.948] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[45:23:50.948] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[45:23:50.948] Browser LOG     ✅ Google Maps API loaded
+[45:23:50.948] Browser LOG     ✅ WebSocket connected
+[45:23:50.948] Browser LOG     ✅ WebSocket connected
+[45:23:50.948] Browser LOG     📱 Joining session with auth: guest
+[45:23:50.948] Browser LOG     📱 Joining session: web-1763465342697 (guest)
+[45:23:50.948] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[45:23:50.948] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[45:23:54.351] Browser LOG     🚀 Sending message via WebSocket: hi 
+[45:23:54.351] Browser LOG     📤 Sending message: {"message":"hi","sessionId":"web-1763465342697","type":"text"}
+[45:23:54.351] Browser LOG     ✅ Message sent via WebSocket
+[45:23:54.351] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[45:23:54.351] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[45:24:00.140] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[45:24:00.140] Browser LOG     📨 Received message: {"content":"Hello there! Welcome to Mangwale, your one-stop solution for food and parcel delivery, and shopping in Nashik. Did you know you can earn rewards by playing fun games? How can I help you today?","id":"1763472978429-0.10195985545156572","role":"assistant","timestamp":1763472978429}
+[45:24:00.140] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[45:24:00.140] Browser LOG     📨 Received message: {"content":"Hello there! Welcome to Mangwale, where you can enjoy yummy food delivery, quick parcel delivery, and shop for all your needs right here in Nashik. Did you know you can earn exciting rewards by playing fun games? How can I help you today?","id":"1763472978588-0.42937174885249263","role":"assistant","timestamp":1763472978588}
+[45:24:07.152] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:24:07.152] Browser LOG     [WebSocket] Disconnected
+[45:24:07.152] Browser LOG     [Training Page] WebSocket disconnected
+[45:24:07.152] Browser LOG     [WebSocket] Reconnecting in 4000ms...
+[45:24:10.150] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:24:10.150] Browser LOG     [WebSocket] Disconnected
+[45:24:10.150] Browser LOG     [Training Page] WebSocket disconnected
+[45:24:10.150] Browser LOG     [WebSocket] Reconnecting in 4000ms...
+[45:24:12.151] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:24:15.150] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:24:17.235] Browser LOG     🚀 Sending message via WebSocket: whats this mangwale ? 
+[45:24:17.235] Browser LOG     📤 Sending message: {"message":"whats this mangwale ?","sessionId":"web-1763465342697","type":"text"}
+[45:24:17.235] Browser LOG     ✅ Message sent via WebSocket
+[45:24:17.235] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[45:24:17.235] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[45:24:18.139] Browser ERROR   [WebSocket] Error: {"isTrusted":true}
+[45:24:18.139] Browser LOG     [WebSocket] Disconnected
+[45:24:18.139] Browser LOG     [Training Page] WebSocket disconnected
+[45:24:18.139] Browser LOG     [WebSocket] Reconnecting in 4000ms...
+[45:24:19.632] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[45:24:19.632] Browser LOG     📨 Received message: {"buttons":[{"id":"start_game_intent_quest","label":"🎯 Play Intent Quest","metadata":{},"type":"quick_reply","value":"1"},{"id":"start_game_language_master","label":"🌍 Play Language Master","metadata":{},"type":"quick_reply","value":"2"},{"id":"start_game_tone_detective","label":"😊 Play Tone Detective","metadata":{},"type":"quick_reply","value":"3"},{"id":"view_leaderboard","label":"🏆 View Leaderboard","metadata":{},"type":"quick_reply","value":"4"},{"id":"maybe_later","label":"⏰ Maybe Later","metadata":{},"type":"quick_reply","value":"5"}],"content":"Hey there! 👋 Welcome to the Mangwale AI assistant rewards system! We're excited to share with you all the fun and exciting ways you can earn rewards while having a blast.\n\n**Here's what you can do:**\n\n🎮 **Play Quick Fun Games**: Each game lasts between 30 seconds to 2 minutes, making it super easy and quick to play. Perfect for those short breaks or downtime!\n\n💰 **Earn Real Money**: Yes, you read that right! You can earn between ₹5 to ₹15 per game, plus extra points. It's a great way to make some extra cash while enjoying yourself.\n\n🏆 **Compete on Leaderboards**: Show off your skills and compete with other players to climb the leaderboard. It's all about friendly competition and having fun!\n\n📚 **Help Train Our AI**: While you're playing and having fun, you're also helping us improve our AI. Every game you play contributes to making our AI smarter and more accurate.\n\n**Our Games Include:**\n- 🎯 **Intent Quest** - Guess what people mean (earn ₹15)\n- 🌍 **Language Master** - Detect languages from around the world (earn ₹15)\n- 😊 **Tone Detective** - Identify emotions and tones (earn ₹15)\n- 📝 **Profile Builder** - Quick questions to help build your profile (earn ₹1 each)\n\n**Ready to Play?** 🚀\nChoose one of the games below to get started and earn ₹5-₹15 in just 30 seconds to 2 minutes!","id":"1763472998814-0.4107081399090238","role":"assistant","timestamp":1763472998814}
+[45:24:19.787] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[45:24:19.787] Browser LOG     📨 Received message: {"buttons":[{"id":"start_game_intent_quest","label":"🎯 Play Intent Quest","metadata":{},"type":"quick_reply","value":"1"},{"id":"start_game_language_master","label":"🌍 Play Language Master","metadata":{},"type":"quick_reply","value":"2"},{"id":"start_game_tone_detective","label":"😊 Play Tone Detective","metadata":{},"type":"quick_reply","value":"3"},{"id":"view_leaderboard","label":"🏆 View Leaderboard","metadata":{},"type":"quick_reply","value":"4"},{"id":"maybe_later","label":"⏰ Maybe Later","metadata":{},"type":"quick_reply","value":"5"}],"content":"Hey there! 👋 Welcome to the Mangwale AI assistant rewards system! We're excited to share with you all the fun and exciting ways you can earn rewards while having a blast.\n\n**Here's what you can do:**\n\n🎮 **Play Quick Fun Games**: Each game lasts between 30 seconds to 2 minutes, making it super easy and quick to play. Perfect for those short breaks or downtime!\n\n💰 **Earn Real Money**: Yes, you read that right! You can earn between ₹5 to ₹15 per game, plus extra points. It's a great way to make some extra cash while enjoying yourself.\n\n🏆 **Compete on Leaderboards**: Show off your skills and compete with other players to climb the leaderboard. It's all about friendly competition and having fun!\n\n📚 **Help Train Our AI**: While you're playing and having fun, you're also helping us improve our AI. Every game you play contributes to making our AI smarter and more accurate.\n\n**Our Games Include:**\n- 🎯 **Intent Quest** - Guess what people mean (earn ₹15)\n- 🌍 **Language Master** - Detect languages from around the world (earn ₹15)\n- 😊 **Tone Detective** - Identify emotions and tones (earn ₹15)\n- 📝 **Profile Builder** - Quick questions to help build your profile (earn ₹1 each)\n\n**Ready to Play?** 🚀\nChoose one of the games below to get started and earn ₹5-₹15 in just 30 seconds to 2 minutes!","id":"1763472998962-0.4856492232698486","role":"assistant","timestamp":1763472998962}
+[45:24:22.048] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[45:24:22.048] Browser LOG     🆕 Created new session: web-1763473000060
+[45:24:22.048] Browser LOG     🔄 Reusing existing session: web-1763473000060
+[45:24:22.048] Browser LOG     ⏳ Waiting for auth store to hydrate...
+[45:24:22.048] Browser LOG     🔌 Initializing WebSocket connection...
+[45:24:22.048] Browser LOG     🔌 Connecting to WebSocket: https://chat.mangwale.ai/ai-agent
+[45:24:22.967] Browser WARN    Google Maps JavaScript API has been loaded directly without loading=async. This can result in suboptimal performance. For best-practice loading patterns please see https://goo.gle/js-api-loading
+[45:24:22.967] Browser LOG     ✅ Google Maps API loaded
+[45:24:22.967] Browser LOG     ✅ WebSocket connected
+[45:24:22.967] Browser LOG     ✅ WebSocket connected
+[45:24:22.967] Browser LOG     📱 Joining session with auth: guest
+[45:24:22.967] Browser LOG     📱 Joining session: web-1763473000060 (guest)
+[45:24:23.274] Browser LOG     📥 Session joined: web-1763473000060 History: 0
+[45:24:23.274] Browser LOG     📥 Session joined: web-1763473000060 History: 0
+[45:24:24.140] Browser LOG     [WebSocket] Connecting to: ws://localhost:3002/ws/training
+[45:24:25.035] Browser LOG     🚀 Sending message via WebSocket: 1 (action: start_game_intent_quest)
+[45:24:25.035] Browser LOG     📤 Sending message: {"action":"start_game_intent_quest","message":"1","metadata":{"display":"1"},"sessionId":"web-1763465342697","type":"button_click"}
+[45:24:25.035] Browser LOG     ✅ Message sent via WebSocket
+[45:24:25.035] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[45:24:25.035] Browser LOG     ⌨️ Typing indicator: {"isTyping":true}
+[45:24:27.699] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[45:24:27.699] Browser LOG     📨 Received message: {"buttons":[{"id":"start_game_intent_quest","label":"🎯 Play Intent Quest","metadata":{},"type":"quick_reply","value":"1"},{"id":"start_game_language_master","label":"🌍 Play Language Master","metadata":{},"type":"quick_reply","value":"2"},{"id":"start_game_tone_detective","label":"😊 Play Tone Detective","metadata":{},"type":"quick_reply","value":"3"},{"id":"view_leaderboard","label":"🏆 View Leaderboard","metadata":{},"type":"quick_reply","value":"4"},{"id":"maybe_later","label":"⏰ Maybe Later","metadata":{},"type":"quick_reply","value":"5"}],"content":"Hey there! 👋 Welcome to the Mangwale AI assistant rewards system! We're excited to share with you all the fun and exciting ways you can earn rewards while having a blast.\n\n**Here's what you can do:**\n\n🎮 **Play Quick Fun Games**: Each game lasts between 30 seconds to 2 minutes, making it super easy and quick to play. Perfect for those short breaks or downtime!\n\n💰 **Earn Real Money**: Yes, you read that right! You can earn between ₹5 to ₹15 per game, plus extra points. It's a great way to make some extra cash while enjoying yourself.\n\n🏆 **Compete on Leaderboards**: Show off your skills and compete with other players to climb the leaderboard. It's all about friendly competition and having fun!\n\n📚 **Help Train Our AI**: While you're playing and having fun, you're also helping us improve our AI. Every game you play contributes to making our AI smarter and more accurate.\n\n**Our Games Include:**\n- 🎯 **Intent Quest** - Guess what people mean (earn ₹15)\n- 🌍 **Language Master** - Detect languages from around the world (earn ₹15)\n- 😊 **Tone Detective** - Identify emotions and tones (earn ₹15)\n- 📝 **Profile Builder** - Quick questions to help build your profile (earn ₹1 each)\n\n**Ready to Play?** 🚀\nChoose one of the games below to get started and earn ₹5-₹15 in just 30 seconds to 2 minutes!","id":"1763473006872-0.3265701731961599","role":"assistant","timestamp":1763473006872}
+[45:24:27.851] Browser LOG     ⌨️ Typing indicator: {"isTyping":false}
+[45:24:27.851] Browser LOG     📨 Received message: {"buttons":[{"id":"start_game_intent_quest","label":"🎯 Play Intent Quest","metadata":{},"type":"quick_reply","value":"1"},{"id":"start_game_language_master","label":"🌍 Play Language Master","metadata":{},"type":"quick_reply","value":"2"},{"id":"start_game_tone_detective","label":"😊 Play Tone Detective","metadata":{},"type":"quick_reply","value":"3"},{"id":"view_leaderboard","label":"🏆 View Leaderboard","metadata":{},"type":"quick_reply","value":"4"},{"id":"maybe_later","label":"⏰ Maybe Later","metadata":{},"type":"quick_reply","value":"5"}],"content":"Hey there! 👋 Welcome to the Mangwale AI assistant rewards system! We're excited to share with you all the fun and exciting ways you can earn rewards while having a blast.\n\n**Here's what you can do:**\n\n🎮 **Play Quick Fun Games**: Each game lasts between 30 seconds to 2 minutes, making it super easy and quick to play. Perfect for those short breaks or downtime!\n\n💰 **Earn Real Money**: Yes, you read that right! You can earn between ₹5 to ₹15 per game, plus extra points. It's a great way to make some extra cash while enjoying yourself.\n\n🏆 **Compete on Leaderboards**: Show off your skills and compete with other players to climb the leaderboard. It's all about friendly competition and having fun!\n\n📚 **Help Train Our AI**: While you're playing and having fun, you're also helping us improve our AI. Every game you play contributes to making our AI smarter and more accurate.\n\n**Our Games Include:**\n- 🎯 **Intent Quest** - Guess what people mean (earn ₹15)\n- 🌍 **Language Master** - Detect languages from around the world (earn ₹15)\n- 😊 **Tone Detective** - Identify emotions and tones (earn ₹15)\n- 📝 **Profile Builder** - Quick questions to help build your profile (earn ₹1 each)\n\n**Ready to Play?** 🚀\nChoose one of the games below to get started and earn ₹5-₹15 in just 30 seconds to 2 minutes!","id":"1763473007019-0.024899691487937803","role":"assistant","timestamp":1763473007019}
+[45:25:21.384] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[45:25:28.129] Server  ERROR   Employee stats error: TypeError: fetch failed
+[45:25:28.278] Server  ERROR   Employee list error: TypeError: fetch failed
+[45:25:28.340] Server  ERROR   Employee stats error: TypeError: fetch failed
+[45:25:28.398] Server  ERROR   Employee list error: TypeError: fetch failed
+[45:25:28.404] Browser ERROR   Fetch error: {}
+[45:25:28.520] Browser ERROR   Fetch error: {}
+[45:25:29.859] Server  ERROR   Camera list error: TypeError: fetch failed
+[45:25:29.964] Server  ERROR   Camera stats error: TypeError: fetch failed
+[45:25:30.030] Server  ERROR   Stream stats error: TypeError: fetch failed
+[45:25:30.095] Server  ERROR   Camera list error: TypeError: fetch failed
+[45:25:30.153] Server  ERROR   Camera stats error: TypeError: fetch failed
+[45:25:30.209] Server  ERROR   Stream stats error: TypeError: fetch failed
+[45:26:34.695] Browser LOG     ✅ Loaded 6 flows from backend
+[45:26:34.695] Browser LOG     ✅ Loaded 6 flows from backend
+[45:32:18.134] Browser LOG     ❌ WebSocket disconnected
+[45:32:18.134] Browser LOG     ❌ WebSocket disconnected
+[45:32:21.142] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:32:21.142] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:32:24.129] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:32:24.129] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[45:32:30.134] Browser LOG     ✅ WebSocket connected
+[45:32:30.134] Browser LOG     ✅ WebSocket connected
+[45:32:30.134] Browser LOG     📱 Joining session with auth: guest
+[45:32:30.134] Browser LOG     📱 Joining session: web-1763465342697 (guest)
+[45:32:30.134] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[45:32:30.134] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[45:33:23.140] Server  LOG      ✓ Compiled in 59ms
+[45:33:43.135] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[45:33:43.136] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[45:34:05.130] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[45:34:05.130] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:42:25.141] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:42:25.141] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:42:25.930] Browser LOG     ❌ WebSocket disconnected
+[60:42:25.930] Browser LOG     ❌ WebSocket disconnected
+[60:42:25.930] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[60:42:25.930] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[60:42:25.930] Browser ERROR   ❌ WebSocket connection error: {"description":{"isTrusted":true},"type":"TransportError"}
+[60:42:25.930] Browser ERROR   WebSocket error: {"description":{"isTrusted":true},"type":"TransportError"}
+[60:42:25.930] Browser ERROR   ❌ WebSocket connection error: {}
+[60:42:25.930] Browser ERROR   WebSocket error: {}
+[60:42:26.909] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:42:26.937] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:42:26.937] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:42:28.066] Browser LOG     ✅ WebSocket connected
+[60:42:28.066] Browser LOG     ✅ WebSocket connected
+[60:42:28.066] Browser LOG     📱 Joining session with auth: guest
+[60:42:28.066] Browser LOG     📱 Joining session: web-1763465342697 (guest)
+[60:42:28.066] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[60:42:28.066] Browser LOG     📥 Session joined: web-1763465342697 History: 0
+[60:43:20.151] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[60:43:20.438] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:43:20.438] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:43:21.018] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/flows" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/src/layou...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body
+                            className="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__var..."
+-                           style={{overflow-x:"hidden",overflow-y:"hidden"}}
+                          >
+                  ...
+
+[60:43:23.903] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:43:23.903] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:43:30.899] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[60:43:31.006] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:43:31.093] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:43:31.093] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:43:31.323] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/admin/flows" notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head>
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="/src/layou...">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en">
+                          <body
+                            className="geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__var..."
+-                           style={{overflow-x:"hidden",overflow-y:"hidden"}}
+                          >
+                  ...
+
+[60:43:31.912] Browser ERROR   ./src/app/admin/agents/page.tsx:45:11
+Parsing ecmascript source code failed
+  43 |     {
+  44 |       id: 'agent_food',
+> 45 |       name: 'Food Ordering Agent',
+     |           ^
+  46 |       module: 'food',
+  47 |       icon: '🍕',
+  48 |       color: 'from-orange-500 to-red-500',
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./src/app/admin/agents/page.tsx [Client Component Browser]
+    ./src/app/admin/agents/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./src/app/admin/agents/page.tsx [Client Component SSR]
+    ./src/app/admin/agents/page.tsx [Server Component]
+[60:47:43.904] Browser ERROR   Failed to load flows: {}

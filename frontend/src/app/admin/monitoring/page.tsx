@@ -1,0 +1,369 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import {
+  Activity,
+  DollarSign,
+  AlertTriangle,
+  CheckCircle,
+  Clock,
+  Zap,
+  Database,
+  MessageSquare,
+  Search,
+  Globe,
+  RefreshCw
+} from 'lucide-react';
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3002';
+
+interface LLMCosts {
+  [provider: string]: {
+    requests: number;
+    tokens: number;
+    cost: number;
+    avgLatency: number;
+  };
+}
+
+interface Analytics {
+  conversations: { total: number; unique_users: number };
+  search: { total: number; avg_results: number };
+  nlu: { total: number; avg_confidence: number };
+  llm: { total: number; total_cost: number };
+}
+
+interface Alert {
+  id: string;
+  type: 'critical' | 'warning' | 'info';
+  provider?: string;
+  message: string;
+  timestamp: number;
+}
+
+export default function MonitoringDashboard() {
+  const [llmCosts, setLLMCosts] = useState<LLMCosts>({});
+  const [analytics, setAnalytics] = useState<Analytics | null>(null);
+  const [alerts, setAlerts] = useState<Alert[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [timeRange, setTimeRange] = useState<'1h' | '24h' | '7d' | '30d'>('24h');
+  const [lastUpdate, setLastUpdate] = useState<Date>(new Date());
+
+  const fetchMonitoringData = async () => {
+    try {
+      setLoading(true);
+
+      // Fetch LLM costs
+      const costsRes = await fetch(`${API_URL}/monitoring/llm/costs`);
+      const costsData = await costsRes.json();
+      setLLMCosts(costsData);
+
+      // Fetch analytics summary
+      const analyticsRes = await fetch(`${API_URL}/monitoring/analytics/summary?timeRange=${timeRange}`);
+      const analyticsData = await analyticsRes.json();
+      setAnalytics(analyticsData);
+
+      // Fetch alerts
+      const alertsRes = await fetch(`${API_URL}/monitoring/alerts`);
+      const alertsData = await alertsRes.json();
+      setAlerts(alertsData.alerts || []);
+
+      setLastUpdate(new Date());
+    } catch (error) {
+      console.error('Error fetching monitoring data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMonitoringData();
+    const interval = setInterval(fetchMonitoringData, 30000); // Refresh every 30s
+    return () => clearInterval(interval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeRange]);
+
+  const getTotalCost = () => {
+    return Object.values(llmCosts).reduce((sum, data) => sum + data.cost, 0);
+  };
+
+  const getTotalRequests = () => {
+    return Object.values(llmCosts).reduce((sum, data) => sum + data.requests, 0);
+  };
+
+  const getTotalTokens = () => {
+    return Object.values(llmCosts).reduce((sum, data) => sum + data.tokens, 0);
+  };
+
+  const getAvgLatency = () => {
+    const providers = Object.values(llmCosts);
+    if (providers.length === 0) return 0;
+    const totalLatency = providers.reduce((sum, data) => sum + data.avgLatency, 0);
+    return Math.round(totalLatency / providers.length);
+  };
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(amount * 85); // USD to INR
+  };
+
+  const formatNumber = (num: number) => {
+    return new Intl.NumberFormat('en-IN').format(num);
+  };
+
+  const getAlertIcon = (type: string) => {
+    switch (type) {
+      case 'critical':
+        return <AlertTriangle className="h-4 w-4 text-red-500" />;
+      case 'warning':
+        return <AlertTriangle className="h-4 w-4 text-yellow-500" />;
+      default:
+        return <CheckCircle className="h-4 w-4 text-blue-500" />;
+    }
+  };
+
+  return (
+    <div className="flex flex-col gap-6 p-6">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">System Monitoring</h1>
+          <p className="text-muted-foreground">
+            Real-time performance and cost tracking
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button variant="outline" size="sm" onClick={fetchMonitoringData} disabled={loading}>
+            <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+            Refresh
+          </Button>
+          <span className="text-sm text-muted-foreground">
+            Last updated: {lastUpdate.toLocaleTimeString()}
+          </span>
+        </div>
+      </div>
+
+      {/* Time Range Selector */}
+      <div className="flex items-center gap-2">
+        <Button
+          variant={timeRange === '1h' ? 'default' : 'outline'}
+          size="sm"
+          onClick={() => setTimeRange('1h')}
+        >
+          Last Hour
+        </Button>
+        <Button
+          variant={timeRange === '24h' ? 'default' : 'outline'}
+          size="sm"
+          onClick={() => setTimeRange('24h')}
+        >
+          Last 24 Hours
+        </Button>
+        <Button
+          variant={timeRange === '7d' ? 'default' : 'outline'}
+          size="sm"
+          onClick={() => setTimeRange('7d')}
+        >
+          Last 7 Days
+        </Button>
+        <Button
+          variant={timeRange === '30d' ? 'default' : 'outline'}
+          size="sm"
+          onClick={() => setTimeRange('30d')}
+        >
+          Last 30 Days
+        </Button>
+      </div>
+
+      {/* Key Metrics */}
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Cost</CardTitle>
+            <DollarSign className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{formatCurrency(getTotalCost())}</div>
+            <p className="text-xs text-muted-foreground">
+              ${getTotalCost().toFixed(4)} USD
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">LLM Requests</CardTitle>
+            <MessageSquare className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{formatNumber(getTotalRequests())}</div>
+            <p className="text-xs text-muted-foreground">
+              {formatNumber(getTotalTokens())} tokens
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Avg Latency</CardTitle>
+            <Clock className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{getAvgLatency()}ms</div>
+            <p className="text-xs text-muted-foreground">
+              Response time
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">System Health</CardTitle>
+            <Activity className="h-4 w-4 text-muted-foreground" />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-green-600">Healthy</div>
+            <p className="text-xs text-muted-foreground">
+              {alerts.length} active alert{alerts.length !== 1 ? 's' : ''}
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Alerts */}
+      {alerts.length > 0 && (
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <AlertTriangle className="h-5 w-5" />
+              Active Alerts
+            </CardTitle>
+            <CardDescription>System warnings and notifications</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-2">
+              {alerts.map((alert) => (
+                <div
+                  key={alert.id}
+                  className="flex items-start gap-3 p-3 rounded-lg border bg-card"
+                >
+                  {getAlertIcon(alert.type)}
+                  <div className="flex-1">
+                    <p className="text-sm font-medium">{alert.message}</p>
+                    {alert.provider && (
+                      <Badge variant="outline" className="mt-1">
+                        {alert.provider}
+                      </Badge>
+                    )}
+                  </div>
+                  <span className="text-xs text-muted-foreground">
+                    {new Date(alert.timestamp).toLocaleTimeString()}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* LLM Provider Costs */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <Zap className="h-5 w-5" />
+            LLM Provider Breakdown
+          </CardTitle>
+          <CardDescription>Usage and costs by provider</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-4">
+            {Object.entries(llmCosts).map(([provider, data]) => (
+              <div key={provider} className="flex items-center gap-4">
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-sm font-medium capitalize">{provider}</span>
+                    <span className="text-sm text-muted-foreground">
+                      {formatCurrency(data.cost)}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                    <span>{formatNumber(data.requests)} requests</span>
+                    <span>{formatNumber(data.tokens)} tokens</span>
+                    <span>{data.avgLatency}ms avg</span>
+                  </div>
+                </div>
+                <Badge variant={provider === 'groq' ? 'default' : 'outline'}>
+                  {provider === 'groq' ? 'Primary' : 'Backup'}
+                </Badge>
+              </div>
+            ))}
+            {Object.keys(llmCosts).length === 0 && (
+              <p className="text-sm text-muted-foreground text-center py-4">
+                No LLM usage data available for this time period
+              </p>
+            )}
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Analytics Summary */}
+      {analytics && (
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Conversations</CardTitle>
+              <MessageSquare className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{formatNumber(analytics.conversations?.total || 0)}</div>
+              <p className="text-xs text-muted-foreground">
+                {formatNumber(analytics.conversations?.unique_users || 0)} unique users
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Search Queries</CardTitle>
+              <Search className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{formatNumber(analytics.search?.total || 0)}</div>
+              <p className="text-xs text-muted-foreground">
+                {analytics.search?.avg_results?.toFixed(1) || 0} avg results
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">NLU Calls</CardTitle>
+              <Database className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{formatNumber(analytics.nlu?.total || 0)}</div>
+              <p className="text-xs text-muted-foreground">
+                {(analytics.nlu?.avg_confidence * 100 || 0).toFixed(1)}% avg confidence
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">LLM Calls</CardTitle>
+              <Globe className="h-4 w-4 text-muted-foreground" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">{formatNumber(analytics.llm?.total || 0)}</div>
+              <p className="text-xs text-muted-foreground">
+                {formatCurrency(analytics.llm?.total_cost || 0)} total cost
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+    </div>
+  );
+}
