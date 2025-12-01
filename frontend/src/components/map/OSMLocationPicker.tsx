@@ -103,7 +103,7 @@ export default function OSMLocationPicker({
   useEffect(() => {
     const fetchZones = async () => {
       try {
-        const response = await fetch('http://localhost:3201/zones/boundaries')
+        const response = await fetch('/api/zones/boundaries')
         const data = await response.json()
         
         if (data.success && data.zones) {

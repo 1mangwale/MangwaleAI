@@ -1,15 +1,17 @@
 'use client';
 
-import { Handle, Position, NodeProps } from '@xyflow/react';
+import { Handle, Position, NodeProps, Node } from '@xyflow/react';
 import { GitBranch } from 'lucide-react';
 
-export interface DecisionNodeData {
+export interface DecisionNodeData extends Record<string, unknown> {
   label?: string;
   condition?: string;
   branches?: Array<{ label: string; condition: string }>;
 }
 
-export function DecisionNode({ data, selected }: NodeProps<DecisionNodeData>) {
+type DecisionNodeType = Node<DecisionNodeData>;
+
+export function DecisionNode({ data, selected }: NodeProps<DecisionNodeType>) {
   return (
     <div className={`bg-white border-2 rounded-lg p-4 min-w-[200px] shadow-md transition-all ${
       selected ? 'border-yellow-500 shadow-lg' : 'border-yellow-300'

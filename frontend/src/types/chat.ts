@@ -9,6 +9,21 @@ export interface OptionButton {
   value: string
 }
 
+export interface VariantOption {
+  id: string
+  label: string
+  value: string
+  colorCode?: string // For color swatches
+  price?: string // Override price if selected
+}
+
+export interface VariantGroup {
+  id: string
+  name: string // e.g. "Size", "Color"
+  type: 'color' | 'button' | 'select'
+  options: VariantOption[]
+}
+
 export interface ProductCard {
   id: string
   name: string
@@ -17,6 +32,13 @@ export interface ProductCard {
   deliveryTime?: string
   price?: string
   description?: string
+  variantGroups?: VariantGroup[]
+  // Additional fields from search API
+  brand?: string
+  category?: string
+  storeName?: string
+  storeId?: number
+  veg?: boolean
   action: {
     label: string
     value: string
@@ -31,6 +53,7 @@ export interface ChatMessage {
   timestamp: number
   buttons?: OptionButton[]
   cards?: ProductCard[]
+  metadata?: any
 }
 
 export interface MessageBlock {

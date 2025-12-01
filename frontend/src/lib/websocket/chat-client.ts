@@ -4,15 +4,39 @@ import { io, Socket } from 'socket.io-client'
 import type { ChatMessage, Session } from '@/types/chat'
 
 // Auto-detect WebSocket URL based on current origin
+// IMPORTANT: WebSocket connects via same domain to avoid CORS issues
+// Traefik routes /socket.io to the AI backend
 const getWsUrl = () => {
   if (typeof window === 'undefined') {
     // Server-side: use localhost
     return process.env.NEXT_PUBLIC_WS_URL || 'http://localhost:3200'
   }
   
-  // Client-side: always use localhost for now (same server)
-  // Production will proxy through nginx/same domain
-  return process.env.NEXT_PUBLIC_WS_URL || 'http://localhost:3200'
+  const hostname = window.location.hostname;
+  const protocol = window.location.protocol === 'https:' ? 'https:' : 'http:';
+  
+  // Production domains - use same domain to avoid CORS
+  // Traefik has /socket.io routes configured for each domain
+  if (hostname === 'chat.mangwale.ai' || hostname === 'www.chat.mangwale.ai') {
+    return 'https://chat.mangwale.ai'; // WebSocket via Traefik on same domain
+  }
+  
+  if (hostname === 'admin.mangwale.ai') {
+    return 'https://admin.mangwale.ai'; // WebSocket via Traefik on same domain
+  }
+
+  // If we are on localhost, use localhost
+  if (hostname === 'localhost' || hostname === '127.0.0.1') {
+    return 'http://localhost:3200';
+  }
+
+  // Fallback to env var, but filter out host.docker.internal
+  const envUrl = process.env.NEXT_PUBLIC_WS_URL;
+  if (envUrl && !envUrl.includes('host.docker.internal')) {
+    return envUrl;
+  }
+
+  return 'http://localhost:3200'
 }
 
 interface ChatEventHandlers {
@@ -22,11 +46,18 @@ interface ChatEventHandlers {
   onError?: (error: Error) => void
   onConnect?: () => void
   onDisconnect?: () => void
+  // Centralized Auth Event Handlers
+  onAuthSynced?: (data: { userId: number; userName: string; token: string; platform: string }) => void
+  onAuthLoggedOut?: () => void
+  onAuthStatus?: (data: { authenticated: boolean; userId?: number; userName?: string }) => void
+  onAuthSuccess?: (data: { userId: number; userName: string }) => void
+  onAuthFailed?: (data: { message: string; reason?: string }) => void
 }
 
 interface SendMessagePayload {
   message: string
   sessionId: string
+  platform?: string
   module?: string
   type?: 'text' | 'button_click' | 'quick_reply'
   action?: string
@@ -50,7 +81,11 @@ class ChatWebSocketClient {
   }
 
   private connect() {
-    if (this.socket?.connected) {
+    if (this.socket) {
+      if (!this.socket.connected) {
+        console.log('🔌 Socket exists but disconnected, reconnecting...')
+        this.socket.connect()
+      }
       return
     }
 
@@ -58,12 +93,13 @@ class ChatWebSocketClient {
     console.log(`🔌 Connecting to WebSocket: ${wsUrl}/ai-agent`)
 
     this.socket = io(`${wsUrl}/ai-agent`, {
-      transports: ['websocket', 'polling'],
+      transports: ['websocket'], // Force websocket to avoid polling issues with proxies
+      path: '/socket.io',
       reconnection: true,
       reconnectionAttempts: this.maxReconnectAttempts,
       reconnectionDelay: 1000,
       reconnectionDelayMax: 5000,
-      timeout: 10000,
+      timeout: 20000, // Increased timeout
     })
 
     this.setupEventListeners()
@@ -120,6 +156,32 @@ class ChatWebSocketClient {
       console.error('❌ WebSocket reconnection failed')
       this.handlers.onError?.(new Error('Failed to reconnect to WebSocket'))
     })
+
+    // Centralized Auth Event Listeners
+    this.socket.on('auth:synced', (data: { userId: number; userName: string; token: string; platform: string }) => {
+      console.log('🔐 Auth synced from another channel:', data.platform)
+      this.handlers.onAuthSynced?.(data)
+    })
+
+    this.socket.on('auth:logged_out', () => {
+      console.log('🚪 Logged out from another channel')
+      this.handlers.onAuthLoggedOut?.()
+    })
+
+    this.socket.on('auth:status', (data: { authenticated: boolean; userId?: number; userName?: string }) => {
+      console.log('🔍 Auth status:', data)
+      this.handlers.onAuthStatus?.(data)
+    })
+
+    this.socket.on('auth:success', (data: { userId: number; userName: string }) => {
+      console.log('✅ Auth success:', data)
+      this.handlers.onAuthSuccess?.(data)
+    })
+
+    this.socket.on('auth:failed', (data: { message: string; reason?: string }) => {
+      console.error('❌ Auth failed:', data)
+      this.handlers.onAuthFailed?.(data)
+    })
   }
 
   // Register event handlers
@@ -134,11 +196,16 @@ class ChatWebSocketClient {
     email?: string
     token?: string
     name?: string
+    zoneId?: number
   }) {
-    if (!this.socket?.connected) {
-      console.warn('⚠️ Socket not connected, attempting to connect...')
+    if (!this.socket) {
+      console.warn('⚠️ Socket not initialized, initializing...')
       this.connect()
+    } else if (!this.socket.connected) {
+      console.warn('⚠️ Socket not connected, attempting to connect...')
+      this.socket.connect()
     }
+    
     console.log('📱 Joining session:', sessionId, authData ? '(authenticated)' : '(guest)')
     this.socket?.emit('session:join', { 
       sessionId,
@@ -176,9 +243,54 @@ class ChatWebSocketClient {
   }
 
   // Update location
-  updateLocation(sessionId: string, lat: number, lng: number) {
-    console.log('📍 Updating location:', { sessionId, lat, lng })
-    this.socket?.emit('location:update', { sessionId, lat, lng })
+  updateLocation(sessionId: string, lat: number, lng: number, zoneId?: number) {
+    console.log('📍 Updating location:', { sessionId, lat, lng, zoneId })
+    this.socket?.emit('location:update', { sessionId, lat, lng, zoneId })
+  }
+
+  // ===== CENTRALIZED AUTH METHODS =====
+
+  /**
+   * Broadcast auth login to sync across all channels
+   */
+  syncAuthLogin(data: {
+    phone: string
+    token: string
+    userId: number
+    userName?: string
+    platform?: string
+    sessionId: string
+  }) {
+    if (!this.socket?.connected) {
+      console.error('❌ Cannot sync auth: WebSocket not connected')
+      return
+    }
+    console.log('🔐 Syncing auth login across channels')
+    this.socket.emit('auth:login', data)
+  }
+
+  /**
+   * Broadcast auth logout to sync across all channels
+   */
+  syncAuthLogout(phone: string, sessionId: string) {
+    if (!this.socket?.connected) {
+      console.error('❌ Cannot sync logout: WebSocket not connected')
+      return
+    }
+    console.log('🚪 Syncing logout across channels')
+    this.socket.emit('auth:logout', { phone, sessionId })
+  }
+
+  /**
+   * Check auth status from centralized store
+   */
+  checkAuthStatus(phone: string, sessionId: string) {
+    if (!this.socket?.connected) {
+      console.error('❌ Cannot check auth: WebSocket not connected')
+      return
+    }
+    console.log('🔍 Checking centralized auth status')
+    this.socket.emit('auth:check', { phone, sessionId })
   }
 
   // Check connection status

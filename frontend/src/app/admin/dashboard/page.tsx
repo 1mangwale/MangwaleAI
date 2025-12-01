@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Brain, Search, MessageSquare, TrendingUp, Activity, CheckCircle, AlertCircle, RefreshCw } from 'lucide-react';
 import { mangwaleAIClient } from '@/lib/api/mangwale-ai';
@@ -28,6 +29,11 @@ interface RecentActivity {
 export default function AdminDashboard() {
   const [stats, setStats] = useState<SystemStats | null>(null);
   const [recentActivity, setRecentActivity] = useState<RecentActivity[]>([]);
+  const [serviceHealth, setServiceHealth] = useState<{
+    asr: { status: string; providers: string[] };
+    tts: { status: string };
+    nlu: { status: string };
+  } | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -39,7 +45,10 @@ export default function AdminDashboard() {
     try {
       setLoading(true);
       setError(null);
-      const data = await mangwaleAIClient.getDashboardStats();
+      const [data, health] = await Promise.all([
+        mangwaleAIClient.getDashboardStats(),
+        mangwaleAIClient.getServiceHealth(),
+      ]);
       setStats({
         totalAgents: data.totalAgents,
         activeModels: data.activeModels,
@@ -52,6 +61,7 @@ export default function AdminDashboard() {
         totalFlows: data.totalFlows,
       });
       setRecentActivity(data.recentActivity);
+      setServiceHealth(health);
     } catch (err) {
       console.error('Failed to load dashboard stats:', err);
       setError('Failed to load dashboard statistics');
@@ -101,6 +111,63 @@ export default function AdminDashboard() {
             <RefreshCw size={20} />
             Refresh
           </button>
+        </div>
+      </div>
+
+      {/* AI Services Health */}
+      <div className="bg-white rounded-xl p-6 shadow-md border-2 border-gray-100 hover:border-[#059211] transition-all">
+        <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+          <Activity className="text-[#059211]" size={20} />
+          AI Services Status
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* ASR Status */}
+          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-center gap-3">
+              <div className={`p-2 rounded-lg ${serviceHealth?.asr.status === 'ok' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
+                {serviceHealth?.asr.status === 'ok' ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
+              </div>
+              <div>
+                <p className="font-medium text-gray-900">Speech Recognition</p>
+                <p className="text-sm text-gray-500">{serviceHealth?.asr.providers.length || 0} providers active</p>
+              </div>
+            </div>
+            <span className={`px-2 py-1 rounded text-xs font-medium ${serviceHealth?.asr.status === 'ok' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+              {serviceHealth?.asr.status === 'ok' ? 'Operational' : 'Degraded'}
+            </span>
+          </div>
+
+          {/* TTS Status */}
+          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-center gap-3">
+              <div className={`p-2 rounded-lg ${serviceHealth?.tts.status === 'ok' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
+                {serviceHealth?.tts.status === 'ok' ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
+              </div>
+              <div>
+                <p className="font-medium text-gray-900">Text to Speech</p>
+                <p className="text-sm text-gray-500">Voice synthesis ready</p>
+              </div>
+            </div>
+            <span className={`px-2 py-1 rounded text-xs font-medium ${serviceHealth?.tts.status === 'ok' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+              {serviceHealth?.tts.status === 'ok' ? 'Operational' : 'Degraded'}
+            </span>
+          </div>
+
+          {/* NLU Status */}
+          <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+            <div className="flex items-center gap-3">
+              <div className={`p-2 rounded-lg ${serviceHealth?.nlu.status === 'ok' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
+                {serviceHealth?.nlu.status === 'ok' ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
+              </div>
+              <div>
+                <p className="font-medium text-gray-900">NLU Engine</p>
+                <p className="text-sm text-gray-500">Intent classification</p>
+              </div>
+            </div>
+            <span className={`px-2 py-1 rounded text-xs font-medium ${serviceHealth?.nlu.status === 'ok' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+              {serviceHealth?.nlu.status === 'ok' ? 'Operational' : 'Degraded'}
+            </span>
+          </div>
         </div>
       </div>
 
@@ -250,7 +317,7 @@ export default function AdminDashboard() {
 
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <a
+        <Link
           href="/admin/agents"
           className="block bg-white rounded-xl p-6 shadow-md border-2 border-gray-100 hover:border-[#059211] hover:shadow-lg transition-all group"
         >
@@ -259,9 +326,9 @@ export default function AdminDashboard() {
           <p className="text-sm text-gray-600">
             Configure and train module-specific agents
           </p>
-        </a>
+        </Link>
 
-        <a
+        <Link
           href="/admin/search-config"
           className="block bg-white rounded-xl p-6 shadow-md border-2 border-gray-100 hover:border-[#059211] hover:shadow-lg transition-all group"
         >
@@ -270,9 +337,9 @@ export default function AdminDashboard() {
           <p className="text-sm text-gray-600">
             Manage OpenSearch indices and analytics
           </p>
-        </a>
+        </Link>
 
-        <a
+        <Link
           href="/admin/webhooks"
           className="block bg-white rounded-xl p-6 shadow-md border-2 border-gray-100 hover:border-[#059211] hover:shadow-lg transition-all group"
         >
@@ -281,7 +348,7 @@ export default function AdminDashboard() {
           <p className="text-sm text-gray-600">
             Configure webhooks and API keys
           </p>
-        </a>
+        </Link>
       </div>
     </div>
   );

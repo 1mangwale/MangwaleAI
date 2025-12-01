@@ -58,17 +58,23 @@ export default function LlmChatPage() {
 
       const { models: allModels } = await llmApi.getModels(params);
       
-      // Filter for chat-capable models
+      // Filter for chat-capable models and remove duplicates
       const chatModels = allModels.filter(m => m.capabilities?.chat);
-      setModels(chatModels);
+      
+      // Deduplicate by ID
+      const uniqueModels = Array.from(
+        new Map(chatModels.map(m => [m.id, m])).values()
+      );
+      
+      setModels(uniqueModels);
 
       // Extract unique providers
-      const uniqueProviders = Array.from(new Set(chatModels.map(m => m.provider)));
+      const uniqueProviders = Array.from(new Set(uniqueModels.map(m => m.provider)));
       setProviders(uniqueProviders);
       
       // Set default model (prefer free models)
       if (!selectedModel) {
-        const defaultModel = chatModels.find(m => m.cost === 'free') || chatModels[0];
+        const defaultModel = uniqueModels.find(m => m.cost === 'free') || uniqueModels[0];
         if (defaultModel) {
           setSelectedModel(defaultModel.id);
         }

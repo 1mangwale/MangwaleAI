@@ -21,6 +21,8 @@ const providers = [
 const modelTypes = [
   { value: 'llm', label: 'LLM (Large Language Model)' },
   { value: 'nlu', label: 'NLU (Natural Language Understanding)' },
+  { value: 'asr', label: 'ASR (Automatic Speech Recognition)' },
+  { value: 'tts', label: 'TTS (Text-to-Speech)' },
   { value: 'embedding', label: 'Embedding' },
 ];
 

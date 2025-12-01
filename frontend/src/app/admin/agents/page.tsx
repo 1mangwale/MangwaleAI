@@ -12,7 +12,7 @@ interface Agent {
   module: string;
   icon: string;
   color: string;
-  status: 'active' | 'training' | 'inactive';
+  status: string;
   model: string;
   nluProvider: string;
   accuracy: number;

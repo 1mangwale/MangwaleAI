@@ -200,8 +200,39 @@ class AdminBackendClient {
     })
   }
 
+  async syncLabelStudio(projectId?: string): Promise<{ success: boolean; message: string }> {
+    return this.request<{ success: boolean; message: string }>('/training/labelstudio/sync', {
+      method: 'POST',
+      body: JSON.stringify({ projectId }),
+    })
+  }
+
   async testLabelStudioConnection(): Promise<{ ok: boolean; projectsCount?: number }> {
     return this.request<{ ok: boolean; projectsCount?: number }>('/settings/labelstudio/test')
+  }
+
+  async testAsrConnection(): Promise<{ ok: boolean; message?: string }> {
+    return this.request<{ ok: boolean; message?: string }>('/settings/asr/test')
+  }
+
+  async testTtsConnection(): Promise<{ ok: boolean; message?: string }> {
+    return this.request<{ ok: boolean; message?: string }>('/settings/tts/test')
+  }
+
+  async testMinioConnection(): Promise<{ ok: boolean; message?: string }> {
+    return this.request<{ ok: boolean; message?: string }>('/settings/minio/test')
+  }
+
+  // System Settings
+  async getSettings(): Promise<Array<{ key: string; value: string; isSecret: boolean; source: string }>> {
+    return this.request<Array<{ key: string; value: string; isSecret: boolean; source: string }>>('/settings')
+  }
+
+  async updateSettings(settings: Array<{ key: string; value: string }>): Promise<Array<{ key: string; success: boolean; error?: string }>> {
+    return this.request<Array<{ key: string; success: boolean; error?: string }>>('/settings', {
+      method: 'PUT',
+      body: JSON.stringify({ settings }),
+    })
   }
 
   async uploadDataset(file: File, metadata: { name: string; type: string; module: string }): Promise<Dataset> {

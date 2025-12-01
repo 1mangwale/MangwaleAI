@@ -47,7 +47,7 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({
           formData.append('language', language);
 
           // Send to voice API
-          const response = await fetch('http://localhost:3201/voice/transcribe', {
+          const response = await fetch('/api/asr/transcribe/upload', {
             method: 'POST',
             body: formData,
           });

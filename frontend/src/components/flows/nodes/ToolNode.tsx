@@ -1,9 +1,9 @@
 'use client';
 
-import { Handle, Position, NodeProps } from '@xyflow/react';
+import { Handle, Position, NodeProps, Node } from '@xyflow/react';
 import { Wrench } from 'lucide-react';
 
-export interface ToolNodeData {
+export interface ToolNodeData extends Record<string, unknown> {
   label?: string;
   toolName?: string;
   endpoint?: string;
@@ -11,7 +11,9 @@ export interface ToolNodeData {
   parameters?: Record<string, unknown>;
 }
 
-export function ToolNode({ data, selected }: NodeProps<ToolNodeData>) {
+type ToolNodeType = Node<ToolNodeData>;
+
+export function ToolNode({ data, selected }: NodeProps<ToolNodeType>) {
   return (
     <div className={`bg-white border-2 rounded-lg p-4 min-w-[200px] shadow-md transition-all ${
       selected ? 'border-green-500 shadow-lg' : 'border-green-300'

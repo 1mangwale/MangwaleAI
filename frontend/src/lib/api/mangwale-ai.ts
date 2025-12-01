@@ -7,7 +7,14 @@ import type {
   Platform,
 } from '@/types/chat'
 
-const MANGWALE_AI_URL = process.env.NEXT_PUBLIC_MANGWALE_AI_URL || 'http://localhost:3200'
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') {
+    // Client-side: always use relative path to go through proxy
+    return '/api';
+  }
+  // Server-side: use env var or localhost
+  return process.env.NEXT_PUBLIC_MANGWALE_AI_URL || 'http://localhost:3200';
+}
 
 interface SendMessageOptions {
   message: string
@@ -38,17 +45,12 @@ interface ConversationResponse {
 }
 
 class MangwaleAIClient {
-  private baseUrl: string
-
-  constructor() {
-    this.baseUrl = MANGWALE_AI_URL
-  }
-
   private async request<T>(
     endpoint: string,
     options: RequestInit = {}
   ): Promise<T> {
-    const url = `${this.baseUrl}${endpoint}`
+    const baseUrl = getBaseUrl();
+    const url = `${baseUrl}${endpoint}`
     const headers = {
       'Content-Type': 'application/json',
       ...options.headers,
@@ -64,6 +66,38 @@ class MangwaleAIClient {
     }
 
     return response.json()
+  }
+
+  // Generic HTTP methods for Admin Dashboard
+  async get<T = any>(endpoint: string): Promise<T> {
+    return this.request<T>(endpoint);
+  }
+
+  async post<T = any>(endpoint: string, body: any): Promise<T> {
+    return this.request<T>(endpoint, {
+      method: 'POST',
+      body: JSON.stringify(body),
+    });
+  }
+
+  async put<T = any>(endpoint: string, body: any): Promise<T> {
+    return this.request<T>(endpoint, {
+      method: 'PUT',
+      body: JSON.stringify(body),
+    });
+  }
+
+  async patch<T = any>(endpoint: string, body: any): Promise<T> {
+    return this.request<T>(endpoint, {
+      method: 'PATCH',
+      body: JSON.stringify(body),
+    });
+  }
+
+  async delete<T = any>(endpoint: string): Promise<T> {
+    return this.request<T>(endpoint, {
+      method: 'DELETE',
+    });
   }
 
   // Send message to AI
@@ -204,7 +238,7 @@ class MangwaleAIClient {
     }>
     total: number
   }> {
-    let url = '/api/flows'
+    let url = '/flows'
     const params = new URLSearchParams()
     if (module) params.append('module', module)
     if (enabled !== undefined) params.append('enabled', String(enabled))
@@ -214,37 +248,48 @@ class MangwaleAIClient {
   }
 
   async getFlow(id: string) {
-    return this.request(`/api/flows/${id}`)
+    return this.request(`/flows/${id}`)
   }
 
   async createFlow(data: unknown) {
-    return this.request('/api/flows', {
+    return this.request('/flows', {
       method: 'POST',
       body: JSON.stringify(data),
     })
   }
 
   async updateFlow(id: string, data: unknown) {
-    return this.request(`/api/flows/${id}`, {
+    return this.request(`/flows/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
     })
   }
 
   async deleteFlow(id: string) {
-    return this.request(`/api/flows/${id}`, {
+    return this.request(`/flows/${id}`, {
       method: 'DELETE',
     })
   }
 
   async toggleFlow(id: string) {
-    return this.request(`/api/flows/${id}/toggle`, {
+    return this.request(`/flows/${id}/toggle`, {
       method: 'PATCH',
     })
   }
 
   async getFlowStats(id: string) {
-    return this.request(`/api/flows/${id}/stats`)
+    return this.request(`/flows/${id}/stats`)
+  }
+
+  async getFlowTemplates(): Promise<Array<{
+    id: string
+    name: string
+    description: string
+    module: string
+    steps: number
+    states: Record<string, any>
+  }>> {
+    return this.request('/flows/templates')
   }
 
   // Dashboard Statistics
@@ -267,6 +312,19 @@ class MangwaleAIClient {
     }>
   }> {
     return this.request<any>('/stats/dashboard')
+  }
+
+  async getServiceHealth(): Promise<{
+    asr: { status: string; providers: string[] }
+    tts: { status: string }
+    nlu: { status: string }
+  }> {
+    const [asr, tts, nlu] = await Promise.all([
+      this.request<any>('/asr/health').catch(() => ({ status: 'down', providers: [] })),
+      this.request<any>('/tts/health').catch(() => ({ status: 'down' })),
+      this.request<any>('/nlu/health').catch(() => ({ status: 'down' })),
+    ]);
+    return { asr, tts, nlu };
   }
 
   async getAgentStats(): Promise<{
@@ -421,7 +479,7 @@ class MangwaleAIClient {
       timestamp: string
     }
   }> {
-    return this.request<any>('/api/gamification/settings')
+    return this.request<any>('/gamification/settings')
   }
 
   async updateGamificationSettings(settings: Array<{ key: string; value: string }>): Promise<{
@@ -432,7 +490,7 @@ class MangwaleAIClient {
       results: Array<{ key: string; success: boolean; error?: string }>
     }
   }> {
-    return this.request<any>('/api/gamification/settings', {
+    return this.request<any>('/gamification/settings', {
       method: 'PUT',
       body: JSON.stringify({ settings }),
     })
@@ -477,14 +535,14 @@ class MangwaleAIClient {
     if (filters?.offset) params.append('offset', filters.offset.toString())
 
     const query = params.toString() ? `?${params.toString()}` : ''
-    return this.request<any>(`/api/gamification/training-samples${query}`)
+    return this.request<any>(`/gamification/training-samples${query}`)
   }
 
   async approveTrainingSample(id: number, approvedBy: string): Promise<{
     success: boolean
     message: string
   }> {
-    return this.request<any>(`/api/gamification/training-samples/${id}/approve`, {
+    return this.request<any>(`/gamification/training-samples/${id}/approve`, {
       method: 'POST',
       body: JSON.stringify({ approved_by: approvedBy }),
     })
@@ -494,7 +552,7 @@ class MangwaleAIClient {
     success: boolean
     message: string
   }> {
-    return this.request<any>(`/api/gamification/training-samples/${id}/reject`, {
+    return this.request<any>(`/gamification/training-samples/${id}/reject`, {
       method: 'POST',
       body: JSON.stringify({ approved_by: rejectedBy, reason }),
     })
@@ -510,7 +568,7 @@ class MangwaleAIClient {
       autoApproved: number
     }
   }> {
-    return this.request<any>('/api/gamification/training-samples/stats')
+    return this.request<any>('/gamification/training-samples/stats')
   }
 
   async exportTrainingSamples(format: 'json' | 'jsonl' | 'csv' = 'jsonl'): Promise<{
@@ -522,7 +580,7 @@ class MangwaleAIClient {
       timestamp: string
     }
   }> {
-    return this.request<any>(`/api/gamification/training-samples/export?format=${format}`)
+    return this.request<any>(`/gamification/training-samples/export?format=${format}`)
   }
 
   // Gamification - Stats
@@ -557,7 +615,45 @@ class MangwaleAIClient {
       cacheStatus: string
     }
   }> {
-    return this.request<any>('/api/gamification/stats')
+    return this.request<any>('/gamification/stats')
+  }
+
+  // Intent Management
+  async getIntents(): Promise<Array<{
+    id: string
+    name: string
+    description: string
+    examples: string[]
+    parameters: Record<string, unknown>
+    enabled: boolean
+    createdAt: string
+    updatedAt: string
+  }>> {
+    return this.request('/intents')
+  }
+
+  async getIntent(id: string) {
+    return this.request(`/intents/${id}`)
+  }
+
+  async createIntent(data: unknown) {
+    return this.request('/intents', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    })
+  }
+
+  async updateIntent(id: string, data: unknown) {
+    return this.request(`/intents/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(data),
+    })
+  }
+
+  async deleteIntent(id: string) {
+    return this.request(`/intents/${id}`, {
+      method: 'DELETE',
+    })
   }
 }
 

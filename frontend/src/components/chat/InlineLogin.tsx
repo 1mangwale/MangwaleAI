@@ -211,12 +211,21 @@ export function InlineLogin({ onClose, onSuccess }: InlineLoginProps) {
               {loading ? 'Verifying...' : 'Verify OTP'}
             </button>
 
-            <button
-              onClick={() => setStep('phone')}
-              className="w-full text-gray-600 py-2 text-sm hover:text-gray-800"
-            >
-              Change phone number
-            </button>
+            <div className="flex gap-3">
+              <button
+                onClick={handleSendOtp}
+                disabled={loading}
+                className="flex-1 text-blue-600 py-2 text-sm hover:text-blue-800 font-medium border border-blue-200 rounded-lg hover:bg-blue-50 transition-colors"
+              >
+                Resend OTP
+              </button>
+              <button
+                onClick={() => setStep('phone')}
+                className="flex-1 text-gray-600 py-2 text-sm hover:text-gray-800 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+              >
+                Change Number
+              </button>
+            </div>
           </div>
         )}
 

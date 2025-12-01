@@ -279,8 +279,7 @@ export default function FlowsPage() {
         <button 
           onClick={async () => {
             try {
-              const response = await fetch('http://localhost:3002/flows/templates');
-              const templates = await response.json();
+              const templates = await mangwaleAIClient.getFlowTemplates();
               console.log('Available templates:', templates);
               toast.success(`Found ${templates.length} templates: ${templates.map((t: {name: string}) => t.name).join(', ')}`);
             } catch (error) {

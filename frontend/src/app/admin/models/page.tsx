@@ -8,7 +8,7 @@ import { useToast } from '@/components/shared';
 interface Model {
   id: string;
   name: string;
-  modelType: 'llm' | 'nlu' | 'embedding';
+  modelType: 'llm' | 'nlu' | 'embedding' | 'asr' | 'tts';
   provider: string;
   providerModelId: string;
   status: 'active' | 'inactive';
@@ -55,6 +55,8 @@ export default function ModelsPage() {
     switch (type) {
       case 'llm': return 'bg-blue-100 text-blue-700';
       case 'nlu': return 'bg-purple-100 text-purple-700';
+      case 'asr': return 'bg-orange-100 text-orange-700';
+      case 'tts': return 'bg-pink-100 text-pink-700';
       case 'embedding': return 'bg-green-100 text-green-700';
       default: return 'bg-gray-100 text-gray-700';
     }
@@ -123,9 +125,11 @@ export default function ModelsPage() {
       <div className="flex gap-2 overflow-x-auto pb-2">
         {[
           { id: 'all', name: 'All Models', count: models.length },
-          { id: 'llm', name: 'LLMs', count: models.filter(m => m.modelType === 'llm').length },
-          { id: 'nlu', name: 'NLU', count: models.filter(m => m.modelType === 'nlu').length },
-          { id: 'embedding', name: 'Embeddings', count: models.filter(m => m.modelType === 'embedding').length },
+          { id: 'llm', name: 'LLMs', count: models.filter(m => (m.modelType as string) === 'llm').length },
+          { id: 'nlu', name: 'NLU', count: models.filter(m => (m.modelType as string) === 'nlu').length },
+          { id: 'asr', name: 'ASR', count: models.filter(m => (m.modelType as string) === 'asr').length },
+          { id: 'tts', name: 'TTS', count: models.filter(m => (m.modelType as string) === 'tts').length },
+          { id: 'embedding', name: 'Embeddings', count: models.filter(m => (m.modelType as string) === 'embedding').length },
         ].map((tab) => (
           <button
             key={tab.id}

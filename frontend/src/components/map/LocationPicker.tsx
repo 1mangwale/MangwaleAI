@@ -114,9 +114,10 @@ interface LocationPickerProps {
     road?: string
     house?: string
     floor?: string
-    contact_person_name: string
-    contact_person_number: string
-    address_type: string
+    contact_person_name?: string
+    contact_person_number?: string
+    address_type?: string
+    zoneId?: number
   }) => void
   onCancel: () => void
 }
@@ -134,9 +135,6 @@ export default function LocationPicker({
   const [road, setRoad] = useState('')
   const [house, setHouse] = useState('')
   const [floor, setFloor] = useState('')
-  const [contactName, setContactName] = useState('')
-  const [contactNumber, setContactNumber] = useState('')
-  const [addressType, setAddressType] = useState('Home')
   const [isGeocoding, setIsGeocoding] = useState(false)
   const [isFetchingLocation, setIsFetchingLocation] = useState(false)
   const [map, setMap] = useState<GoogleMapInstance | null>(null)
@@ -147,6 +145,7 @@ export default function LocationPicker({
     coordinates: Array<{ lat: number; lng: number }>
   }>>([])
   const [isInZone, setIsInZone] = useState<boolean | null>(null)
+  const [currentZoneId, setCurrentZoneId] = useState<number | null>(null)
   const zonesLoadedRef = useRef(false)
 
   // Fetch zone boundaries from backend
@@ -159,7 +158,7 @@ export default function LocationPicker({
 
     const fetchZones = async () => {
       try {
-        const response = await fetch('http://localhost:3201/zones/boundaries')
+        const response = await fetch('/api/zones/boundaries')
         const data = await response.json()
 
         if (data.success && data.zones) {
@@ -185,7 +184,7 @@ export default function LocationPicker({
   }, [position])
 
   // Check if point is in any zone polygon (client-side validation)
-  const isPointInZone = useCallback((lat: number, lng: number) => {
+  const getZoneIdForPoint = useCallback((lat: number, lng: number) => {
     for (const zone of zoneBoundaries) {
       if (zone.coordinates.length < 3) continue
       
@@ -204,23 +203,24 @@ export default function LocationPicker({
         if (intersect) inside = !inside
       }
       
-      if (inside) return true
+      if (inside) return zone.id
     }
     
-    return false
+    return null
   }, [zoneBoundaries])
 
   // Update zone status when position changes
   useEffect(() => {
     if (position && zoneBoundaries.length > 0) {
-      const inZone = isPointInZone(position.lat, position.lng)
-      setIsInZone(inZone)
+      const zoneId = getZoneIdForPoint(position.lat, position.lng)
+      setIsInZone(zoneId !== null)
+      setCurrentZoneId(zoneId)
       
-      if (!inZone) {
+      if (zoneId === null) {
         console.warn('⚠️ Location outside serviceable zones')
       }
     }
-  }, [position, zoneBoundaries, isPointInZone])
+  }, [position, zoneBoundaries, getZoneIdForPoint])
 
   // Get current location
   const getCurrentLocation = useCallback(() => {
@@ -373,7 +373,7 @@ export default function LocationPicker({
           setPosition({ lat, lng })
           reverseGeocode(lat, lng)
 
-          const inZone = isPointInZone(lat, lng)
+          const inZone = getZoneIdForPoint(lat, lng) !== null
           setIsInZone(inZone)
 
           if (!inZone) {
@@ -446,7 +446,7 @@ export default function LocationPicker({
     return () => {
       script.removeEventListener('load', initMap)
     }
-  }, [position, zoneBoundaries, isPointInZone])
+  }, [position, zoneBoundaries, getZoneIdForPoint])
 
   // Get initial location on mount
   useEffect(() => {
@@ -466,24 +466,6 @@ export default function LocationPicker({
       return
     }
 
-    // Validate required fields
-    if (!contactName.trim()) {
-      alert('Please enter contact person name')
-      return
-    }
-
-    if (!contactNumber.trim()) {
-      alert('Please enter contact phone number')
-      return
-    }
-
-    // Validate phone number (basic validation)
-    const phoneRegex = /^[6-9]\d{9}$/
-    if (!phoneRegex.test(contactNumber.trim())) {
-      alert('Please enter a valid 10-digit mobile number')
-      return
-    }
-
     // Check if location is in serviceable zone
     if (isInZone === false) {
       alert('⚠️ Sorry, we don\'t service this area yet. Please select a location within the highlighted green zones on the map.')
@@ -497,9 +479,7 @@ export default function LocationPicker({
       road: road.trim() || undefined,
       house: house.trim() || undefined,
       floor: floor.trim() || undefined,
-      contact_person_name: contactName.trim(),
-      contact_person_number: contactNumber.trim(),
-      address_type: addressType,
+      zoneId: currentZoneId || undefined
     })
   }
 
@@ -557,46 +537,45 @@ export default function LocationPicker({
   }
 
   return (
-    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-0">
-      <div className="bg-white text-gray-900 w-full h-full sm:rounded-2xl sm:w-full sm:max-w-3xl sm:h-[92vh] flex flex-col shadow-2xl">
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-0 sm:p-4">
+      <div className="bg-white text-gray-900 w-full h-full sm:rounded-2xl sm:w-full sm:max-w-lg sm:h-auto sm:max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
         {/* Header - Green with White Text - Mobile Optimized */}
-        <div className="px-4 py-4 bg-gradient-to-r from-green-600 to-green-700 text-white flex items-center justify-between flex-shrink-0 sm:rounded-t-2xl">
+        <div className="px-4 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white flex items-center justify-between flex-shrink-0 sm:rounded-t-2xl">
           <div className="flex-1 min-w-0">
-            <h2 className="text-lg sm:text-xl font-bold flex items-center gap-2">
-              <MapPin className="w-6 h-6 flex-shrink-0" />
+            <h2 className="text-lg font-bold flex items-center gap-2">
+              <MapPin className="w-5 h-5 flex-shrink-0" />
               <span>Choose Location</span>
             </h2>
             {zoneBoundaries.length > 0 && (
-              <p className="text-xs sm:text-sm text-green-50 mt-1">
+              <p className="text-xs text-green-50 mt-0.5">
                 🟢 Green areas show serviceable zones
               </p>
             )}
           </div>
           <button
             onClick={onCancel}
-            className="p-3 hover:bg-white/20 rounded-full transition-colors flex-shrink-0 ml-2"
+            className="p-2 hover:bg-white/20 rounded-full transition-colors flex-shrink-0 ml-2"
             aria-label="Close"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Places Autocomplete Search - Mobile Optimized */}
-        <div className="p-4 border-b bg-gray-50 flex-shrink-0">
+        <div className="p-3 border-b bg-gray-50 flex-shrink-0">
           <PlacesAutocomplete
             onPlaceSelect={handlePlaceSelect}
             placeholder="Search for your location..."
           />
-          <div className="flex items-center justify-between mt-3 gap-3">
-            <p className="text-sm text-gray-700 font-medium flex-1">
-              💡 <span className="hidden sm:inline">Type to search, or drag the pin on the map below</span>
-              <span className="sm:hidden">Search or drag pin below</span>
+          <div className="flex items-center justify-between mt-2 gap-2">
+            <p className="text-xs text-gray-600 font-medium flex-1">
+              💡 Drag the pin to adjust location
             </p>
             {isInZone !== null && (
-              <div className={`text-sm font-bold px-3 py-1.5 rounded-full whitespace-nowrap flex-shrink-0 ${
+              <div className={`text-xs font-bold px-2 py-1 rounded-full whitespace-nowrap flex-shrink-0 ${
                 isInZone 
-                  ? 'bg-green-100 text-green-800 border-2 border-green-400' 
-                  : 'bg-red-100 text-red-800 border-2 border-red-400'
+                  ? 'bg-green-100 text-green-800 border border-green-400' 
+                  : 'bg-red-100 text-red-800 border border-red-400'
               }`}>
                 {isInZone ? '✓ In Zone' : '✗ Outside'}
               </div>
@@ -605,149 +584,57 @@ export default function LocationPicker({
         </div>
 
         {/* Map - Mobile Optimized with Larger GPS Button */}
-        <div className="relative h-[40vh] sm:h-80 flex-shrink-0 border-b">
+        <div className="relative h-[35vh] sm:h-64 flex-shrink-0 border-b">
           <div id="location-map" className="w-full h-full" />
           
           {/* Current Location Button - Large & Touch-Friendly - Bottom Left */}
           <button
             onClick={getCurrentLocation}
             disabled={isFetchingLocation}
-            className="absolute bottom-4 left-4 bg-green-600 hover:bg-green-700 active:bg-green-800 text-white p-4 rounded-full shadow-2xl disabled:opacity-50 transition-all z-10 border-3 border-white"
+            className="absolute bottom-3 left-3 bg-green-600 hover:bg-green-700 active:bg-green-800 text-white p-3 rounded-full shadow-xl disabled:opacity-50 transition-all z-10 border-2 border-white"
             title="Use my current location"
             aria-label="Get current location"
           >
-            <Navigation className={`w-7 h-7 ${isFetchingLocation ? 'animate-spin' : ''}`} />
+            <Navigation className={`w-5 h-5 ${isFetchingLocation ? 'animate-spin' : ''}`} />
           </button>
-          
-          {/* Zoom Tip - Desktop Only */}
-          <div className="hidden sm:block absolute top-3 left-3 bg-white/95 backdrop-blur px-3 py-2 rounded-lg shadow-md text-xs text-gray-800 font-medium">
-            <strong>Tip:</strong> Zoom with +/- buttons (top right), drag pin to adjust
-          </div>
         </div>
 
-        {/* Address Details - Mobile Optimized with Larger Inputs */}
+        {/* Address Details - Mobile Optimized with Compact Inputs */}
         <div className="p-4 flex-1 overflow-y-auto bg-white">
-          <p className="text-sm text-gray-700 font-semibold mb-4 flex items-center gap-2">
-            <span className="text-2xl">📍</span>
-            <span>Drag the pin to adjust location</span>
-          </p>
-
-          {/* Auto-fetched Address - Read-only, from Google Maps */}
-          <div className="mb-4">
-            <label className="block text-base font-bold text-gray-900 mb-2">
-              Address {isGeocoding && <span className="text-sm text-blue-600 font-normal">(loading...)</span>}
+          {/* Auto-fetched Address - Read-only */}
+          <div className="mb-3">
+            <label className="block text-xs font-bold text-gray-700 mb-1">
+              Address {isGeocoding && <span className="text-blue-600 font-normal">(loading...)</span>}
             </label>
             <textarea
               value={address}
               readOnly
-              className="w-full px-4 py-3 text-base text-gray-900 bg-gray-50 border-2 border-gray-300 rounded-lg resize-none"
-              rows={3}
+              className="w-full px-3 py-2 text-sm text-gray-900 bg-gray-50 border border-gray-300 rounded-lg resize-none focus:ring-1 focus:ring-green-500 focus:border-green-500"
+              rows={2}
               placeholder="Address will appear here..."
             />
           </div>
 
-          {/* Contact Person Details - Required */}
-          <div className="mb-4">
-            <label className="block text-base font-bold text-gray-900 mb-2">
-              Contact Person Name <span className="text-red-600">*</span>
-            </label>
-            <input
-              type="text"
-              value={contactName}
-              onChange={(e) => setContactName(e.target.value)}
-              className="w-full px-4 py-3 text-base text-gray-900 bg-white border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-              placeholder="Enter full name"
-              required
-            />
-          </div>
-
-          <div className="mb-4">
-            <label className="block text-base font-bold text-gray-900 mb-2">
-              Contact Phone Number <span className="text-red-600">*</span>
-            </label>
-            <input
-              type="tel"
-              value={contactNumber}
-              onChange={(e) => setContactNumber(e.target.value)}
-              className="w-full px-4 py-3 text-base text-gray-900 bg-white border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-              placeholder="10-digit mobile number"
-              inputMode="numeric"
-              maxLength={10}
-              required
-            />
-          </div>
-
-          {/* Address Type - Required */}
-          <div className="mb-4">
-            <label className="block text-base font-bold text-gray-900 mb-2">
-              Address Type <span className="text-red-600">*</span>
-            </label>
-            <div className="flex gap-3">
-              {['Home', 'Work', 'Other'].map((type) => (
-                <button
-                  key={type}
-                  type="button"
-                  onClick={() => setAddressType(type)}
-                  className={`flex-1 px-4 py-3 text-base font-bold rounded-lg border-2 transition-all ${
-                    addressType === type
-                      ? 'bg-green-600 text-white border-green-600'
-                      : 'bg-white text-gray-700 border-gray-300 hover:border-green-400'
-                  }`}
-                >
-                  {type === 'Home' && '🏠'} {type === 'Work' && '💼'} {type === 'Other' && '📍'} {type}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Optional Fields - Can be edited if needed */}
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            <div>
-              <label className="block text-base font-bold text-gray-900 mb-2">
-                House/Flat No. <span className="text-gray-600 font-normal">(Optional)</span>
-              </label>
-              <input
-                type="text"
-                value={house}
-                onChange={(e) => setHouse(e.target.value)}
-                className="w-full px-4 py-3 text-base text-gray-900 bg-white border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                placeholder="e.g., 123"
-              />
-            </div>
-            <div>
-              <label className="block text-base font-bold text-gray-900 mb-2">
-                Floor <span className="text-gray-600 font-normal">(Optional)</span>
-              </label>
-              <input
-                type="text"
-                value={floor}
-                onChange={(e) => setFloor(e.target.value)}
-                className="w-full px-4 py-3 text-base text-gray-900 bg-white border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                placeholder="e.g., 2nd"
-              />
-            </div>
-          </div>
-
           {/* Coordinates Display */}
-          <div className="text-sm text-gray-600 bg-gray-100 px-4 py-2.5 rounded-lg font-mono">
+          <div className="text-xs text-gray-500 bg-gray-50 px-3 py-2 rounded-lg font-mono text-center">
             📍 {position.lat.toFixed(6)}, {position.lng.toFixed(6)}
           </div>
         </div>
 
-        {/* Action Buttons - Large Touch Targets for Mobile */}
-        <div className="p-4 border-t flex gap-3 flex-shrink-0 bg-white">
+        {/* Action Buttons - Compact */}
+        <div className="p-3 border-t flex gap-3 flex-shrink-0 bg-white">
           <button
             onClick={onCancel}
-            className="flex-1 px-6 py-4 text-base font-bold border-2 border-gray-400 text-gray-700 rounded-lg hover:bg-gray-50 active:bg-gray-100 transition-colors"
+            className="flex-1 px-4 py-3 text-sm font-bold border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 active:bg-gray-100 transition-colors"
           >
             Cancel
           </button>
           <button
             onClick={handleConfirm}
             disabled={isGeocoding || !address}
-            className="flex-1 px-6 py-4 text-base font-bold bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 active:from-green-800 active:to-green-900 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-all shadow-lg disabled:shadow-none"
+            className="flex-1 px-4 py-3 text-sm font-bold bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg hover:from-green-700 hover:to-green-800 active:from-green-800 active:to-green-900 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 transition-all shadow-md disabled:shadow-none"
           >
-            <Check className="w-6 h-6" />
+            <Check className="w-5 h-5" />
             <span>Confirm</span>
           </button>
         </div>

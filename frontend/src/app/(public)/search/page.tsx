@@ -11,7 +11,7 @@ interface SearchResult {
   name: string;
   description?: string;
   price?: number;
-  veg?: 0 | 1;
+  veg?: number;
   avg_rating?: number;
   image_url?: string;
   store_name?: string;

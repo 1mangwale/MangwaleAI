@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const IMAGE_AI_URL = process.env.IMAGE_AI_INTERNAL_URL || 'http://host.docker.internal:3000';
+const IMAGE_AI_URL = process.env.IMAGE_AI_INTERNAL_URL || 'http://localhost:3000';
 
 export async function POST(request: NextRequest) {
   try {

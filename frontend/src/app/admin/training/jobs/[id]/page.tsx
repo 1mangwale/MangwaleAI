@@ -84,7 +84,7 @@ export default function TrainingJobDetailPage() {
     const loadJob = async () => {
       try {
         setLoading(true);
-        const jobData = await adminBackendClient.getTrainingJob(jobId);
+        const jobData = await adminBackendClient.getTrainingJob(jobId) as any;
         setJob({
           id: jobData.id,
           name: `Training Job ${jobData.id}`,

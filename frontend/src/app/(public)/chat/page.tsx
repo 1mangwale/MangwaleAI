@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
-import { Send, MapPin, ArrowLeft, Map, User, RotateCcw } from 'lucide-react'
+import { useState, useEffect, useRef, useMemo, Suspense } from 'react'
+import { Send, MapPin, ArrowLeft, Map, User, RotateCcw, Menu, X, Plus, MessageSquare, Settings, ChevronDown, LogOut } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import Script from 'next/script'
@@ -12,6 +12,7 @@ import { InlineLogin } from '@/components/chat/InlineLogin'
 import { VoiceInput } from '@/components/chat/VoiceInput'
 import { TTSButton } from '@/components/chat/TTSButton'
 import dynamic from 'next/dynamic'
+import Image from 'next/image'
 import type { ChatMessage } from '@/types/chat'
 import { useAuthStore } from '@/store/authStore'
 
@@ -23,141 +24,110 @@ const LocationPicker = dynamic(
 )
 
 const modules = [
-  { id: 'food', name: 'Food', emoji: '🍔' },
-  { id: 'ecom', name: 'Shopping', emoji: '🛒' },
-  { id: 'rooms', name: 'Hotels', emoji: '🏨' },
-  { id: 'movies', name: 'Movies', emoji: '🎬' },
-  { id: 'services', name: 'Services', emoji: '🔧' },
-  { id: 'parcel', name: 'Parcel', emoji: '📦' },
-  { id: 'ride', name: 'Ride', emoji: '🚗' },
-  { id: 'health', name: 'Health', emoji: '❤️' },
+  { id: 'profile', name: 'Complete Profile & Earn', emoji: '👤' },
+  // { id: 'game', name: 'Play & Earn', emoji: '🎮' },
+  // { id: 'food', name: 'Food', emoji: '🍔' },
+  // { id: 'ecom', name: 'Shopping', emoji: '🛒' },
+  // { id: 'rooms', name: 'Hotels', emoji: '🏨' },
+  // { id: 'movies', name: 'Movies', emoji: '🎬' },
+  // { id: 'services', name: 'Services', emoji: '🔧' },
+  // { id: 'parcel', name: 'Parcel', emoji: '📦' },
+  // { id: 'ride', name: 'Ride', emoji: '🚗' },
+  // { id: 'health', name: 'Health', emoji: '❤️' },
 ]
 
-export default function ChatPage() {
+function ChatContent() {
   const searchParams = useSearchParams()
   const moduleParam = searchParams.get('module')
-  const { isAuthenticated, user, _hasHydrated } = useAuthStore()
-  
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      id: '1',
-      role: 'assistant',
-      content: 'Hi! 👋 Welcome to Mangwale. I\'m here to help you with deliveries, food, shopping, and more. Feel free to ask me anything about Nashik or just chat!\n\nYou can browse without logging in, but you\'ll need to login when placing orders. How can I help you today?',
-      timestamp: 0,
-    }
-  ])
+  const { isAuthenticated, user, token, _hasHydrated } = useAuthStore()
+
+  // State definitions
+  const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState('')
+  const [isConnected, setIsConnected] = useState(false)
   const [isTyping, setIsTyping] = useState(false)
+  const [sessionIdState, setSessionIdState] = useState('')
   const [selectedModule, setSelectedModule] = useState<string | null>(moduleParam)
   const [isGettingLocation, setIsGettingLocation] = useState(false)
   const [showLocationPicker, setShowLocationPicker] = useState(false)
-  const [showLoginModal, setShowLoginModal] = useState(false)
   const [showProfile, setShowProfile] = useState(false)
-  const [userProfile, setUserProfile] = useState<{
-    name?: string
-    phone?: string
-  } | null>(null)
-  
-  // Generate or retrieve persistent session ID from localStorage
-  const [sessionIdState] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem('mangwale-chat-session-id')
-      if (stored) {
-        console.log('🔄 Reusing existing session:', stored)
-        return stored
-      }
-    }
-    const newSessionId = `web-${Date.now()}`
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('mangwale-chat-session-id', newSessionId)
-      console.log('🆕 Created new session:', newSessionId)
-    }
-    return newSessionId
-  })
-  
-  // Always connected with REST API (no WebSocket connection state)
-  const [isConnected, setIsConnected] = useState(true)
-  
+  const [userProfile, setUserProfile] = useState<any>(null)
+  const [showLoginModal, setShowLoginModal] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+
+  const wsClientRef = useRef<any>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const wsClientRef = useRef<ReturnType<typeof getChatWSClient> | null>(null)
+  const inputRef = useRef<HTMLTextAreaElement>(null)
   const profileRef = useRef<HTMLDivElement>(null)
 
-  // Load user profile from localStorage
+  // Logout handler - syncs across all channels
+  const handleLogout = () => {
+    const { clearAuth, user } = useAuthStore.getState()
+    
+    // Sync logout across channels
+    if (user?.phone && wsClientRef.current) {
+      wsClientRef.current.syncAuthLogout(user.phone, sessionIdState)
+    }
+    
+    clearAuth()
+    localStorage.removeItem('mangwale-user-profile')
+    setUserProfile(null)
+    setShowProfile(false)
+    window.location.reload()
+  }
+
+  // Auto-scroll to bottom
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Profile now comes from auth store, no need for separate localStorage
-      // Keeping this for backward compatibility during migration
-      const storedProfile = localStorage.getItem('mangwale-user-profile')
-      if (storedProfile && !user) {
-        try {
-          const profile = JSON.parse(storedProfile)
-          setUserProfile(profile)
-        } catch (e) {
-          console.error('Failed to parse user profile:', e)
-        }
-      } else if (user) {
-        // Sync auth store user to userProfile state
-        setUserProfile({
-          name: user.f_name + (user.l_name ? ` ${user.l_name}` : ''),
-          phone: user.phone,
-        })
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages, isTyping])
+
+  // Initialize session ID and profile
+  useEffect(() => {
+    let sessionId = localStorage.getItem('mangwale-chat-session-id')
+    if (!sessionId) {
+      sessionId = `sess-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
+      localStorage.setItem('mangwale-chat-session-id', sessionId)
+    }
+    setSessionIdState(sessionId)
+    
+    const savedProfile = localStorage.getItem('mangwale-user-profile')
+    if (savedProfile) {
+      try {
+        setUserProfile(JSON.parse(savedProfile))
+      } catch (e) {
+        console.error('Failed to parse user profile', e)
       }
+    }
+
+    // Check if location is already captured
+    // Auto-location prompt disabled to allow for initial small talk
+    // Location will be requested when needed via conversation flow
+  }, [])
+
+  // Sync auth store user to local state
+  useEffect(() => {
+    if (user) {
+      const profile = {
+        name: `${user.f_name} ${user.l_name || ''}`.trim(),
+        phone: user.phone
+      }
+      setUserProfile(profile)
+      localStorage.setItem('mangwale-user-profile', JSON.stringify(profile))
     }
   }, [user])
 
-  // Close profile dropdown when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
-        setShowProfile(false)
+  const authData = useMemo(() => {
+    if (isAuthenticated && user) {
+      return {
+        userId: user.id,
+        phone: user.phone,
+        email: user.email,
+        token: token || undefined,
+        name: `${user.f_name} ${user.l_name || ''}`.trim()
       }
     }
-
-    if (showProfile) {
-      document.addEventListener('mousedown', handleClickOutside)
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-    }
-  }, [showProfile])
-
-  // REMOVE MANDATORY AUTH CHECK - Let users chat first, login when prompted naturally
-  // The LLM can engage users, build rapport, then suggest login for orders/tracking
-  // useEffect(() => {
-  //   if (_hasHydrated && !isAuthenticated) {
-  //     router.push('/login')
-  //   }
-  // }, [_hasHydrated, isAuthenticated, router])
-
-  // AUTO-REQUEST LOCATION after login (delivery app needs current location)
-  // Only run once when user first logs in
-  useEffect(() => {
-    if (typeof window === 'undefined') return; // Skip on server
-    
-    if (isAuthenticated && user && !showLocationPicker && !localStorage.getItem('user-location-captured')) {
-      // Check if we have location in session
-      const hasLocation = localStorage.getItem('mangwale-user-location')
-      if (!hasLocation) {
-        console.log('📍 User authenticated but no location - auto-prompting for location')
-        // Auto-open location picker after 2 seconds (only once)
-        const timer = setTimeout(() => {
-          setShowLocationPicker(true)
-        }, 2000)
-        
-        return () => clearTimeout(timer)
-      }
-    }
-  }, [isAuthenticated, user, showLocationPicker]) // Added showLocationPicker to deps to prevent re-triggers
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }
-
-  useEffect(() => {
-    scrollToBottom()
-  }, [messages])
+    return undefined
+  }, [isAuthenticated, user, token])
 
   // WebSocket connection setup
   useEffect(() => {
@@ -166,11 +136,39 @@ export default function ChatPage() {
     const wsClient = getChatWSClient()
     wsClientRef.current = wsClient
 
+    const getJoinData = () => {
+      const zoneIdStr = localStorage.getItem('mangwale-user-zone-id')
+      const zoneId = zoneIdStr ? parseInt(zoneIdStr) : undefined
+      return authData ? { ...authData, zoneId } : { zoneId }
+    }
+
     wsClient.on({
       onConnect: () => {
         console.log('✅ WebSocket connected')
         setIsConnected(true)
-        wsClient.joinSession(sessionIdState, authData)
+        // Pass authData to joinSession if available, otherwise just session ID
+        wsClient.joinSession(sessionIdState, getJoinData())
+        
+        // Send initial greeting with user context if authenticated
+        // This makes the chatbot aware of the user before they start talking
+        if (authData && authData.name) {
+          console.log(`👤 User identified: ${authData.name}`)
+          // Add a brief delay to allow session to be established
+          setTimeout(() => {
+            wsClient.sendMessage({
+              message: '__init__', // Special message to trigger user-aware greeting
+              sessionId: sessionIdState,
+              platform: 'web',
+              type: 'text',
+              metadata: {
+                isInit: true,
+                userName: authData.name,
+                userId: authData.userId,
+                phone: authData.phone,
+              }
+            })
+          }, 500)
+        }
       },
       onDisconnect: () => {
         console.log('❌ WebSocket disconnected')
@@ -179,14 +177,52 @@ export default function ChatPage() {
       onMessage: (message) => {
         console.log('📥 Received message:', message)
         
-        const { cleanText, buttons: parsedButtons } = parseButtonsFromText(message.text)
+        // DEBUG: Check for cards
+        if (message.cards && message.cards.length > 0) {
+            console.log('🃏 Found cards in message root:', message.cards.length);
+        }
+        if (message.metadata && message.metadata.cards && message.metadata.cards.length > 0) {
+            console.log('🃏 Found cards in metadata:', message.metadata.cards.length);
+        }
+
+        // Check for auth data in metadata (NEW)
+        if (message.metadata && message.metadata.auth_data) {
+           const { token, user } = message.metadata.auth_data;
+           console.log('🔐 Received auth data from chat:', user);
+           
+           // Update auth store
+           const { setAuth } = useAuthStore.getState();
+           
+           // Map backend user profile to frontend user structure
+           const mappedUser = {
+             ...user,
+             f_name: user.firstName,
+             l_name: user.lastName
+           };
+           
+           setAuth(mappedUser, token);
+           
+           // Also update local profile state immediately
+           const profile = {
+             name: `${mappedUser.f_name} ${mappedUser.l_name || ''}`.trim(),
+             phone: mappedUser.phone
+           }
+           setUserProfile(profile)
+           localStorage.setItem('mangwale-user-profile', JSON.stringify(profile))
+        }
+
+        // Handle both content (new) and text (legacy) fields
+        const textContent = message.content || (message as { text?: string }).text || ''
+        const { cleanText, buttons: parsedButtons } = parseButtonsFromText(textContent)
         
         setMessages(prev => [...prev, {
           id: message.id || `bot-${prev.length}-${Date.now()}`,
-          role: message.sender === 'user' ? 'user' : 'assistant',
+          // Handle both role (new) and sender (legacy) fields
+          role: (message.role === 'user' || (message as { sender?: string }).sender === 'user') ? 'user' : 'assistant',
           content: cleanText,
           timestamp: message.timestamp || Date.now(),
-          buttons: parsedButtons.length > 0 ? parsedButtons : undefined,
+          buttons: parsedButtons.length > 0 ? parsedButtons : (message.buttons || undefined),
+          cards: message.cards || (message.metadata && message.metadata.cards) || undefined,
         }])
         setIsTyping(false)
       },
@@ -199,16 +235,94 @@ export default function ChatPage() {
           timestamp: Date.now(),
         }])
       },
+      // Centralized Auth Sync Handlers
+      onAuthSynced: (data) => {
+        console.log('🔐 Auth synced from:', data.platform)
+        const { syncFromRemote } = useAuthStore.getState()
+        syncFromRemote(data)
+        
+        // Update local profile
+        const profile = { name: data.userName, phone: '' }
+        setUserProfile(profile)
+        localStorage.setItem('mangwale-user-profile', JSON.stringify(profile))
+        
+        // Show notification
+        setMessages(prev => [...prev, {
+          id: `auth-sync-${Date.now()}`,
+          role: 'assistant',
+          content: `✅ You're now logged in! (Synced from ${data.platform === 'whatsapp' ? 'WhatsApp' : data.platform})`,
+          timestamp: Date.now(),
+        }])
+      },
+      onAuthLoggedOut: () => {
+        console.log('🚪 Logged out from another channel')
+        const { clearAuth } = useAuthStore.getState()
+        clearAuth('remote')
+        setUserProfile(null)
+        localStorage.removeItem('mangwale-user-profile')
+        
+        // Show notification
+        setMessages(prev => [...prev, {
+          id: `auth-logout-${Date.now()}`,
+          role: 'assistant',
+          content: '👋 You have been logged out from another device.',
+          timestamp: Date.now(),
+        }])
+      },
+      onAuthSuccess: (data) => {
+        console.log('✅ Auth success:', data)
+      },
+      onAuthFailed: (data) => {
+        console.error('❌ Auth failed:', data)
+      },
     })
 
     if (wsClient.isConnected()) {
-      wsClient.joinSession(sessionIdState, authData)
+      console.log('✅ WebSocket already connected')
+      setIsConnected(true)
+      wsClient.joinSession(sessionIdState, getJoinData())
     }
 
     return () => {
       wsClient.leaveSession(sessionIdState)
     }
-  }, [sessionIdState, _hasHydrated])
+  }, [sessionIdState, _hasHydrated, authData])
+
+  // Helper to check if a message is an internal action (should not be displayed)
+  const isInternalAction = (text: string): boolean => {
+    const lowerText = text.toLowerCase().trim()
+    
+    // Exact matches for internal actions
+    const internalActions = [
+      'cancel_resume',
+      'confirm_cancel', 
+      'cancel',
+      'resume',
+      '__init__',
+      'location_shared',
+      'confirm_location',
+      'retry_location',
+      // Button action values (should not be shown to user)
+      'order_food',
+      'send_parcel',
+      'shop_online', 
+      'help_support',
+      'btn_food',
+      'btn_parcel',
+      'btn_shop',
+      'btn_help',
+    ]
+    if (internalActions.includes(lowerText)) return true
+    
+    // Pattern matches for button actions
+    // Actions like "Add Chicken Good Chilli to cart", "select_pizza", etc.
+    if (lowerText.startsWith('add ') && lowerText.includes(' to cart')) return true
+    if (lowerText.startsWith('select_')) return true
+    if (lowerText.startsWith('btn_')) return true
+    if (lowerText.startsWith('action_')) return true
+    
+    return false
+  }
 
   const handleSend = (textInput?: string, buttonAction?: string) => {
     const messageText = textInput || input.trim()
@@ -227,13 +341,15 @@ export default function ChatPage() {
     try {
       console.log('🚀 Sending message via WebSocket:', messageText)
       
-      // Add user message immediately
-      setMessages(prev => [...prev, {
-        id: `msg-${prev.length}-${Date.now()}`,
-        role: 'user',
-        content: messageText,
-        timestamp: Date.now(),
-      }])
+      // Only add user message to UI if it's not an internal action
+      if (!isInternalAction(messageText)) {
+        setMessages(prev => [...prev, {
+          id: `msg-${prev.length}-${Date.now()}`,
+          role: 'user',
+          content: messageText,
+          timestamp: Date.now(),
+        }])
+      }
 
       if (!textInput) setInput('')
       setIsTyping(true)
@@ -262,14 +378,17 @@ export default function ChatPage() {
     void handleSend()
   }
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault()
-      handleSend()
-    }
-  }
-
   const handleModuleSelect = (moduleId: string) => {
+    if (moduleId === 'profile') {
+      if (!isAuthenticated) {
+        setShowLoginModal(true)
+        return
+      }
+      // If authenticated, trigger profile completion flow
+      handleSend('complete my profile')
+      return
+    }
+
     setSelectedModule(moduleId)
     const selectedModuleData = modules.find(m => m.id === moduleId)
     
@@ -284,76 +403,6 @@ export default function ChatPage() {
     ])
   }
 
-  const handleShareLocation = async () => {
-    if (!navigator.geolocation) {
-      setMessages(prev => [...prev, {
-        id: `error-${Date.now()}`,
-        role: 'assistant',
-        content: '❌ Geolocation is not supported by your browser.',
-        timestamp: Date.now(),
-      }])
-      return
-    }
-
-    setIsGettingLocation(true)
-    
-    setMessages(prev => [...prev, {
-      id: `sys-${Date.now()}`,
-      role: 'assistant',
-      content: '📍 Requesting your location... Please allow location access.',
-      timestamp: Date.now(),
-    }])
-
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        const { latitude, longitude } = position.coords
-        
-        // Send location to backend via WebSocket for session tracking
-        if (wsClientRef.current) {
-          wsClientRef.current.updateLocation(sessionIdState, latitude, longitude)
-          
-          // Send as text message for the conversation flow
-          // This will add the message to chat and send to backend
-          const locationText = `📍 My current location is: ${latitude.toFixed(6)}, ${longitude.toFixed(6)}`
-          await handleSend(locationText)
-        }
-        
-        setIsGettingLocation(false)
-      },
-      (error) => {
-        let errorMsg = '❌ Unable to get your location. '
-        
-        switch (error.code) {
-          case error.PERMISSION_DENIED:
-            errorMsg += 'Please enable location permissions in your browser settings.'
-            break
-          case error.POSITION_UNAVAILABLE:
-            errorMsg += 'Location information is unavailable.'
-            break
-          case error.TIMEOUT:
-            errorMsg += 'Location request timed out.'
-            break
-          default:
-            errorMsg += 'An unknown error occurred.'
-        }
-        
-        setMessages(prev => [...prev, {
-          id: `error-${Date.now()}`,
-          role: 'assistant',
-          content: errorMsg,
-          timestamp: Date.now(),
-        }])
-        
-        setIsGettingLocation(false)
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 10000,
-        maximumAge: 0
-      }
-    )
-  }
-
   const handleLocationConfirm = async (location: {
     lat: number
     lng: number
@@ -361,51 +410,65 @@ export default function ChatPage() {
     road?: string
     house?: string
     floor?: string
-    contact_person_name: string
-    contact_person_number: string
-    address_type: string
+    contact_person_name?: string
+    contact_person_number?: string
+    address_type?: string
+    zoneId?: number
   }) => {
     setShowLocationPicker(false)
     
-    // Update user profile in auth store and localStorage
-    const profile = {
-      name: location.contact_person_name,
-      phone: location.contact_person_number
+    // Only update profile if contact info is provided (legacy support)
+    if (location.contact_person_name && location.contact_person_number) {
+      const profile = {
+        name: location.contact_person_name,
+        phone: location.contact_person_number
+      }
+      
+      // Update auth store if user is authenticated
+      if (user) {
+        const { updateUser } = useAuthStore.getState()
+        updateUser({
+          f_name: location.contact_person_name.split(' ')[0],
+          l_name: location.contact_person_name.split(' ').slice(1).join(' ') || undefined,
+          phone: location.contact_person_number,
+        })
+      }
+      
+      // Also save to localStorage for backward compatibility
+      localStorage.setItem('mangwale-user-profile', JSON.stringify(profile))
+      setUserProfile(profile)
     }
-    
-    // Update auth store if user is authenticated
-    if (user) {
-      const { updateUser } = useAuthStore.getState()
-      updateUser({
-        f_name: location.contact_person_name.split(' ')[0],
-        l_name: location.contact_person_name.split(' ').slice(1).join(' ') || undefined,
-        phone: location.contact_person_number,
-      })
-    }
-    
-    // Also save to localStorage for backward compatibility
-    localStorage.setItem('mangwale-user-profile', JSON.stringify(profile))
-    setUserProfile(profile)
     
     // Save location data for delivery app
     const locationData = {
       lat: location.lat,
       lng: location.lng,
       address: location.address,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      zoneId: location.zoneId
     }
     localStorage.setItem('mangwale-user-location', JSON.stringify(locationData))
     localStorage.setItem('user-location-captured', 'true')
+
+    // Save zone ID separately for API interceptor access
+    if (location.zoneId) {
+      localStorage.setItem('mangwale-user-zone-id', location.zoneId.toString())
+    }
     
     // Send location to backend via WebSocket
     if (wsClientRef.current) {
-      wsClientRef.current.updateLocation(sessionIdState, location.lat, location.lng)
+      wsClientRef.current.updateLocation(sessionIdState, location.lat, location.lng, location.zoneId)
     }
     
     // Format the complete address message for display
-    let fullAddress = `${location.address}\n`
-    fullAddress += `Contact: ${location.contact_person_name} (${location.contact_person_number})\n`
-    fullAddress += `Type: ${location.address_type}`
+    let fullAddress = `${location.address}`
+    
+    if (location.contact_person_name) {
+      fullAddress += `\nContact: ${location.contact_person_name} (${location.contact_person_number})`
+    }
+    if (location.address_type) {
+      fullAddress += `\nType: ${location.address_type}`
+    }
     
     if (location.house) {
       fullAddress += `\nHouse/Flat: ${location.house}`
@@ -424,320 +487,426 @@ export default function ChatPage() {
     await handleSend(displayMessage)
   }
 
-  const currentModule = selectedModule ? modules.find(m => m.id === selectedModule) : null
-
   return (
     <>
-      {/* Load Google Maps Script */}
       <Script
         src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ''}&libraries=places`}
         strategy="lazyOnload"
         onLoad={() => console.log('✅ Google Maps API loaded')}
       />
 
-      <div className="flex flex-col h-screen bg-[#fffff6] overflow-hidden">
-      {/* Header - Mobile Responsive with Profile */}
-      <div className="bg-gradient-to-r from-[#059211] to-[#047a0e] text-white px-3 sm:px-4 py-3 sm:py-4 shadow-lg">
-        <div className="container mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
-            <Link href="/" className="hover:bg-white/10 p-1.5 sm:p-2 rounded-lg transition-colors flex-shrink-0">
-              <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
-            </Link>
-            <h1 className="text-base sm:text-xl font-bold truncate">
-              {currentModule 
-                ? `${currentModule.emoji} ${currentModule.name}`
-                : '💬 Mangwale AI'
+      <div className="flex h-screen bg-white text-gray-900 overflow-hidden font-sans">
+        {/* Sidebar - Desktop */}
+        <div className="hidden md:flex flex-col w-[260px] bg-gray-900 text-gray-100 p-3 transition-all">
+          <button 
+            onClick={() => {
+              if (confirm('Start new chat?')) {
+                window.location.reload()
               }
-            </h1>
-          </div>
-          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-            {/* Connection Status */}
-            <div className="flex items-center gap-1.5">
-              <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-300 animate-pulse' : 'bg-red-400'}`} />
-              <span className="text-xs sm:text-sm font-medium hidden sm:inline">{isConnected ? 'Connected' : 'Disconnected'}</span>
-              <span className="text-xs font-medium sm:hidden">{isConnected ? '●' : '○'}</span>
-            </div>
+            }}
+            className="flex items-center gap-3 px-3 py-3 rounded-md border border-gray-700 hover:bg-gray-800 transition-colors mb-4 text-sm text-left"
+          >
+            <Plus className="w-4 h-4" />
+            <span>New chat</span>
+          </button>
 
-            {/* Clear/Reset Chat Button */}
-            <button
-              onClick={() => {
-                if (confirm('Clear chat and start over?')) {
-                  localStorage.removeItem('mangwale-chat-session-id')
+          <div className="flex-1 overflow-y-auto">
+            <div className="text-xs font-medium text-gray-500 mb-2 px-3">Today</div>
+            <button className="flex items-center gap-3 px-3 py-3 rounded-md hover:bg-gray-800 transition-colors w-full text-left text-sm truncate">
+              <MessageSquare className="w-4 h-4 flex-shrink-0" />
+              <span className="truncate">New Conversation</span>
+            </button>
+          </div>
+
+          <div className="border-t border-gray-700 pt-3 mt-2 relative">
+             {showProfile && (
+               <div className="absolute bottom-full left-0 w-full mb-2 bg-gray-800 rounded-md shadow-lg overflow-hidden border border-gray-700 z-50">
+                 <div className="p-3 border-b border-gray-700">
+                   <div className="text-xs text-gray-400">Wallet Balance</div>
+                   <div className="text-lg font-bold text-green-400">₹0.00</div>
+                 </div>
+                 <Link href="/orders" className="flex items-center gap-3 px-3 py-3 hover:bg-gray-700 transition-colors text-sm">
+                   <RotateCcw className="w-4 h-4" />
+                   <span>Order History</span>
+                 </Link>
+                 <button 
+                   onClick={handleLogout}
+                   className="flex items-center gap-3 px-3 py-3 hover:bg-gray-700 transition-colors text-sm w-full text-left text-red-400"
+                 >
+                   <LogOut className="w-4 h-4" />
+                   <span>Log out</span>
+                 </button>
+               </div>
+             )}
+             {userProfile ? (
+                <div className="flex items-center gap-3 px-3 py-3 rounded-md hover:bg-gray-800 cursor-pointer" onClick={() => setShowProfile(!showProfile)}>
+                  <div className="w-8 h-8 bg-green-600 rounded-sm flex items-center justify-center text-white font-bold">
+                    {userProfile.name ? userProfile.name[0].toUpperCase() : 'U'}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-medium truncate">{userProfile.name || 'User'}</div>
+                  </div>
+                </div>
+             ) : (
+                <button onClick={() => setShowLoginModal(true)} className="flex items-center gap-3 px-3 py-3 rounded-md hover:bg-gray-800 w-full text-left text-sm">
+                  <User className="w-4 h-4" />
+                  <span>Log in</span>
+                </button>
+             )}
+          </div>
+        </div>
+
+        {/* Mobile Sidebar Overlay */}
+        {isSidebarOpen && (
+          <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={() => setIsSidebarOpen(false)} />
+        )}
+        
+        {/* Mobile Sidebar */}
+        <div className={`fixed inset-y-0 left-0 w-[260px] bg-gray-900 text-gray-100 p-3 z-50 transform transition-transform duration-300 md:hidden ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+           <button onClick={() => setIsSidebarOpen(false)} className="absolute top-3 right-3 p-2 text-gray-400 hover:text-white">
+             <X className="w-6 h-6" />
+           </button>
+           
+           <button 
+            onClick={() => {
+              if (confirm('Start new chat?')) {
+                window.location.reload()
+              }
+            }}
+            className="flex items-center gap-3 px-3 py-3 rounded-md border border-gray-700 hover:bg-gray-800 transition-colors mb-4 text-sm text-left mt-8"
+          >
+            <Plus className="w-4 h-4" />
+            <span>New chat</span>
+          </button>
+
+          <div className="flex-1 overflow-y-auto">
+            <div className="text-xs font-medium text-gray-500 mb-2 px-3">Today</div>
+            <button className="flex items-center gap-3 px-3 py-3 rounded-md hover:bg-gray-800 transition-colors w-full text-left text-sm truncate">
+              <MessageSquare className="w-4 h-4 flex-shrink-0" />
+              <span className="truncate">New Conversation</span>
+            </button>
+          </div>
+
+          <div className="border-t border-gray-700 pt-3 mt-2 relative">
+             {showProfile && (
+               <div className="absolute bottom-full left-0 w-full mb-2 bg-gray-800 rounded-md shadow-lg overflow-hidden border border-gray-700 z-50">
+                 <div className="p-3 border-b border-gray-700">
+                   <div className="text-xs text-gray-400">Wallet Balance</div>
+                   <div className="text-lg font-bold text-green-400">₹0.00</div>
+                 </div>
+                 <Link href="/orders" className="flex items-center gap-3 px-3 py-3 hover:bg-gray-700 transition-colors text-sm">
+                   <RotateCcw className="w-4 h-4" />
+                   <span>Order History</span>
+                 </Link>
+                 <button 
+                   onClick={handleLogout}
+                   className="flex items-center gap-3 px-3 py-3 hover:bg-gray-700 transition-colors text-sm w-full text-left text-red-400"
+                 >
+                   <LogOut className="w-4 h-4" />
+                   <span>Log out</span>
+                 </button>
+               </div>
+             )}
+             {userProfile ? (
+                <div className="flex items-center gap-3 px-3 py-3 rounded-md hover:bg-gray-800 cursor-pointer" onClick={() => setShowProfile(!showProfile)}>
+                  <div className="w-8 h-8 bg-green-600 rounded-sm flex items-center justify-center text-white font-bold">
+                    {userProfile.name ? userProfile.name[0].toUpperCase() : 'U'}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="text-sm font-medium truncate">{userProfile.name || 'User'}</div>
+                  </div>
+                </div>
+             ) : (
+                <button onClick={() => setShowLoginModal(true)} className="flex items-center gap-3 px-3 py-3 rounded-md hover:bg-gray-800 w-full text-left text-sm">
+                  <User className="w-4 h-4" />
+                  <span>Log in</span>
+                </button>
+             )}
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col h-full relative">
+          {/* Mobile Header */}
+          <div className="md:hidden flex items-center justify-between p-3 border-b border-gray-200 bg-white">
+            <button onClick={() => setIsSidebarOpen(true)} className="p-2 -ml-2 text-gray-600">
+              <Menu className="w-6 h-6" />
+            </button>
+            <div className="font-semibold text-gray-700">Mangwale AI</div>
+            <button onClick={() => {
+                if (confirm('Start new chat?')) {
                   window.location.reload()
                 }
-              }}
-              className="hover:bg-white/10 p-1.5 sm:p-2 rounded-full transition-colors flex-shrink-0"
-              title="Clear chat and start over"
-            >
-              <RotateCcw className="w-4 h-4 sm:w-5 sm:h-5" />
+            }} className="p-2 -mr-2 text-gray-600">
+              <Plus className="w-6 h-6" />
             </button>
-            
-            {/* User Profile Button */}
-            <div ref={profileRef} className="relative">
-              <button
-                onClick={() => setShowProfile(!showProfile)}
-                className="hover:bg-white/10 p-1.5 sm:p-2 rounded-full transition-colors flex-shrink-0"
-                title="Your Profile"
-              >
-                {userProfile ? (
-                  <div className="w-7 h-7 sm:w-8 sm:h-8 bg-white text-green-600 rounded-full flex items-center justify-center font-bold text-sm">
-                    {userProfile.name ? userProfile.name[0].toUpperCase() : userProfile.phone ? userProfile.phone[0] : 'U'}
+          </div>
+
+          {/* Desktop Model Selector (Header) */}
+          <div className="hidden md:flex items-center justify-between px-4 py-2 bg-white border-b border-gray-100">
+             <div className="flex items-center gap-2 text-gray-700 font-medium cursor-pointer hover:bg-gray-100 px-3 py-2 rounded-lg transition-colors">
+                <span>Mangwale AI 3.5</span>
+                <ChevronDown className="w-4 h-4 text-gray-400" />
+             </div>
+             <div className="flex items-center gap-2">
+                <div className={`w-2 h-2 rounded-full ${isConnected ? 'bg-green-500' : 'bg-red-500'}`} />
+             </div>
+          </div>
+
+          {/* Chat Area */}
+          <div className="flex-1 overflow-y-auto scroll-smooth">
+            <div className="max-w-3xl mx-auto px-4 py-8">
+              {messages.length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-[60vh] text-center">
+                  <div className="w-24 h-24 bg-white rounded-full shadow-sm flex items-center justify-center mb-6 border border-gray-200 overflow-hidden relative">
+                    <Image 
+                      src="/bot-avatar.png" 
+                      alt="Mangwale AI" 
+                      fill
+                      className="object-cover"
+                      onError={(e) => {
+                        // Fallback to emoji if image fails
+                        e.currentTarget.style.display = 'none'
+                        e.currentTarget.parentElement!.innerHTML = '<span class="text-4xl">🤖</span>'
+                      }}
+                    />
                   </div>
-                ) : (
-                  <User className="w-5 h-5 sm:w-6 sm:h-6" />
-                )}
-              </button>
-              
-              {/* Profile Dropdown */}
-              {showProfile && (
-                <div className="absolute right-0 top-12 bg-white text-gray-900 rounded-lg shadow-2xl z-50 w-64 border-2 border-gray-200 overflow-hidden">
-                  {userProfile ? (
-                    <>
-                      <div className="bg-gradient-to-br from-green-50 to-green-100 px-4 py-4 border-b-2 border-green-200">
-                        <div className="flex items-center gap-3">
-                          <div className="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-xl">
-                            {userProfile.name ? userProfile.name[0].toUpperCase() : userProfile.phone ? userProfile.phone[0] : 'U'}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            {userProfile.name && (
-                              <h3 className="font-bold text-base text-gray-900 truncate">{userProfile.name}</h3>
-                            )}
-                            {userProfile.phone && (
-                              <p className="text-sm text-gray-600">{userProfile.phone}</p>
+                  <h2 className="text-2xl font-semibold text-gray-800 mb-2">How can I help you today?</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-8 w-full max-w-2xl">
+                    {modules.map(mod => (
+                      <button 
+                        key={mod.id}
+                        onClick={() => handleModuleSelect(mod.id)}
+                        className="p-4 border border-gray-200 rounded-xl hover:bg-gray-50 text-left transition-colors"
+                      >
+                        <div className="font-medium text-gray-800 mb-1">{mod.emoji} {mod.name}</div>
+                        <div className="text-sm text-gray-500">Explore {mod.name.toLowerCase()} options</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="flex flex-col gap-6">
+                  {messages
+                    .filter((message) => {
+                      // Hide internal/system messages from display
+                      const content = message.content.toLowerCase().trim()
+                      
+                      // Internal action values (sent by button clicks or system)
+                      const internalActions = [
+                        'cancel_resume', 'yes_resume', 'confirm_cancel', 
+                        'cancel', 'resume', '__init__', 'location_shared',
+                        'confirm_location', 'retry_location', 'yes, resume',
+                        'no, thanks', 'no thanks', 'confirm', 'retry',
+                        // Button action values
+                        'order_food', 'send_parcel', 'shop_online', 'help_support',
+                        'btn_food', 'btn_parcel', 'btn_shop', 'btn_help',
+                        'order food', 'send parcel', 'shop online', 'help & support',
+                      ]
+                      if (internalActions.includes(content)) return false
+                      
+                      // Pattern matches for cart actions
+                      if (content.startsWith('add ') && content.includes(' to cart')) return false
+                      if (content.startsWith('select_') || content.startsWith('btn_') || content.startsWith('action_')) return false
+                      
+                      // Hide location shared messages (shown as map confirmation instead)
+                      if (content.includes('📍 location shared') || content.includes('location shared:')) return false
+                      
+                      // Hide internal commands (like __init__, __LOCATION__)
+                      if (content.startsWith('__') && content.endsWith('__')) return false
+                      
+                      // Hide coordinates-only messages
+                      if (/^-?\d+\.\d+,\s*-?\d+\.\d+$/.test(content)) return false
+                      
+                      // Hide single digit/number responses (selecting from numbered list)
+                      if (message.role === 'user' && /^\d{1,2}$/.test(content)) return false
+                      
+                      return true
+                    })
+                    .map((message) => (
+                    <div key={message.id} className="group w-full text-gray-800 border-b border-black/5 dark:border-white/5 pb-6 last:border-0">
+                      <div className="flex gap-4 md:gap-6 m-auto">
+                        <div className="flex-shrink-0 flex flex-col relative items-end">
+                          <div className={`w-8 h-8 rounded-sm flex items-center justify-center overflow-hidden relative ${
+                            message.role === 'user' ? 'bg-gray-500' : 'bg-white border border-gray-200'
+                          }`}>
+                            {message.role === 'user' ? (
+                              <User className="w-5 h-5 text-white" />
+                            ) : (
+                              <Image 
+                                src="/bot-avatar.png" 
+                                alt="AI" 
+                                fill
+                                className="object-cover"
+                                onError={(e) => {
+                                  e.currentTarget.style.display = 'none'
+                                  e.currentTarget.parentElement!.innerHTML = '<span class="text-xl">🤖</span>'
+                                }}
+                              />
                             )}
                           </div>
                         </div>
+                        <div className="relative flex-1 overflow-hidden">
+                          <div className="prose prose-slate max-w-none leading-7">
+                            {message.content}
+                          </div>
+                          
+                          {/* TTS Button */}
+                          {message.role === 'assistant' && message.content && (
+                            <div className="mt-2">
+                                <TTSButton text={message.content} language="hi-IN" />
+                            </div>
+                          )}
+
+                          {/* Buttons */}
+                          {message.role === 'assistant' && message.buttons && (
+                            <div className="flex flex-wrap gap-2 mt-3">
+                              {message.buttons.map((button) => (
+                                <button
+                                  key={button.id}
+                                  onClick={() => {
+                                    if (button.value === '__LOGIN__' || button.value === '__AUTHENTICATE__') {
+                                      setShowLoginModal(true)
+                                    } else if (button.value === '__LOCATION__' || button.value === '__REQUEST_LOCATION__') {
+                                      setShowLocationPicker(true)
+                                    } else {
+                                      handleSend(button.value, button.id || button.value)
+                                    }
+                                  }}
+                                  className="px-4 py-2 bg-white border border-gray-200 hover:border-green-500 hover:text-green-600 hover:bg-green-50 rounded-full text-sm font-medium transition-all shadow-sm"
+                                >
+                                  {button.label}
+                                </button>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* Cards */}
+                          {message.role === 'assistant' && message.cards && (
+                            <div className="flex flex-col gap-4 mt-4">
+                              {message.cards.map((card) => (
+                                <ProductCard
+                                  key={card.id}
+                                  card={card}
+                                  onAction={(value) => handleSend(value)}
+                                />
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </div>
-                      <div className="px-4 py-3">
-                        <button
-                          onClick={() => {
-                            // Clear ALL auth data
-                            useAuthStore.getState().clearAuth()
-                            localStorage.removeItem('mangwale-user-profile')
-                            localStorage.removeItem('mangwale-chat-session-id')
-                            localStorage.removeItem('mangwale-user-location')
-                            localStorage.removeItem('user-location-captured')
-                            setUserProfile(null)
-                            setShowProfile(false)
-                            // Disconnect WebSocket before reload
-                            wsClientRef.current?.disconnect()
-                            window.location.reload()
-                          }}
-                          className="w-full px-4 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 rounded-lg transition-colors"
-                        >
-                          Sign Out
-                        </button>
-                      </div>
-                    </>
-                  ) : (
-                    <div className="px-4 py-4 text-center text-gray-600">
-                      <User className="w-12 h-12 mx-auto mb-2 text-gray-400" />
-                      <p className="text-sm">No profile information</p>
-                      <p className="text-xs text-gray-500 mt-1">Continue chatting to save your profile</p>
+                    </div>
+                  ))}
+                  {isTyping && (
+                    <div className="flex gap-4 md:gap-6 m-auto">
+                        <div className="w-8 h-8 bg-white border border-gray-200 rounded-sm flex items-center justify-center overflow-hidden relative">
+                            <Image 
+                              src="/bot-avatar.png" 
+                              alt="AI" 
+                              fill
+                              className="object-cover"
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none'
+                                e.currentTarget.parentElement!.innerHTML = '<span class="text-xl">🤖</span>'
+                              }}
+                            />
+                        </div>
+                        <div className="flex items-center gap-1">
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" />
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-75" />
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150" />
+                        </div>
                     </div>
                   )}
+                  <div ref={messagesEndRef} className="h-12" />
                 </div>
               )}
             </div>
           </div>
-        </div>
-      </div>
 
-      {/* Module Selection - Mobile Responsive */}
-      {!selectedModule && (
-        <div className="bg-white border-b border-gray-200 px-3 sm:px-4 py-3 sm:py-4 shadow-sm">
-          <div className="container mx-auto">
-            <p className="text-xs sm:text-sm text-gray-900 font-bold mb-2 sm:mb-3">Choose a service:</p>
-            <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-2 scrollbar-hide">
-              {modules.map((mod) => (
-                <button
-                  key={mod.id}
-                  onClick={() => handleModuleSelect(mod.id)}
-                  className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2 sm:py-3 bg-gradient-to-br from-gray-50 to-gray-100 hover:from-[#059211] hover:to-[#047a0e] hover:text-white border-2 border-gray-200 hover:border-[#059211] rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 whitespace-nowrap shadow-sm hover:shadow-md transform hover:scale-105 active:scale-95"
-                >
-                  <span className="text-base sm:text-xl">{mod.emoji}</span>
-                  <span>{mod.name}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
+          {/* Input Area */}
+          <div className="w-full border-t md:border-t-0 bg-white md:bg-transparent pt-2">
+            <div className="max-w-3xl mx-auto px-4 pb-4 md:pb-6">
+               <div className="relative flex items-end gap-2 bg-white border border-gray-300 shadow-sm rounded-xl p-3 focus-within:border-green-500 focus-within:ring-1 focus-within:ring-green-500 transition-all">
+                  <button 
+                    onClick={() => setShowLocationPicker(true)}
+                    className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                    title="Share Location"
+                  >
+                    <MapPin className="w-5 h-5" />
+                  </button>
+                  
+                  <textarea
+                    ref={inputRef}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter' && !e.shiftKey) {
+                            e.preventDefault()
+                            handleSend()
+                        }
+                    }}
+                    placeholder="Message Mangwale AI..."
+                    className="flex-1 max-h-[200px] min-h-[24px] bg-transparent border-0 focus:ring-0 p-0 resize-none py-2 text-base"
+                    rows={1}
+                    style={{ height: 'auto', minHeight: '24px' }}
+                  />
 
-      {/* Messages Area - Mobile Responsive */}
-      <div className="flex-1 overflow-y-auto px-2 sm:px-4 py-3 sm:py-6">
-        <div className="container mx-auto max-w-3xl">
-          {messages.map((message) => (
-            <div
-              key={message.id}
-              className={`flex mb-3 sm:mb-4 ${
-                message.role === 'user' ? 'justify-end' : 'justify-start'
-              }`}
-            >
-              <div className={`max-w-[85%] sm:max-w-[80%] ${message.role === 'user' ? 'flex justify-end' : ''}`}>
-                <div
-                  className={`rounded-2xl px-3 sm:px-5 py-2 sm:py-3 ${
-                    message.role === 'user'
-                      ? 'bg-gradient-to-r from-[#059211] to-[#047a0e] text-white rounded-br-sm shadow-lg'
-                      : 'bg-gradient-to-br from-white to-gray-50 text-gray-900 rounded-bl-sm shadow-md border border-gray-200'
-                  }`}
-                >
-                  <div className="flex items-start gap-2">
-                    <p className="text-sm sm:text-base leading-relaxed whitespace-pre-wrap break-words flex-1 text-gray-900 font-medium">{message.content}</p>
-                    {/* Add TTS button for bot messages */}
-                    {message.role === 'assistant' && message.content && (
-                      <TTSButton 
-                        text={message.content}
-                        language="hi-IN"
-                        className="mt-1 flex-shrink-0"
-                      />
-                    )}
-                  </div>
-                  {message.timestamp > 0 && (
-                    <p className={`text-xs mt-1 sm:mt-1.5 ${
-                      message.role === 'user' ? 'text-green-100' : 'text-gray-400'
-                    }`}>
-                      {new Date(message.timestamp).toLocaleTimeString([], { 
-                        hour: '2-digit', 
-                        minute: '2-digit' 
-                      })}
-                    </p>
-                  )}
-                </div>
-
-                {/* Render buttons for AI messages - Mobile Responsive */}
-                {message.role === 'assistant' && message.buttons && message.buttons.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2 sm:mt-3">
-                    {message.buttons.map((button) => (
-                      <button
-                        key={button.id}
-                        onClick={() => {
-                          // Special button: trigger login modal
-                          if (button.value === '__LOGIN__' || button.value === '__AUTHENTICATE__') {
-                            setShowLoginModal(true)
-                          } else {
-                            // Send with button action ID for better backend handling
-                            const action = button.id || button.value
-                            handleSend(button.value, action)
-                          }
+                  <div className="flex items-center gap-1">
+                    <VoiceInput 
+                        onTranscription={(text) => {
+                        setInput(text)
+                        setTimeout(() => handleSend(text), 100)
                         }}
-                        className="px-3 sm:px-5 py-1.5 sm:py-2.5 bg-gradient-to-r from-green-50 to-emerald-50 hover:from-[#059211] hover:to-[#047a0e] border-2 border-[#059211] text-[#059211] hover:text-white rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105 active:scale-95"
-                      >
-                        {button.label}
-                      </button>
-                    ))}
+                        language="hi-IN"
+                        className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+                    />
+                    <button
+                        onClick={handleSendClick}
+                        disabled={!input.trim() || isTyping}
+                        className={`p-2 rounded-lg transition-colors ${
+                            input.trim() && !isTyping 
+                            ? 'bg-green-500 text-white hover:bg-green-600' 
+                            : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                        }`}
+                    >
+                        <Send className="w-4 h-4" />
+                    </button>
                   </div>
-                )}
-
-                {/* Render product/restaurant cards for AI messages */}
-                {message.role === 'assistant' && message.cards && message.cards.length > 0 && (
-                  <div className="flex flex-col gap-3 mt-3">
-                    {message.cards.map((card) => (
-                      <ProductCard
-                        key={card.id}
-                        card={card}
-                        onAction={(value) => handleSend(value)}
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
+               </div>
+               <div className="text-center mt-2 text-xs text-gray-400">
+                  Mangwale AI can make mistakes. Consider checking important information.
+               </div>
             </div>
-          ))}
-
-          {isTyping && (
-            <div className="flex justify-start mb-4">
-              <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl px-5 py-4 shadow-lg border border-gray-200">
-                <div className="flex gap-1.5">
-                  <div className="w-2.5 h-2.5 bg-[#059211] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                  <div className="w-2.5 h-2.5 bg-[#059211] rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                  <div className="w-2.5 h-2.5 bg-[#059211] rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-                </div>
-              </div>
-            </div>
-          )}
-
-          <div ref={messagesEndRef} />
-        </div>
-      </div>
-
-      {/* Input Area - Mobile Responsive */}
-      <div className="bg-white border-t-2 border-gray-200 px-2 sm:px-4 py-2 sm:py-4 shadow-lg safe-area-bottom">
-        <div className="container mx-auto max-w-3xl">
-          <div className="flex items-end gap-1.5 sm:gap-3">
-            {/* Quick Location Button */}
-            <button 
-              onClick={handleShareLocation}
-              disabled={isGettingLocation}
-              className="p-2 sm:p-3 bg-gray-100 text-gray-600 hover:bg-[#059211] hover:text-white rounded-full transition-all duration-200 shadow-md disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
-              title="Share my current location"
-            >
-              <MapPin className={`w-4 h-4 sm:w-5 sm:h-5 ${isGettingLocation ? 'animate-pulse' : ''}`} />
-            </button>
-            
-            {/* Map Picker Button */}
-            <button 
-              onClick={() => setShowLocationPicker(true)}
-              className="p-2 sm:p-3 bg-gray-100 text-gray-600 hover:bg-[#059211] hover:text-white rounded-full transition-all duration-200 shadow-md flex-shrink-0"
-              title="Choose location on map"
-            >
-              <Map className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
-            
-            {/* Input Field */}
-            <div className="flex-1 bg-gray-100 rounded-3xl px-3 sm:px-5 py-2 sm:py-3 flex items-center gap-2 sm:gap-3 shadow-inner border border-gray-200">
-              <input
-                ref={inputRef}
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Ask me anything..."
-                className="flex-1 bg-transparent outline-none text-gray-900 placeholder-gray-500 text-sm sm:text-base font-medium"
-              />
-              <VoiceInput 
-                onTranscription={(text) => {
-                  setInput(text)
-                  // Auto-send the transcribed text
-                  setTimeout(() => handleSend(text), 100)
-                }}
-                language="hi-IN"
-                className="text-gray-500 hover:text-[#059211] transition-colors flex-shrink-0"
-              />
-            </div>
-
-            {/* Send Button */}
-            <button
-              onClick={handleSendClick}
-              disabled={!input.trim() || isTyping}
-              className="p-3 sm:p-4 bg-gradient-to-r from-[#059211] to-[#047a0e] text-white rounded-full hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg transform hover:scale-110 active:scale-95 flex-shrink-0"
-            >
-              <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-            </button>
           </div>
         </div>
+
+        {/* Modals */}
+        {showLocationPicker && (
+            <LocationPicker
+            onLocationConfirm={handleLocationConfirm}
+            onCancel={() => setShowLocationPicker(false)}
+            />
+        )}
+
+        {showLoginModal && (
+            <InlineLogin
+            onClose={() => setShowLoginModal(false)}
+            onSuccess={() => {
+                setShowLoginModal(false)
+                setTimeout(() => setShowLocationPicker(true), 1000)
+            }}
+            />
+        )}
       </div>
-
-      {/* Location Picker Modal */}
-      {showLocationPicker && (
-        <LocationPicker
-          onLocationConfirm={handleLocationConfirm}
-          onCancel={() => setShowLocationPicker(false)}
-        />
-      )}
-
-      {/* Inline Login Modal - Appears when user needs to authenticate */}
-      {showLoginModal && (
-        <InlineLogin
-          onClose={() => setShowLoginModal(false)}
-          onSuccess={() => {
-            setShowLoginModal(false)
-            // Optionally prompt for location after login
-            setTimeout(() => setShowLocationPicker(true), 1000)
-          }}
-        />
-      )}
-    </div>
     </>
+  )
+}
+
+export default function ChatPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center h-screen bg-[#fffff6]">Loading chat...</div>}>
+      <ChatContent />
+    </Suspense>
   )
 }

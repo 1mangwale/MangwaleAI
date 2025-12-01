@@ -1,9 +1,9 @@
 'use client';
 
-import { Handle, Position, NodeProps } from '@xyflow/react';
+import { Handle, Position, NodeProps, Node } from '@xyflow/react';
 import { MessageSquare } from 'lucide-react';
 
-export interface LLMNodeData {
+export interface LLMNodeData extends Record<string, unknown> {
   label?: string;
   modelId?: string;
   maxTokens?: number;
@@ -11,7 +11,9 @@ export interface LLMNodeData {
   systemPrompt?: string;
 }
 
-export function LLMNode({ data, selected }: NodeProps<LLMNodeData>) {
+type LLMNodeType = Node<LLMNodeData>;
+
+export function LLMNode({ data, selected }: NodeProps<LLMNodeType>) {
   return (
     <div className={`bg-white border-2 rounded-lg p-4 min-w-[200px] shadow-md transition-all ${
       selected ? 'border-blue-500 shadow-lg' : 'border-blue-300'

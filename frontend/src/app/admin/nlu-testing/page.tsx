@@ -36,10 +36,18 @@ export default function NLUTestingPage() {
     try {
       const response = await adminBackendClient.classifyIntent(text);
       
+      const entitiesArray = response.entities 
+        ? Object.entries(response.entities).map(([key, value]) => ({
+            type: key,
+            value: String(value),
+            confidence: 1.0
+          }))
+        : [];
+
       const classificationResult: ClassificationResult = {
         intent: response.intent,
         confidence: response.confidence,
-        entities: response.entities,
+        entities: entitiesArray,
         metadata: {
           model: 'nlu_v1',
           processingTime: 45

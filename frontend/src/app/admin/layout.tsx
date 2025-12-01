@@ -16,6 +16,7 @@ import {
   LogOut,
   Eye,
   Gamepad2,
+  Sparkles,
 } from 'lucide-react';
 import { Breadcrumbs } from '@/components/shared/Breadcrumbs';
 import { ErrorBoundary } from '@/components/shared/ErrorBoundary';
@@ -27,6 +28,11 @@ const navigation = [
     icon: LayoutDashboard,
   },
   {
+    name: 'AI Hub',
+    href: '/admin/ai-hub',
+    icon: Sparkles,
+  },
+  {
     name: 'Vision & Safety',
     icon: Eye,
     children: [
@@ -35,6 +41,11 @@ const navigation = [
       { name: 'Employee Management', href: '/admin/vision/employees' },
       { name: 'Live Monitoring', href: '/admin/vision/monitoring' },
       { name: 'Analytics', href: '/admin/vision/analytics' },
+      { name: 'Menu OCR', href: '/admin/vision/menu-ocr' },
+      { name: 'Camera Management', href: '/admin/vision/cameras' },
+      { name: 'Camera Enrollment', href: '/admin/vision/camera-enrollment' },
+      { name: 'Object Counting', href: '/admin/vision/counting' },
+      { name: 'Zone Configuration', href: '/admin/vision/zones' },
     ],
   },
   {
@@ -42,14 +53,19 @@ const navigation = [
     icon: Brain,
     children: [
       { name: 'Models Registry', href: '/admin/models' },
+      { name: 'Agent Settings', href: '/admin/agent-settings' },
+      { name: 'Voice AI (ASR/TTS)', href: '/admin/voice' },
+      { name: 'Docker Management', href: '/admin/docker' },
+      { name: 'vLLM Settings', href: '/admin/vllm-settings' },
       { name: 'LLM Failover', href: '/admin/llm-failover' },
       { name: 'LLM Chat', href: '/admin/llm-chat' },
       { name: 'LLM Models', href: '/admin/llm-models' },
       { name: 'LLM Providers', href: '/admin/llm-providers' },
       { name: 'LLM Analytics', href: '/admin/llm-analytics' },
       { name: 'Agents', href: '/admin/agents' },
-      { name: 'Training', href: '/admin/training' },
+      { name: 'Intents', href: '/admin/intents' },
       { name: 'NLU Testing', href: '/admin/nlu-testing' },
+      { name: 'Training', href: '/admin/training' },
       { name: 'Flows', href: '/admin/flows' },
     ],
   },
@@ -130,11 +146,11 @@ export default function AdminLayout({
 
       {/* Sidebar */}
       <div
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out lg:translate-x-0 flex flex-col ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="flex h-16 items-center justify-between px-6 border-b">
+        <div className="flex h-16 items-center justify-between px-6 border-b flex-shrink-0">
           <h1 className="text-xl font-bold text-blue-600">Mangwale Admin</h1>
           <button
             onClick={() => setSidebarOpen(false)}

@@ -17,6 +17,7 @@ import {
   Server,
   DollarSign
 } from 'lucide-react';
+import { mangwaleAIClient } from '@/lib/api/mangwale-ai';
 
 interface Provider {
   id: string;
@@ -46,8 +47,7 @@ export default function LLMFailoverPage() {
   useEffect(() => {
     const fetchProviderStatus = async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_MANGWALE_AI_URL}/llm/failover-status`);
-        const data = await response.json();
+        const data = await mangwaleAIClient.get<any>('/llm/failover-status');
         setProviders(data.providers || []);
       } catch (error) {
         console.error('Failed to fetch provider status:', error);
@@ -68,17 +68,11 @@ export default function LLMFailoverPage() {
     setTestResult(null);
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_MANGWALE_AI_URL}/llm/chat`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          messages: [{ role: 'user', content: 'Hello, test message' }],
-          provider: 'auto',
-          max_tokens: 50
-        })
+      const data = await mangwaleAIClient.post<any>('/llm/chat', {
+        messages: [{ role: 'user', content: 'Hello, test message' }],
+        provider: 'auto',
+        max_tokens: 50
       });
-
-      const data = await response.json();
       
       setTestResult({
         success: true,

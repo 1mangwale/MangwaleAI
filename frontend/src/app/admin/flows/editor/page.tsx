@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { ArrowLeft, Save, Play, AlertTriangle, CheckCircle, Loader2, Power, PowerOff } from 'lucide-react';
 import { FlowBuilder } from '@/components/flows/FlowBuilder';
@@ -15,7 +15,7 @@ import {
   type ReactFlowData 
 } from '@/lib/utils/flowTransformer';
 
-export default function FlowEditorPage() {
+function FlowEditorContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const toast = useToast();
@@ -53,7 +53,7 @@ export default function FlowEditorPage() {
   const loadFlow = async (id: string) => {
     try {
       setLoading(true);
-      const response = await mangwaleAIClient.getFlow(id);
+      const response = await mangwaleAIClient.getFlow(id) as { success: boolean; flow: BackendFlow };
       
       if (response.success && response.flow) {
         const flow = response.flow as BackendFlow;
@@ -314,4 +314,12 @@ export default function FlowEditorPage() {
       </div>
     </div>
   );
+}
+
+export default function FlowEditorPage() {
+  return (
+    <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading editor...</div>}>
+      <FlowEditorContent />
+    </Suspense>
+  )
 }

@@ -58,8 +58,40 @@ export function useTrainingWebSocket(options: UseTrainingWebSocketOptions = {}) 
 
   const connect = useCallback(() => {
     // Get WebSocket URL from environment or default
-    const backendUrl = process.env.NEXT_PUBLIC_ADMIN_BACKEND_URL || 'http://localhost:8080'
-    const wsUrl = backendUrl.replace(/^http/, 'ws') + '/ws/training'
+    let wsUrl = process.env.NEXT_PUBLIC_WS_URL
+
+    if (!wsUrl) {
+      const backendUrl = process.env.NEXT_PUBLIC_ADMIN_BACKEND_URL || 'http://localhost:8080'
+      if (backendUrl.startsWith('http')) {
+        wsUrl = backendUrl.replace(/^http/, 'ws') + '/ws/training'
+      } else {
+        // Handle relative path or other formats
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+        const host = window.location.host
+        // Remove leading slash from backendUrl if present to avoid double slash
+        const path = backendUrl.startsWith('/') ? backendUrl : `/${backendUrl}`
+        // If backendUrl is just /api, we might want /ws/training or /api/ws/training
+        // Assuming /ws/training is at the root of the backend service
+        // If we are proxying /api -> backend, then we need to know where WS is.
+        // Usually WS is at /ws/training on the backend.
+        // If we use /api/ws/training, nginx might proxy it.
+        // Let's assume we want to hit the same host/port as the window, but upgrade to WS.
+        // If backendUrl is /api, it means we are using the same origin.
+        wsUrl = `${protocol}//${host}/ws/training`
+      }
+    } else {
+       // Ensure it ends with /ws/training if not already (or maybe the env var is just the base)
+       // The env var NEXT_PUBLIC_WS_URL usually implies the full base URL for WS.
+       // But the code appends /ws/training.
+       // Let's check if the env var already has /ws/training or not.
+       // If the env var is wss://admin.mangwale.ai/ws, then we might need to append /training?
+       // The original code was: wsUrl = backendUrl.replace(...) + '/ws/training'
+       // So it expects to append /ws/training.
+       // If NEXT_PUBLIC_WS_URL is provided, we should probably assume it's the base.
+       if (!wsUrl.endsWith('/ws/training')) {
+          wsUrl = wsUrl.replace(/\/$/, '') + '/ws/training'
+       }
+    }
 
     console.log('[WebSocket] Connecting to:', wsUrl)
 

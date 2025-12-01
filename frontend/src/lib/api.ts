@@ -29,6 +29,14 @@ apiClient.interceptors.request.use(
           console.error('Failed to parse auth token:', error);
         }
       }
+
+      // Zone ID
+      const zoneId = localStorage.getItem('mangwale-user-zone-id');
+      if (zoneId && config.headers) {
+        config.headers['X-Zone-Id'] = zoneId;
+        // Also add zoneId header as expected by some endpoints
+        config.headers['zoneId'] = JSON.stringify([parseInt(zoneId)]);
+      }
     }
     return config;
   },
@@ -73,6 +81,12 @@ export const api = {
     
     logout: () =>
       apiClient.post('/v1/auth/logout'),
+
+    login: (data: { phone: string; password: string }) =>
+      apiClient.post('/v1/auth/login', data),
+
+    socialLogin: (data: { token: string; unique_id: string; email: string; medium: string }) =>
+      apiClient.post('/v1/auth/social-login', data),
   },
 
   // Orders

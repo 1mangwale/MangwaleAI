@@ -15,26 +15,40 @@ interface AuthState {
   token: string | null;
   isAuthenticated: boolean;
   _hasHydrated: boolean;
-  setAuth: (user: User, token: string) => void;
-  clearAuth: () => void;
+  lastSyncedFrom?: string; // Platform that last synced auth (web, whatsapp, etc.)
+  setAuth: (user: User, token: string, syncSource?: string) => void;
+  clearAuth: (syncSource?: string) => void;
   updateUser: (user: Partial<User>) => void;
   setHasHydrated: (hasHydrated: boolean) => void;
+  // Centralized auth sync
+  syncFromRemote: (data: { userId: number; userName: string; token: string; platform: string }) => void;
 }
 
 export const useAuthStore = create<AuthState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       token: null,
       isAuthenticated: false,
       _hasHydrated: false,
+      lastSyncedFrom: undefined,
 
-      setAuth: (user, token) => {
-        set({ user, token, isAuthenticated: true });
+      setAuth: (user, token, syncSource = 'web') => {
+        set({ 
+          user, 
+          token, 
+          isAuthenticated: true,
+          lastSyncedFrom: syncSource 
+        });
       },
 
-      clearAuth: () => {
-        set({ user: null, token: null, isAuthenticated: false });
+      clearAuth: (syncSource) => {
+        set({ 
+          user: null, 
+          token: null, 
+          isAuthenticated: false,
+          lastSyncedFrom: syncSource 
+        });
       },
 
       updateUser: (userData) =>
@@ -44,6 +58,26 @@ export const useAuthStore = create<AuthState>()(
 
       setHasHydrated: (hasHydrated) => {
         set({ _hasHydrated: hasHydrated });
+      },
+
+      // Called when auth is synced from another channel (WhatsApp, etc.)
+      syncFromRemote: (data) => {
+        const currentUser = get().user;
+        
+        // Only sync if not already authenticated or if it's from a different platform
+        if (!currentUser || get().lastSyncedFrom !== data.platform) {
+          console.log(`🔐 Syncing auth from ${data.platform}`);
+          set({
+            user: {
+              id: data.userId,
+              f_name: data.userName,
+              phone: '', // Will be updated from backend
+            },
+            token: data.token,
+            isAuthenticated: true,
+            lastSyncedFrom: data.platform,
+          });
+        }
       },
     }),
     {

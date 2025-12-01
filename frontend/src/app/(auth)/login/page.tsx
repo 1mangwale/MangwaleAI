@@ -1,24 +1,180 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/authStore';
 import { api } from '@/lib/api';
+
+// Google Identity Services types (separate from Google Maps)
+interface GoogleIdentityConfig {
+  client_id: string;
+  callback: (response: { credential: string }) => void;
+  auto_select?: boolean;
+  cancel_on_tap_outside?: boolean;
+}
+
+interface GoogleIdentityButtonConfig {
+  theme?: 'outline' | 'filled_blue' | 'filled_black';
+  size?: 'large' | 'medium' | 'small';
+  text?: 'signin_with' | 'signup_with' | 'continue_with' | 'signin';
+  shape?: 'rectangular' | 'pill' | 'circle' | 'square';
+  logo_alignment?: 'left' | 'center';
+  width?: number;
+  locale?: string;
+}
+
+interface GoogleIdentityServices {
+  accounts: {
+    id: {
+      initialize: (config: GoogleIdentityConfig) => void;
+      prompt: (callback?: (notification: { isNotDisplayed: () => boolean; isSkippedMoment: () => boolean }) => void) => void;
+      renderButton: (element: HTMLElement, config: GoogleIdentityButtonConfig) => void;
+    };
+  };
+}
+
+// Helper to safely get Google Identity Services (doesn't conflict with Maps)
+function getGoogleIdentity(): GoogleIdentityServices | null {
+  if (typeof window === 'undefined') return null;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const google = (window as any).google;
+  if (google?.accounts?.id) {
+    return google as GoogleIdentityServices;
+  }
+  return null;
+}
+
+// JWT decode helper
+function parseJwt(token: string) {
+  try {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split('')
+        .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+        .join('')
+    );
+    return JSON.parse(jsonPayload);
+  } catch {
+    return null;
+  }
+}
 
 export default function LoginPage() {
   const router = useRouter();
   const { isAuthenticated, setAuth, _hasHydrated } = useAuthStore();
 
+  const [loginMethod, setLoginMethod] = useState<'otp' | 'password'>('otp');
   const [step, setStep] = useState<'phone' | 'otp' | 'register'>('phone');
   const [phone, setPhone] = useState('');
+  const [password, setPassword] = useState('');
   const [otp, setOtp] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [googleLoaded, setGoogleLoaded] = useState(false);
   
   // Registration fields
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+
+  // Google OAuth Client ID from environment
+  const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || '';
+
+  // Handle Google Sign In response
+  const handleGoogleResponse = useCallback(async (response: { credential: string }) => {
+    setLoading(true);
+    setError('');
+    
+    try {
+      // Decode the JWT to get user info
+      const payload = parseJwt(response.credential);
+      
+      if (!payload) {
+        setError('Failed to parse Google response');
+        setLoading(false);
+        return;
+      }
+
+      // Call our backend with Google token
+      const result = await api.auth.socialLogin({
+        token: response.credential,
+        unique_id: payload.sub,
+        email: payload.email,
+        medium: 'google'
+      });
+
+      const data = result.data;
+
+      if (data.token && data.user) {
+        console.log('✅ Google login successful');
+        setAuth(data.user, data.token);
+        router.push('/chat');
+      } else if (data.is_personal_info === 0) {
+        // User needs to complete profile (add phone number)
+        setEmail(payload.email);
+        setFirstName(payload.given_name || '');
+        setLastName(payload.family_name || '');
+        setStep('register');
+        setError('Please complete your profile with a phone number');
+        setLoading(false);
+      } else {
+        setError('Login failed. Please try again.');
+        setLoading(false);
+      }
+    } catch (err) {
+      console.error('Google login failed:', err);
+      setError('Google login failed. Please try again or use OTP.');
+      setLoading(false);
+    }
+  }, [router, setAuth]);
+
+  // Initialize Google Sign In
+  useEffect(() => {
+    if (!GOOGLE_CLIENT_ID) return;
+    
+    // Load Google Identity Services script
+    const script = document.createElement('script');
+    script.src = 'https://accounts.google.com/gsi/client';
+    script.async = true;
+    script.defer = true;
+    script.onload = () => {
+      const google = getGoogleIdentity();
+      if (google) {
+        google.accounts.id.initialize({
+          client_id: GOOGLE_CLIENT_ID,
+          callback: handleGoogleResponse,
+          auto_select: false,
+          cancel_on_tap_outside: true,
+        });
+        setGoogleLoaded(true);
+      }
+    };
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, [GOOGLE_CLIENT_ID, handleGoogleResponse]);
+
+  // Render Google button after load
+  useEffect(() => {
+    const google = getGoogleIdentity();
+    if (googleLoaded && google && step === 'phone') {
+      const buttonContainer = document.getElementById('google-signin-button');
+      if (buttonContainer) {
+        buttonContainer.innerHTML = '';
+        google.accounts.id.renderButton(buttonContainer, {
+          theme: 'outline',
+          size: 'large',
+          text: 'continue_with',
+          shape: 'rectangular',
+          width: 320,
+        });
+      }
+    }
+  }, [googleLoaded, step]);
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -133,6 +289,65 @@ export default function LoginPage() {
     }
   };
 
+  const handlePasswordLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    try {
+      // Validate phone number
+      const phoneRegex = /^[6-9]\d{9}$/;
+      if (!phoneRegex.test(phone)) {
+        setError('Please enter a valid 10-digit Indian mobile number');
+        setLoading(false);
+        return;
+      }
+
+      if (!password) {
+        setError('Please enter your password');
+        setLoading(false);
+        return;
+      }
+
+      const response = await api.auth.login({ phone, password });
+      const data = response.data;
+
+      if (data.token && data.user) {
+        console.log('✅ Login successful');
+        setAuth(data.user, data.token);
+        router.push('/chat');
+      } else {
+        setError('Login failed. Please check your credentials.');
+        setLoading(false);
+      }
+    } catch (err: unknown) {
+      console.error('Failed to login:', err);
+      setError(
+        getErrorMessage(
+          err,
+          'Login failed. Please check your credentials.'
+        )
+      );
+      setLoading(false);
+    }
+  };
+
+  const handleGuestLogin = () => {
+    const guestUser = {
+      id: 0,
+      f_name: 'Guest',
+      l_name: 'User',
+      email: '',
+      phone: '',
+      image: '',
+      is_phone_verified: false,
+      wallet_balance: 0,
+      loyalty_point: 0
+    };
+    setAuth(guestUser, 'guest_token');
+    router.push('/chat');
+  };
+
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -205,7 +420,7 @@ export default function LoginPage() {
           </h1>
           <p className="text-gray-600">
             {step === 'phone' 
-              ? 'Enter your phone number to get started with delivery services' 
+              ? 'Login to access delivery services' 
               : step === 'otp'
               ? 'Enter the OTP sent to your phone'
               : 'Complete your profile to continue'}
@@ -215,44 +430,120 @@ export default function LoginPage() {
         {/* Login Card */}
         <div className="bg-white rounded-2xl shadow-xl p-8">
           {step === 'phone' ? (
-            // Step 1: Phone Number
-            <form onSubmit={handleSendOtp} className="space-y-6">
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                  Phone Number
-                </label>
-                <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
-                    +91
-                  </span>
-                  <input
-                    id="phone"
-                    type="tel"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
-                    placeholder="9876543210"
-                    className="w-full pl-14 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-lg"
-                    disabled={loading}
-                    autoFocus
-                    maxLength={10}
-                  />
-                </div>
-              </div>
-
-              {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
-                  {error}
+            <>
+              {/* Google Sign-In Button - ChatGPT Style at Top */}
+              {GOOGLE_CLIENT_ID && (
+                <div className="mb-6">
+                  <div id="google-signin-button" className="flex justify-center"></div>
                 </div>
               )}
 
-              <button
-                type="submit"
-                disabled={loading || phone.length !== 10}
-                className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-green-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
-              >
-                {loading ? 'Sending OTP...' : 'Send OTP'}
-              </button>
-            </form>
+              {/* Divider */}
+              <div className="relative mb-6">
+                <div className="absolute inset-0 flex items-center">
+                  <div className="w-full border-t border-gray-300"></div>
+                </div>
+                <div className="relative flex justify-center text-sm">
+                  <span className="px-2 bg-white text-gray-500">or continue with phone</span>
+                </div>
+              </div>
+
+              {/* Tabs */}
+              <div className="flex border-b border-gray-200 mb-6">
+                <button
+                  className={`flex-1 py-2 text-center font-medium ${
+                    loginMethod === 'otp'
+                      ? 'text-green-600 border-b-2 border-green-600'
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                  onClick={() => setLoginMethod('otp')}
+                >
+                  OTP Login
+                </button>
+                <button
+                  className={`flex-1 py-2 text-center font-medium ${
+                    loginMethod === 'password'
+                      ? 'text-green-600 border-b-2 border-green-600'
+                      : 'text-gray-500 hover:text-gray-700'
+                  }`}
+                  onClick={() => setLoginMethod('password')}
+                >
+                  Password
+                </button>
+              </div>
+
+              <form onSubmit={loginMethod === 'otp' ? handleSendOtp : handlePasswordLogin} className="space-y-6">
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone Number
+                  </label>
+                  <div className="relative">
+                    <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
+                      +91
+                    </span>
+                    <input
+                      id="phone"
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value.replace(/\D/g, '').slice(0, 10))}
+                      placeholder="9876543210"
+                      className="w-full pl-14 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-lg"
+                      disabled={loading}
+                      autoFocus
+                      maxLength={10}
+                    />
+                  </div>
+                </div>
+
+                {loginMethod === 'password' && (
+                  <div>
+                    <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                      Password
+                    </label>
+                    <input
+                      id="password"
+                      type="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      placeholder="••••••••"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-lg"
+                      disabled={loading}
+                    />
+                    <div className="mt-2 text-right">
+                      <button type="button" className="text-sm text-green-600 hover:text-green-700">
+                        Forgot Password?
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {error && (
+                  <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+                    {error}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={loading || phone.length !== 10 || (loginMethod === 'password' && !password)}
+                  className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-green-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed"
+                >
+                  {loading ? 'Processing...' : loginMethod === 'otp' ? 'Send OTP' : 'Login'}
+                </button>
+              </form>
+              
+              {/* Guest option */}
+              <div className="mt-4">
+                <button
+                  type="button"
+                  onClick={handleGuestLogin}
+                  disabled={loading}
+                  className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-gray-50 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                >
+                  Continue as Guest
+                </button>
+              </div>
+            </>
           ) : step === 'otp' ? (
             // Step 2: OTP Verification
             <form onSubmit={handleVerifyOtp} className="space-y-6">

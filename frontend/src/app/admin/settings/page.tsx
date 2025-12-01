@@ -1,21 +1,62 @@
 'use client';
 
-import { useState } from 'react';
-import { Settings, ExternalLink, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Settings, ExternalLink, CheckCircle, XCircle, AlertCircle, Mic, Speaker, HardDrive, Database, Brain } from 'lucide-react';
 import { adminBackendClient } from '@/lib/api/admin-backend';
 
 export default function SettingsPage() {
   const [labelStudioUrl, setLabelStudioUrl] = useState('');
   const [labelStudioToken, setLabelStudioToken] = useState('');
+  const [systemPrompt, setSystemPrompt] = useState('');
   const [testStatus, setTestStatus] = useState<'idle' | 'testing' | 'success' | 'error'>('idle');
   const [testMessage, setTestMessage] = useState('');
   const [saving, setSaving] = useState(false);
+
+  // ASR State
+  const [asrTestStatus, setAsrTestStatus] = useState<'idle' | 'testing' | 'success' | 'error'>('idle');
+  const [asrTestMessage, setAsrTestMessage] = useState('');
+
+  // TTS State
+  const [ttsTestStatus, setTtsTestStatus] = useState<'idle' | 'testing' | 'success' | 'error'>('idle');
+  const [ttsTestMessage, setTtsTestMessage] = useState('');
+
+  // Minio State
+  const [minioTestStatus, setMinioTestStatus] = useState<'idle' | 'testing' | 'success' | 'error'>('idle');
+  const [minioTestMessage, setMinioTestMessage] = useState('');
+
+  useEffect(() => {
+    loadSettings();
+  }, []);
+
+  const loadSettings = async () => {
+    try {
+      const settings = await adminBackendClient.getSettings();
+      
+      const lsUrl = settings.find(s => s.key === 'label-studio-url');
+      if (lsUrl) setLabelStudioUrl(lsUrl.value);
+
+      const lsToken = settings.find(s => s.key === 'label-studio-api-key');
+      if (lsToken) setLabelStudioToken(lsToken.value);
+
+      const sysPrompt = settings.find(s => s.key === 'system-prompt');
+      if (sysPrompt) setSystemPrompt(sysPrompt.value);
+
+    } catch (error) {
+      console.error('Failed to load settings:', error);
+    }
+  };
 
   const handleTestConnection = async () => {
     setTestStatus('testing');
     setTestMessage('Testing connection...');
     
     try {
+      // Temporarily save settings to test with new values if they changed
+      await adminBackendClient.updateSettings([
+        { key: 'label-studio-url', value: labelStudioUrl },
+        { key: 'label-studio-api-key', value: labelStudioToken }
+      ]);
+
       const result = await adminBackendClient.testLabelStudioConnection();
       if (result.ok) {
         setTestStatus('success');
@@ -30,11 +71,69 @@ export default function SettingsPage() {
     }
   };
 
+  const handleTestAsr = async () => {
+    setAsrTestStatus('testing');
+    setAsrTestMessage('Testing ASR service...');
+    try {
+      const result = await adminBackendClient.testAsrConnection();
+      if (result.ok) {
+        setAsrTestStatus('success');
+        setAsrTestMessage('✅ ASR Service is healthy and responding.');
+      } else {
+        setAsrTestStatus('error');
+        setAsrTestMessage(`❌ ASR Service check failed: ${result.message || 'Unknown error'}`);
+      }
+    } catch (error) {
+      setAsrTestStatus('error');
+      setAsrTestMessage(`❌ Connection failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  };
+
+  const handleTestTts = async () => {
+    setTtsTestStatus('testing');
+    setTtsTestMessage('Testing TTS service...');
+    try {
+      const result = await adminBackendClient.testTtsConnection();
+      if (result.ok) {
+        setTtsTestStatus('success');
+        setTtsTestMessage('✅ TTS Service is healthy and responding.');
+      } else {
+        setTtsTestStatus('error');
+        setTtsTestMessage(`❌ TTS Service check failed: ${result.message || 'Unknown error'}`);
+      }
+    } catch (error) {
+      setTtsTestStatus('error');
+      setTtsTestMessage(`❌ Connection failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  };
+
+  const handleTestMinio = async () => {
+    setMinioTestStatus('testing');
+    setMinioTestMessage('Testing Minio storage...');
+    try {
+      const result = await adminBackendClient.testMinioConnection();
+      if (result.ok) {
+        setMinioTestStatus('success');
+        setMinioTestMessage('✅ Minio Storage is healthy and accessible.');
+      } else {
+        setMinioTestStatus('error');
+        setMinioTestMessage(`❌ Minio check failed: ${result.message || 'Unknown error'}`);
+      }
+    } catch (error) {
+      setMinioTestStatus('error');
+      setMinioTestMessage(`❌ Connection failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
+  };
+
   const handleSave = async () => {
     setSaving(true);
     try {
-      // Save settings to backend (you'll need to implement this endpoint)
-      alert('Settings saved! (Note: Backend endpoint needed to persist settings)');
+      await adminBackendClient.updateSettings([
+        { key: 'label-studio-url', value: labelStudioUrl },
+        { key: 'label-studio-api-key', value: labelStudioToken },
+        { key: 'system-prompt', value: systemPrompt }
+      ]);
+      alert('Settings saved successfully!');
       setSaving(false);
     } catch (error) {
       console.error('Failed to save settings:', error);
@@ -60,6 +159,45 @@ export default function SettingsPage() {
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-8 py-8 space-y-6">
+        {/* AI Business Context Configuration */}
+        <div className="bg-white rounded-xl shadow-md border-2 border-gray-100 p-6">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-3 bg-green-100 rounded-lg">
+              <Brain className="text-green-600" size={24} />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-gray-900">AI Business Context</h2>
+              <p className="text-sm text-gray-600">Define the persona, rules, and business knowledge for the AI Agent</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+              <p className="text-sm text-green-900">
+                This "System Prompt" defines how the AI behaves. You can use placeholders like <code>{`{{userName}}`}</code>, <code>{`{{platform}}`}</code>, <code>{`{{time}}`}</code>, and <code>{`{{isAuthenticated}}`}</code> to inject dynamic context.
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                System Prompt / Business Rules
+              </label>
+              <textarea
+                value={systemPrompt}
+                onChange={(e) => setSystemPrompt(e.target.value)}
+                placeholder="You are Mangwale AI..."
+                rows={15}
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#059211] focus:border-transparent font-mono text-sm"
+              />
+              <p className="text-xs text-gray-500 mt-1">
+                Be specific about what the AI should and should not do.
+              </p>
+            </div>
+
+            {/* Save Button for this section specifically? No, global save is fine. */}
+          </div>
+        </div>
+
         {/* Label Studio Configuration */}
         <div className="bg-white rounded-xl shadow-md border-2 border-gray-100 p-6">
           <div className="flex items-center gap-3 mb-6">
@@ -161,6 +299,135 @@ export default function SettingsPage() {
               >
                 {saving ? 'Saving...' : 'Save Settings'}
               </button>
+            </div>
+          </div>
+        </div>
+
+        {/* ASR Service Configuration */}
+        <div className="bg-white rounded-xl shadow-md border-2 border-gray-100 p-6">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-3 bg-purple-100 rounded-lg">
+              <Mic className="text-purple-600" size={24} />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-gray-900">ASR Service (Speech-to-Text)</h2>
+              <p className="text-sm text-gray-600">Configure Automatic Speech Recognition service</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
+              <p className="text-sm text-purple-900">
+                The ASR service runs internally on port 7000. It converts spoken audio into text for the NLU engine.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 pt-2">
+              <button
+                onClick={handleTestAsr}
+                disabled={asrTestStatus === 'testing'}
+                className="px-4 py-2 bg-purple-600 hover:bg-purple-700 disabled:bg-gray-300 text-white rounded-lg transition-colors text-sm font-medium"
+              >
+                {asrTestStatus === 'testing' ? 'Testing...' : 'Test ASR Connection'}
+              </button>
+              
+              {asrTestStatus !== 'idle' && (
+                <div className={`flex items-center gap-2 text-sm font-medium ${
+                  asrTestStatus === 'success' ? 'text-green-600' :
+                  asrTestStatus === 'error' ? 'text-red-600' :
+                  'text-gray-600'
+                }`}>
+                  {asrTestStatus === 'success' && <CheckCircle size={18} />}
+                  {asrTestStatus === 'error' && <XCircle size={18} />}
+                  {asrTestMessage}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* TTS Service Configuration */}
+        <div className="bg-white rounded-xl shadow-md border-2 border-gray-100 p-6">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-3 bg-orange-100 rounded-lg">
+              <Speaker className="text-orange-600" size={24} />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-gray-900">TTS Service (Text-to-Speech)</h2>
+              <p className="text-sm text-gray-600">Configure Text-to-Speech synthesis service</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
+              <p className="text-sm text-orange-900">
+                The TTS service runs internally on port 8010. It converts text responses into spoken audio.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 pt-2">
+              <button
+                onClick={handleTestTts}
+                disabled={ttsTestStatus === 'testing'}
+                className="px-4 py-2 bg-orange-600 hover:bg-orange-700 disabled:bg-gray-300 text-white rounded-lg transition-colors text-sm font-medium"
+              >
+                {ttsTestStatus === 'testing' ? 'Testing...' : 'Test TTS Connection'}
+              </button>
+              
+              {ttsTestStatus !== 'idle' && (
+                <div className={`flex items-center gap-2 text-sm font-medium ${
+                  ttsTestStatus === 'success' ? 'text-green-600' :
+                  ttsTestStatus === 'error' ? 'text-red-600' :
+                  'text-gray-600'
+                }`}>
+                  {ttsTestStatus === 'success' && <CheckCircle size={18} />}
+                  {ttsTestStatus === 'error' && <XCircle size={18} />}
+                  {ttsTestMessage}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        {/* Minio Storage Configuration */}
+        <div className="bg-white rounded-xl shadow-md border-2 border-gray-100 p-6">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="p-3 bg-red-100 rounded-lg">
+              <HardDrive className="text-red-600" size={24} />
+            </div>
+            <div>
+              <h2 className="text-xl font-bold text-gray-900">Object Storage (Minio)</h2>
+              <p className="text-sm text-gray-600">Configure S3-compatible object storage</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+              <p className="text-sm text-red-900">
+                Minio provides S3-compatible storage for datasets, models, and audio files. It runs internally on port 9000.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-3 pt-2">
+              <button
+                onClick={handleTestMinio}
+                disabled={minioTestStatus === 'testing'}
+                className="px-4 py-2 bg-red-600 hover:bg-red-700 disabled:bg-gray-300 text-white rounded-lg transition-colors text-sm font-medium"
+              >
+                {minioTestStatus === 'testing' ? 'Testing...' : 'Test Storage Connection'}
+              </button>
+              
+              {minioTestStatus !== 'idle' && (
+                <div className={`flex items-center gap-2 text-sm font-medium ${
+                  minioTestStatus === 'success' ? 'text-green-600' :
+                  minioTestStatus === 'error' ? 'text-red-600' :
+                  'text-gray-600'
+                }`}>
+                  {minioTestStatus === 'success' && <CheckCircle size={18} />}
+                  {minioTestStatus === 'error' && <XCircle size={18} />}
+                  {minioTestMessage}
+                </div>
+              )}
             </div>
           </div>
         </div>

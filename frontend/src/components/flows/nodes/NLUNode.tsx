@@ -1,16 +1,18 @@
 'use client';
 
-import { Handle, Position, NodeProps } from '@xyflow/react';
+import { Handle, Position, NodeProps, Node } from '@xyflow/react';
 import { Brain } from 'lucide-react';
 
-export interface NLUNodeData {
+export interface NLUNodeData extends Record<string, unknown> {
   label?: string;
   pipeline?: string;
   model?: string;
   threshold?: number;
 }
 
-export function NLUNode({ data, selected }: NodeProps<NLUNodeData>) {
+type NLUNodeType = Node<NLUNodeData>;
+
+export function NLUNode({ data, selected }: NodeProps<NLUNodeType>) {
   return (
     <div className={`bg-white border-2 rounded-lg p-4 min-w-[200px] shadow-md transition-all ${
       selected ? 'border-purple-500 shadow-lg' : 'border-purple-300'

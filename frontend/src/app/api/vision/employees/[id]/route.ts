@@ -4,10 +4,10 @@ const IMAGE_AI_URL = process.env.IMAGE_AI_INTERNAL_URL || 'http://localhost:3000
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const employeeId = params.id;
+    const { id: employeeId } = await params;
 
     const response = await fetch(`${IMAGE_AI_URL}/employees/${employeeId}`, {
       method: 'DELETE',

@@ -23,7 +23,7 @@ export default function CameraEnrollmentPage() {
     name: '',
     email: '',
     phone: '',
-    storeId: 'STORE-001',
+    storeId: '',
     department: '',
     position: '',
   });
@@ -102,7 +102,7 @@ export default function CameraEnrollmentPage() {
       name: '',
       email: '',
       phone: '',
-      storeId: 'STORE-001',
+      storeId: '',
       department: '',
       position: '',
     });

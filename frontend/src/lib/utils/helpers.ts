@@ -54,15 +54,19 @@ export const generateId = (): string => {
 
 // Parse numbered options from AI message
 export const parseButtonsFromText = (text: string): { cleanText: string; buttons: Array<{ id: string; label: string; value: string }> } => {
-  // Match patterns like "1️⃣ Option text" or "1. Option text" or "[BUTTON:Label:value]"
+  // Match patterns like "1️⃣ Option text" or "1. Option text" or "[BTN|Label|value]"
   const emojiPattern = /(\d)️⃣\s*([^\n]+)/g
   const numberPattern = /^(\d+)\.\s*([^\n]+)/gm
-  const buttonPattern = /\[BUTTON:([^:]+):([^\]]+)\]/g
+  // Updated: Use | separator to avoid conflicts with colons in labels
+  // Format: [BTN|Label text here|value]
+  const buttonPattern = /\[BTN\|([^|]+)\|([^\]]+)\]/g
+  // Legacy format: [BUTTON:label:value] (for backwards compatibility - value is last segment after :)
+  const legacyButtonPattern = /\[BUTTON:\s*(.+?):([^:\]]+)\]/g
   
   const buttons: Array<{ id: string; label: string; value: string }> = []
   let cleanText = text
   
-  // Check for special button syntax [BUTTON:label:value]
+  // Check for new button syntax [BTN|label|value]
   let match
   while ((match = buttonPattern.exec(text)) !== null) {
     const label = match[1].trim()
@@ -74,8 +78,21 @@ export const parseButtonsFromText = (text: string): { cleanText: string; buttons
     })
   }
   
+  // Also check legacy format [BUTTON:label:value]
+  if (buttons.length === 0) {
+    while ((match = legacyButtonPattern.exec(text)) !== null) {
+      const label = match[1].trim()
+      const value = match[2].trim()
+      buttons.push({
+        id: `btn-${buttons.length}`,
+        label: label,
+        value: value
+      })
+    }
+  }
+  
   // Remove button markers from text
-  cleanText = cleanText.replace(buttonPattern, '').trim()
+  cleanText = cleanText.replace(buttonPattern, '').replace(legacyButtonPattern, '').trim()
   
   // Check for emoji-numbered options (1️⃣, 2️⃣)
   if (buttons.length === 0) {

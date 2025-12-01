@@ -31,7 +31,7 @@ export const TTSButton: React.FC<TTSButtonProps> = ({
 
     try {
       // Request TTS synthesis
-      const response = await fetch('http://localhost:3201/voice/synthesize', {
+      const response = await fetch('/api/tts/synthesize', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

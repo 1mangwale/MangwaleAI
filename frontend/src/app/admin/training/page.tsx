@@ -57,6 +57,7 @@ export default function TrainingPage() {
   const [jobs, setJobs] = useState<TrainingJob[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>('');
+  const [syncing, setSyncing] = useState(false);
 
   // WebSocket connection for real-time updates
   const { isConnected } = useTrainingWebSocket({
@@ -319,6 +320,29 @@ export default function TrainingPage() {
     }
   };
 
+  const handleSyncLabelStudio = async () => {
+    if (syncing) return;
+    
+    if (!confirm('This will sync all pending data to Label Studio and pull approved annotations back. Continue?')) {
+      return;
+    }
+
+    setSyncing(true);
+    try {
+      const result = await adminBackendClient.syncLabelStudio();
+      if (result.success) {
+        alert('✅ Sync completed successfully!');
+      } else {
+        alert(`❌ Sync failed: ${result.message}`);
+      }
+    } catch (err) {
+      console.error('Sync failed:', err);
+      alert('❌ Sync failed. Check console for details.');
+    } finally {
+      setSyncing(false);
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -417,6 +441,15 @@ export default function TrainingPage() {
           </div>
         </div>
         <div className="flex gap-3">
+          <button 
+            onClick={handleSyncLabelStudio}
+            disabled={syncing}
+            className="flex items-center gap-2 px-4 py-2 bg-white border-2 border-gray-200 rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all disabled:opacity-50"
+            title="Sync pending data with Label Studio"
+          >
+            <RefreshCw size={20} className={syncing ? "animate-spin" : ""} />
+            {syncing ? 'Syncing...' : 'Sync Now'}
+          </button>
           <button className="flex items-center gap-2 px-4 py-2 bg-white border-2 border-gray-200 rounded-lg hover:border-[#059211] transition-all">
             <Upload size={20} />
             Upload Dataset

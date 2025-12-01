@@ -3,7 +3,12 @@
  * Handles all API calls to the mangwale-ai backend LLM endpoints
  */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_MANGWALE_AI_URL || '/api';
+const getBaseUrl = () => {
+  if (typeof window !== 'undefined') {
+    return '/api';
+  }
+  return process.env.NEXT_PUBLIC_MANGWALE_AI_URL || 'http://localhost:3200';
+};
 
 export interface ModelInfo {
   id: string;
@@ -91,11 +96,11 @@ export interface ProviderUsageStats {
 }
 
 class LlmApiService {
-  private baseUrl: string;
-
-  constructor() {
-    this.baseUrl = `${API_BASE_URL}/llm`;
+  private get baseUrl(): string {
+    return `${getBaseUrl()}/llm`;
   }
+
+  constructor() {}
 
   /**
    * Get all available models with optional filters

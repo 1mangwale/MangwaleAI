@@ -1,23 +1,26 @@
 'use client';
 
-import { Handle, Position, NodeProps } from '@xyflow/react';
+import { Handle, Position, NodeProps, Node } from '@xyflow/react';
 import { Mic, Volume2 } from 'lucide-react';
 
-export interface ASRNodeData {
+export interface ASRNodeData extends Record<string, unknown> {
   label?: string;
   provider?: string;
   language?: string;
   model?: string;
 }
 
-export interface TTSNodeData {
+export interface TTSNodeData extends Record<string, unknown> {
   label?: string;
   provider?: string;
   voice?: string;
   language?: string;
 }
 
-export function ASRNode({ data, selected }: NodeProps<ASRNodeData>) {
+type ASRNodeType = Node<ASRNodeData>;
+type TTSNodeType = Node<TTSNodeData>;
+
+export function ASRNode({ data, selected }: NodeProps<ASRNodeType>) {
   return (
     <div className={`bg-white border-2 rounded-lg p-4 min-w-[200px] shadow-md transition-all ${
       selected ? 'border-emerald-500 shadow-lg' : 'border-emerald-300'
@@ -55,7 +58,7 @@ export function ASRNode({ data, selected }: NodeProps<ASRNodeData>) {
   );
 }
 
-export function TTSNode({ data, selected }: NodeProps<TTSNodeData>) {
+export function TTSNode({ data, selected }: NodeProps<TTSNodeType>) {
   return (
     <div className={`bg-white border-2 rounded-lg p-4 min-w-[200px] shadow-md transition-all ${
       selected ? 'border-orange-500 shadow-lg' : 'border-orange-300'
